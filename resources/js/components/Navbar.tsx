@@ -1,9 +1,23 @@
 import { useState } from 'react';
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 
+interface Auth {
+    user: {
+        id: number;
+        name: string;
+        email: string;
+    } | null;
+}
+
+interface PageProps extends Record<string, unknown> {
+    auth: Auth;
+}
 export default function Navbar() {
-    const [menuOpen, setMenuOpen] = useState(false);
 
+    const { auth } = usePage<PageProps>().props
+
+    const [menuOpen, setMenuOpen] = useState(false);
+    ;
     return (
         <header className="fixed top-0 z-50 w-full border-b border-black/5 bg-[#f7f4ee]/95 backdrop-blur-md">
             <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-8">
@@ -20,7 +34,7 @@ export default function Navbar() {
                 {/* Desktop Navigation */}
                 <nav className="hidden items-center gap-10 md:flex">
                     <Link
-                        href="/"
+                        href="http://nova-restaurant.test"
                         className="text-sm tracking-wide text-[#20231f]/80 transition hover:text-[#5d6948]"
                     >
                         Home
@@ -46,6 +60,14 @@ export default function Navbar() {
                     >
                         Contact
                     </Link>
+                    {auth.user && (
+                        <Link
+                            href="/dashboard"
+                            className="text-sm tracking-wide text-[#20231f]/80 transition hover:text-[#5d6948]"
+                        >
+                            Admin
+                        </Link>
+                    )}
                 </nav>
 
                 {/* Desktop Reservation */}
