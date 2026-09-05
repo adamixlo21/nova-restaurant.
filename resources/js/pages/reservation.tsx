@@ -1,4 +1,6 @@
 import { Head, useForm } from '@inertiajs/react';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 
 export default function Reservation() {
     const { data, setData, post, processing, errors } = useForm({
@@ -17,37 +19,120 @@ export default function Reservation() {
         post('/reservation');
     }
 
+    const inputClass =
+        'w-full border border-black/10 bg-[#f7f4ee] px-4 py-3.5 text-sm text-[#20231f] outline-none transition focus:border-[#5d6948] focus:ring-2 focus:ring-[#5d6948]/10';
+
     return (
         <>
-            <Head title="Reservation" />
+            <Head title="Reserveren" />
 
-            <div className="min-h-screen bg-[#f7f4ee] text-[#20231f]">
-                <main className="px-6 py-20 sm:px-10 lg:px-16">
-                    <div className="mx-auto max-w-3xl">
+            <Navbar />
 
-                        <div className="mb-12 text-center">
-                            <p className="text-xs uppercase tracking-[0.35em] text-[#5d6948]">
-                                Reservations
-                            </p>
+            <main className="bg-[#f7f4ee] text-[#20231f]">
 
-                            <h1 className="mt-4 font-serif text-5xl sm:text-6xl">
-                                Reserve a Table
-                            </h1>
+                {/* Hero */}
+                <section className="px-6 py-20 sm:px-10 lg:px-16 lg:py-24">
+                    <div className="mx-auto max-w-5xl text-center">
+                        <p className="mb-4 text-[11px] uppercase tracking-[0.35em] text-[#5d6948]">
+                            Brasserie De Bank
+                        </p>
 
-                            <p className="mx-auto mt-6 max-w-xl text-sm leading-7 text-[#20231f]/60">
-                                Choose a date and time and let us know how many
-                                guests will be joining you.
-                            </p>
+                        <h1 className="font-serif text-5xl tracking-tight sm:text-6xl lg:text-7xl">
+                            Reserveer een tafel
+                        </h1>
+
+                        <div className="mx-auto mt-6 h-px w-14 bg-[#5d6948]/40" />
+
+                        <p className="mx-auto mt-6 max-w-xl text-sm leading-7 text-[#20231f]/55 sm:text-base sm:leading-8">
+                            Kies een datum, tijd en het aantal gasten.
+                            Wij zorgen dat er een tafel voor je klaarstaat.
+                        </p>
+                    </div>
+                </section>
+
+                {/* Reservation section */}
+                <section className="border-t border-black/5 bg-[#ebe7dc] px-6 py-16 sm:px-10 lg:px-16 lg:py-20">
+                    <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.8fr_1.2fr]">
+
+                        {/* Left information */}
+                        <div className="flex flex-col justify-between bg-[#20231f] p-8 text-[#f7f4ee] sm:p-10">
+                            <div>
+                                <p className="text-[10px] uppercase tracking-[0.3em] text-[#f7f4ee]/45">
+                                    Reserveren
+                                </p>
+
+                                <h2 className="mt-4 max-w-sm font-serif text-4xl leading-tight">
+                                    Een gezellige tafel bij De Bank
+                                </h2>
+
+                                <p className="mt-5 max-w-md text-sm leading-7 text-[#f7f4ee]/60">
+                                    Of je nu komt lunchen, dineren of gezellig
+                                    borrelen, reserveer eenvoudig jouw tafel
+                                    via het formulier.
+                                </p>
+                            </div>
+
+                            <div className="mt-12 space-y-7 border-t border-white/10 pt-8">
+                                <div>
+                                    <p className="text-[10px] uppercase tracking-[0.25em] text-[#f7f4ee]/35">
+                                        Locatie
+                                    </p>
+
+                                    <p className="mt-2 text-sm leading-6 text-[#f7f4ee]/75">
+                                        Smeepoortstraat 1
+                                        <br />
+                                        3841 EG Harderwijk
+                                    </p>
+                                </div>
+
+                                <div>
+                                    <p className="text-[10px] uppercase tracking-[0.25em] text-[#f7f4ee]/35">
+                                        Contact
+                                    </p>
+
+                                    <p className="mt-2 text-sm leading-6 text-[#f7f4ee]/75">
+                                        0341 - 472 582
+                                        <br />
+                                        info@brasseriedebank.nl
+                                    </p>
+                                </div>
+
+                                <div>
+                                    <p className="text-[10px] uppercase tracking-[0.25em] text-[#f7f4ee]/35">
+                                        Grote groep?
+                                    </p>
+
+                                    <p className="mt-2 max-w-sm text-sm leading-6 text-[#f7f4ee]/60">
+                                        Voor grotere gezelschappen kun je ook
+                                        telefonisch contact met ons opnemen.
+                                    </p>
+                                </div>
+                            </div>
                         </div>
 
+                        {/* Form */}
                         <form
                             onSubmit={submit}
-                            className="border border-black/10 bg-white p-8 sm:p-10"
+                            className="border border-[#5d6948]/15 bg-white p-7 shadow-[0_20px_50px_rgba(32,35,31,0.06)] sm:p-10"
                         >
+                            <div className="mb-9">
+                                <p className="text-[10px] uppercase tracking-[0.3em] text-[#5d6948]">
+                                    Jouw gegevens
+                                </p>
+
+                                <h2 className="mt-3 font-serif text-3xl">
+                                    Reserveer hieronder
+                                </h2>
+
+                                <p className="mt-3 text-sm leading-6 text-[#20231f]/50">
+                                    Vul je gegevens in en verstuur je reserveringsaanvraag.
+                                </p>
+                            </div>
+
                             {/* Name */}
                             <div className="mb-6">
-                                <label className="mb-2 block text-xs uppercase tracking-[0.15em]">
-                                    Name
+                                <label className="mb-2 block text-[11px] uppercase tracking-[0.18em] text-[#20231f]/65">
+                                    Naam
                                 </label>
 
                                 <input
@@ -56,7 +141,8 @@ export default function Reservation() {
                                     onChange={(e) =>
                                         setData('name', e.target.value)
                                     }
-                                    className="w-full border border-black/10 bg-[#f7f4ee] px-4 py-3 text-sm outline-none focus:border-[#5d6948]"
+                                    className={inputClass}
+                                    placeholder="Jouw naam"
                                 />
 
                                 {errors.name && (
@@ -66,55 +152,58 @@ export default function Reservation() {
                                 )}
                             </div>
 
-                            {/* Email */}
-                            <div className="mb-6">
-                                <label className="mb-2 block text-xs uppercase tracking-[0.15em]">
-                                    Email
-                                </label>
-
-                                <input
-                                    type="email"
-                                    value={data.email}
-                                    onChange={(e) =>
-                                        setData('email', e.target.value)
-                                    }
-                                    className="w-full border border-black/10 bg-[#f7f4ee] px-4 py-3 text-sm outline-none focus:border-[#5d6948]"
-                                />
-
-                                {errors.email && (
-                                    <p className="mt-2 text-sm text-red-600">
-                                        {errors.email}
-                                    </p>
-                                )}
-                            </div>
-
-                            {/* Phone */}
-                            <div className="mb-6">
-                                <label className="mb-2 block text-xs uppercase tracking-[0.15em]">
-                                    Phone
-                                </label>
-
-                                <input
-                                    type="tel"
-                                    value={data.phone}
-                                    onChange={(e) =>
-                                        setData('phone', e.target.value)
-                                    }
-                                    className="w-full border border-black/10 bg-[#f7f4ee] px-4 py-3 text-sm outline-none focus:border-[#5d6948]"
-                                />
-
-                                {errors.phone && (
-                                    <p className="mt-2 text-sm text-red-600">
-                                        {errors.phone}
-                                    </p>
-                                )}
-                            </div>
-
-                            {/* Date & Time */}
+                            {/* Email + Phone */}
                             <div className="mb-6 grid gap-6 sm:grid-cols-2">
                                 <div>
-                                    <label className="mb-2 block text-xs uppercase tracking-[0.15em]">
-                                        Date
+                                    <label className="mb-2 block text-[11px] uppercase tracking-[0.18em] text-[#20231f]/65">
+                                        E-mail
+                                    </label>
+
+                                    <input
+                                        type="email"
+                                        value={data.email}
+                                        onChange={(e) =>
+                                            setData('email', e.target.value)
+                                        }
+                                        className={inputClass}
+                                        placeholder="naam@email.nl"
+                                    />
+
+                                    {errors.email && (
+                                        <p className="mt-2 text-sm text-red-600">
+                                            {errors.email}
+                                        </p>
+                                    )}
+                                </div>
+
+                                <div>
+                                    <label className="mb-2 block text-[11px] uppercase tracking-[0.18em] text-[#20231f]/65">
+                                        Telefoon
+                                    </label>
+
+                                    <input
+                                        type="tel"
+                                        value={data.phone}
+                                        onChange={(e) =>
+                                            setData('phone', e.target.value)
+                                        }
+                                        className={inputClass}
+                                        placeholder="06 12345678"
+                                    />
+
+                                    {errors.phone && (
+                                        <p className="mt-2 text-sm text-red-600">
+                                            {errors.phone}
+                                        </p>
+                                    )}
+                                </div>
+                            </div>
+
+                            {/* Date + Time */}
+                            <div className="mb-6 grid gap-6 sm:grid-cols-2">
+                                <div>
+                                    <label className="mb-2 block text-[11px] uppercase tracking-[0.18em] text-[#20231f]/65">
+                                        Datum
                                     </label>
 
                                     <input
@@ -123,7 +212,8 @@ export default function Reservation() {
                                         onChange={(e) =>
                                             setData('date', e.target.value)
                                         }
-                                        className="w-full border border-black/10 bg-[#f7f4ee] px-4 py-3 text-sm outline-none focus:border-[#5d6948]"
+                                        className={inputClass}
+                                        style={{ colorScheme: 'light' }}
                                     />
 
                                     {errors.date && (
@@ -134,8 +224,8 @@ export default function Reservation() {
                                 </div>
 
                                 <div>
-                                    <label className="mb-2 block text-xs uppercase tracking-[0.15em]">
-                                        Time
+                                    <label className="mb-2 block text-[11px] uppercase tracking-[0.18em] text-[#20231f]/65">
+                                        Tijd
                                     </label>
 
                                     <input
@@ -144,7 +234,10 @@ export default function Reservation() {
                                         onChange={(e) =>
                                             setData('time', e.target.value)
                                         }
-                                        className="w-full border border-black/10 bg-[#f7f4ee] px-4 py-3 text-sm outline-none focus:border-[#5d6948]"
+                                        className={inputClass}
+                                        style={{ colorScheme: 'light' }}
+
+
                                     />
 
                                     {errors.time && (
@@ -157,8 +250,8 @@ export default function Reservation() {
 
                             {/* Guests */}
                             <div className="mb-6">
-                                <label className="mb-2 block text-xs uppercase tracking-[0.15em]">
-                                    Number of Guests
+                                <label className="mb-2 block text-[11px] uppercase tracking-[0.18em] text-[#20231f]/65">
+                                    Aantal gasten
                                 </label>
 
                                 <input
@@ -172,7 +265,7 @@ export default function Reservation() {
                                             Number(e.target.value),
                                         )
                                     }
-                                    className="w-full border border-black/10 bg-[#f7f4ee] px-4 py-3 text-sm outline-none focus:border-[#5d6948]"
+                                    className={inputClass}
                                 />
 
                                 {errors.guests && (
@@ -184,17 +277,18 @@ export default function Reservation() {
 
                             {/* Message */}
                             <div className="mb-8">
-                                <label className="mb-2 block text-xs uppercase tracking-[0.15em]">
-                                    Message
+                                <label className="mb-2 block text-[11px] uppercase tracking-[0.18em] text-[#20231f]/65">
+                                    Opmerking
                                 </label>
 
                                 <textarea
-                                    rows={4}
+                                    rows={5}
                                     value={data.message}
                                     onChange={(e) =>
                                         setData('message', e.target.value)
                                     }
-                                    className="w-full resize-none border border-black/10 bg-[#f7f4ee] px-4 py-3 text-sm outline-none focus:border-[#5d6948]"
+                                    className={`${inputClass} resize-none`}
+                                    placeholder="Bijvoorbeeld allergieën, kinderstoel of andere wensen..."
                                 />
 
                                 {errors.message && (
@@ -207,16 +301,24 @@ export default function Reservation() {
                             <button
                                 type="submit"
                                 disabled={processing}
-                                className="w-full bg-[#20231f] px-6 py-4 text-xs uppercase tracking-[0.18em] text-[#f7f4ee] transition hover:bg-[#5d6948] disabled:opacity-50"
+                                className="group flex w-full items-center justify-center gap-3 bg-[#20231f] px-6 py-4 text-[11px] uppercase tracking-[0.22em] text-[#f7f4ee] transition hover:bg-[#5d6948] disabled:cursor-not-allowed disabled:opacity-50"
                             >
                                 {processing
-                                    ? 'Sending...'
-                                    : 'Request Reservation'}
+                                    ? 'Bezig met versturen...'
+                                    : 'Reservering aanvragen'}
+
+                                {!processing && (
+                                    <span className="transition-transform duration-300 group-hover:translate-x-1">
+                                        →
+                                    </span>
+                                )}
                             </button>
                         </form>
                     </div>
-                </main>
-            </div>
+                </section>
+            </main>
+
+            <Footer />
         </>
     );
 }

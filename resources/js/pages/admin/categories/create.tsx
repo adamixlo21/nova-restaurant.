@@ -1,8 +1,17 @@
 import { Head, Link, useForm } from '@inertiajs/react';
 import AdminSidebar from "@/components/AdminSidebar";
+interface Menu {
+    id: number;
+    name: string;
+}
 
-export default function Create() {
+interface Props {
+    menus: Menu[];
+}
+
+export default function Create({ menus }: Props) {
     const { data, setData, post, processing, errors } = useForm({
+        menu_id: '',
         name: '',
         slug: '',
         sort_order: 0,
@@ -49,6 +58,31 @@ export default function Create() {
                                     className="border border-black/10 bg-white p-8"
                                 >
                                     <div className="mb-6">
+                                        <div>
+                                            <label className="mb-2 block text-xs uppercase tracking-[0.15em] text-[#20231f]/60">
+                                                Menu
+                                            </label>
+
+                                            <select
+                                                value={data.menu_id}
+                                                onChange={(e) => setData('menu_id', e.target.value)}
+                                                className="w-full border border-black/10 bg-[#f7f4ee] px-4 py-3 outline-none transition focus:border-[#5d6948]"
+                                            >
+                                                <option value="">Select a menu</option>
+
+                                                {menus.map((menu) => (
+                                                    <option key={menu.id} value={menu.id}>
+                                                        {menu.name}
+                                                    </option>
+                                                ))}
+                                            </select>
+
+                                            {errors.menu_id && (
+                                                <p className="mt-2 text-sm text-red-500">
+                                                    {errors.menu_id}
+                                                </p>
+                                            )}
+                                        </div>
                                         <label className="mb-2 block text-xs uppercase tracking-[0.15em]">
                                             Name
                                         </label>

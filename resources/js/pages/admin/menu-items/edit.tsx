@@ -6,6 +6,12 @@ interface Category {
     name: string;
 }
 
+interface MenuItemPrice {
+    id: number;
+    label: string;
+    price: string;
+    sort_order: number;
+}
 interface MenuItem {
     id: number;
     category_id: number;
@@ -13,10 +19,12 @@ interface MenuItem {
     slug: string;
     description: string | null;
     price: string;
+    price_text: string | null;
     image: string | null;
     is_available: boolean;
     is_featured: boolean;
     sort_order: number;
+    prices: MenuItemPrice[];
 }
 
 interface Props {
@@ -25,13 +33,30 @@ interface Props {
 }
 
 export default function Edit({menuItem, categories}: Props) {
+    // const initialPricingType:
+    //     | 'normal'
+    //     | 'text'
+    //     | 'multiple' =
+    //     menuItem.prices.length > 0
+    //         ? 'multiple'
+    //         : menuItem.price_text
+    //             ? 'text'
+    //             : 'normal';
+
     const {data, setData, put, processing, errors} = useForm({
         category_id: String(menuItem.category_id),
         name: menuItem.name,
         slug: menuItem.slug,
         description: menuItem.description ?? '',
+        // pricing_type: initialPricingType,
         price: menuItem.price,
+        price_text: menuItem.price_text ?? '',
+        prices: menuItem.prices.map((price) => ({
+            label: price.label,
+            price: price.price,
+        })),
         image: null as File | null,
+        remove_image: false,
         is_available: menuItem.is_available,
         is_featured: menuItem.is_featured,
         sort_order: menuItem.sort_order,
@@ -175,10 +200,10 @@ export default function Edit({menuItem, categories}: Props) {
                                         )}
                                     </div>
 
-                                    {/* Price */}
+                                    {/* Base Price */}
                                     <div className="mb-6">
                                         <label className="mb-2 block text-xs uppercase tracking-[0.15em]">
-                                            Price
+                                            Base Price
                                         </label>
 
                                         <input
@@ -190,6 +215,7 @@ export default function Edit({menuItem, categories}: Props) {
                                                 setData('price', e.target.value)
                                             }
                                             className="w-full border border-black/10 px-4 py-3 outline-none focus:border-[#5d6948]"
+                                            placeholder="4.50"
                                         />
 
                                         {errors.price && (
@@ -199,20 +225,148 @@ export default function Edit({menuItem, categories}: Props) {
                                         )}
                                     </div>
 
+
+                                    {/* Price Text */}
+                                    <div className="mb-6">
+                                        <label className="mb-2 block text-xs uppercase tracking-[0.15em]">
+                                            Price Text
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            value={data.price_text}
+                                            onChange={(e) =>
+                                                setData('price_text', e.target.value)
+                                            }
+                                            className="w-full border border-black/10 px-4 py-3 outline-none focus:border-[#5d6948]"
+                                            placeholder="Dagprijs or p.p."
+                                        />
+
+                                        <p className="mt-2 text-xs text-[#20231f]/40">
+                                            Leave empty for normal prices. Examples: Dagprijs, p.p.
+                                        </p>
+
+                                        {errors.price_text && (
+                                            <p className="mt-2 text-sm text-red-600">
+                                                {errors.price_text}
+                                            </p>
+                                        )}
+                                    </div>
+
+
+                                    {/* Price Options */}
+                                    <div className="mb-8">
+                                        <div className="mb-3 flex items-center justify-between">
+                                            <label className="text-xs uppercase tracking-[0.15em] text-[#20231f]/60">
+                                                Extra / Multiple Prices
+                                            </label>
+
+                                            <button
+                                                type="button"
+                                                onClick={() =>
+                                                    setData('prices', [
+                                                        ...data.prices,
+                                                        {
+                                                            label: '',
+                                                            price: '',
+                                                        },
+                                                    ])
+                                                }
+                                                className="text-xs uppercase tracking-[0.15em] text-[#5d6948]"
+                                            >
+                                                + Add Price
+                                            </button>
+                                        </div>
+
+                                        <div className="space-y-3">
+                                            {data.prices.map((priceOption, index) => (
+                                                <div
+                                                    key={index}
+                                                    className="grid gap-3 sm:grid-cols-[1fr_1fr_auto]"
+                                                >
+                                                    <input
+                                                        type="text"
+                                                        value={priceOption.label}
+                                                        onChange={(e) => {
+                                                            const prices = [...data.prices];
+
+                                                            prices[index] = {
+                                                                ...prices[index],
+                                                                label: e.target.value,
+                                                            };
+
+                                                            setData('prices', prices);
+                                                        }}
+                                                        placeholder="25cl or + slagroom"
+                                                        className="w-full border border-black/10 bg-[#f7f4ee] px-4 py-3 outline-none focus:border-[#5d6948]"
+                                                    />
+
+                                                    <input
+                                                        type="number"
+                                                        step="0.01"
+                                                        min="0"
+                                                        value={priceOption.price}
+                                                        onChange={(e) => {
+                                                            const prices = [...data.prices];
+
+                                                            prices[index] = {
+                                                                ...prices[index],
+                                                                price: e.target.value,
+                                                            };
+
+                                                            setData('prices', prices);
+                                                        }}
+                                                        placeholder="1.90"
+                                                        className="w-full border border-black/10 bg-[#f7f4ee] px-4 py-3 outline-none focus:border-[#5d6948]"
+                                                    />
+
+                                                    <button
+                                                        type="button"
+                                                        onClick={() =>
+                                                            setData(
+                                                                'prices',
+                                                                data.prices.filter(
+                                                                    (_, priceIndex) => priceIndex !== index,
+                                                                ),
+                                                            )
+                                                        }
+                                                        className="px-3 text-xs uppercase tracking-[0.1em] text-red-500 hover:text-red-700"
+                                                    >
+                                                        Remove
+                                                    </button>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+
+
                                     {/* Image */}
                                     <div className="mb-6">
                                         <label className="mb-2 block text-xs uppercase tracking-[0.15em]">
                                             Image
                                         </label>
-
-                                        {/* Current image */}
                                         {menuItem.image && (
-                                            <div className="mb-4 overflow-hidden border border-black/10">
-                                                <img
-                                                    src={`/storage/${menuItem.image}`}
-                                                    alt={menuItem.name}
-                                                    className="h-48 w-full object-cover"
-                                                />
+                                            <div className="mb-6">
+                                                <div className="overflow-hidden border border-black/10 bg-[#ebe7dc]">
+                                                    <img
+                                                        src={`/storage/${menuItem.image}`}
+                                                        alt={menuItem.name}
+                                                        className="h-48 w-full object-contain"
+                                                    />
+                                                </div>
+
+                                                <label className="mt-3 flex cursor-pointer items-center gap-3 text-sm text-red-600">
+                                                    <input
+                                                        type="checkbox"
+                                                        checked={data.remove_image}
+                                                        onChange={(e) =>
+                                                            setData('remove_image', e.target.checked)
+                                                        }
+                                                        className="h-4 w-4"
+                                                    />
+
+                                                    Remove current image
+                                                </label>
                                             </div>
                                         )}
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Menu;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -19,14 +20,17 @@ class CategoryController extends Controller
         ]);
     }
 
-    public function create(): Response
+    public function create()
     {
-        return Inertia::render('admin/categories/create');
+        return Inertia::render('admin/categories/create', [
+            'menus' => Menu::orderBy('sort_order')->get(),
+        ]);
     }
 
     public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([
+            'menu_id' => ['required', 'exists:menus,id'],
             'name' => ['required', 'string', 'max:255'],
             'slug' => ['required', 'string', 'max:255', 'unique:categories,slug'],
             'sort_order' => ['required', 'integer', 'min:0'],
@@ -39,16 +43,18 @@ class CategoryController extends Controller
             ->with('success', 'Category created successfully.');
     }
 
-    public function edit(Category $category): Response
+    public function edit(Category $category)
     {
         return Inertia::render('admin/categories/edit', [
             'category' => $category,
+            'menus' => Menu::orderBy('sort_order')->get(),
         ]);
     }
 
     public function update(Request $request, Category $category): RedirectResponse
     {
         $validated = $request->validate([
+            'menu_id' => ['required', 'exists:menus,id'],
             'name' => ['required', 'string', 'max:255'],
             'slug' => ['required', 'string', 'max:255', 'unique:categories,slug,' . $category->id],
             'sort_order' => ['required', 'integer', 'min:0'],

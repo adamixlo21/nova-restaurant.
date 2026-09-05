@@ -16,7 +16,13 @@ export default function Create({ categories }: Props) {
         name: '',
         slug: '',
         description: '',
+        pricing_type: 'normal' as 'normal' | 'text' | 'multiple',
         price: '',
+        price_text: '',
+        prices: [] as {
+            label: string;
+            price: string;
+        }[],
         image: null as File | null,
         is_available: true,
         is_featured: false,
@@ -165,31 +171,194 @@ export default function Create({ categories }: Props) {
                                         )}
                                     </div>
 
-                                    {/* Price */}
-                                    <div className="mb-6">
-                                        <label className="mb-2 block text-xs uppercase tracking-[0.15em]">
-                                            Price
+                                    {/* Pricing Type */}
+                                    <div>
+                                        <label className="mb-2 block text-xs uppercase tracking-[0.15em] text-[#20231f]/60">
+                                            Pricing Type
                                         </label>
 
-                                        <input
-                                            type="number"
-                                            step="0.01"
-                                            min="0"
-                                            value={data.price}
-                                            onChange={(e) =>
-                                                setData('price', e.target.value)
-                                            }
-                                            className="w-full border border-black/10 px-4 py-3 outline-none focus:border-[#5d6948]"
-                                            placeholder="9.50"
-                                        />
+                                        <select
+                                            value={data.pricing_type}
+                                            onChange={(e) => {
+                                                const type = e.target.value as
+                                                    | 'normal'
+                                                    | 'text'
+                                                    | 'multiple';
 
-                                        {errors.price && (
-                                            <p className="mt-2 text-sm text-red-600">
-                                                {errors.price}
-                                            </p>
-                                        )}
+                                                setData((current) => ({
+                                                    ...current,
+                                                    pricing_type: type,
+                                                    price: type === 'normal' ? current.price : '',
+                                                    price_text: type === 'text' ? current.price_text : '',
+                                                    prices: type === 'multiple' ? current.prices : [],
+                                                }));
+                                            }}
+                                            className="w-full border border-black/10 bg-[#f7f4ee] px-4 py-3 outline-none transition focus:border-[#5d6948]"
+                                        >
+                                            <option value="normal">Normal Price</option>
+                                            <option value="text">Price Text</option>
+                                            <option value="multiple">Multiple Prices</option>
+                                        </select>
                                     </div>
 
+                                    {data.pricing_type === 'normal' && (
+                                        <div>
+                                            {/* Price */}
+                                            <div className="mb-6">
+                                                <label className="mb-2 block text-xs uppercase tracking-[0.15em]">
+                                                    Price
+                                                </label>
+
+                                                <input
+                                                    type="number"
+                                                    step="0.01"
+                                                    min="0"
+                                                    value={data.price}
+                                                    onChange={(e) =>
+                                                        setData('price', e.target.value)
+                                                    }
+                                                    className="w-full border border-black/10 px-4 py-3 outline-none focus:border-[#5d6948]"
+                                                    placeholder="9.50"
+                                                />
+
+                                                {errors.price && (
+                                                    <p className="mt-2 text-sm text-red-600">
+                                                        {errors.price}
+                                                    </p>
+                                                )}
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    {data.pricing_type === 'text' && (
+                                        <div>
+                                            {/* Price text */}
+                                            <div>
+                                                <label className="mb-2 block text-xs uppercase tracking-[0.15em] text-[#20231f]/60">
+                                                    Price Text
+                                                </label>
+
+                                                <input
+                                                    type="text"
+                                                    value={data.price_text}
+                                                    onChange={(e) =>
+                                                        setData('price_text', e.target.value)
+                                                    }
+                                                    className="w-full border border-black/10 bg-[#f7f4ee] px-4 py-3 outline-none transition focus:border-[#5d6948]"
+                                                    placeholder="Dagprijs"
+                                                />
+
+                                                <p className="mt-2 text-xs text-[#20231f]/40">
+                                                    Use this for text such as "Dagprijs" or "19,50 p.p."
+                                                </p>
+
+                                                {errors.price_text && (
+                                                    <p className="mt-2 text-sm text-red-500">
+                                                        {errors.price_text}
+                                                    </p>
+                                                )}
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    {data.pricing_type === 'multiple' && (
+                                        <div>
+                                            {/* multi Prices */}
+                                            <div>
+                                                <div className="mb-3 flex items-center justify-between">
+                                                    <label className="text-xs uppercase tracking-[0.15em] text-[#20231f]/60">
+                                                        Price Options
+                                                    </label>
+
+                                                    <button
+                                                        type="button"
+                                                        onClick={() =>
+                                                            setData('prices', [
+                                                                ...data.prices,
+                                                                {
+                                                                    label: '',
+                                                                    price: '',
+                                                                },
+                                                            ])
+                                                        }
+                                                        className="text-xs uppercase tracking-[0.15em] text-[#5d6948]"
+                                                    >
+                                                        + Add Price
+                                                    </button>
+                                                </div>
+
+                                                <div className="space-y-3">
+                                                    {data.prices.map((priceOption, index) => (
+                                                        <div
+                                                            key={index}
+                                                            className="grid gap-3 sm:grid-cols-[1fr_1fr_auto]"
+                                                        >
+                                                            <input
+                                                                type="text"
+                                                                value={priceOption.label}
+                                                                onChange={(e) => {
+                                                                    const prices = [...data.prices];
+
+                                                                    prices[index] = {
+                                                                        ...prices[index],
+                                                                        label: e.target.value,
+                                                                    };
+
+                                                                    setData('prices', prices);
+                                                                }}
+                                                                placeholder="25cl"
+                                                                className="w-full border border-black/10 bg-[#f7f4ee] px-4 py-3 outline-none focus:border-[#5d6948]"
+                                                            />
+
+                                                            <input
+                                                                type="number"
+                                                                step="0.01"
+                                                                min="0"
+                                                                value={priceOption.price}
+                                                                onChange={(e) => {
+                                                                    const prices = [...data.prices];
+
+                                                                    prices[index] = {
+                                                                        ...prices[index],
+                                                                        price: e.target.value,
+                                                                    };
+
+                                                                    setData('prices', prices);
+                                                                }}
+                                                                placeholder="3.80"
+                                                                className="w-full border border-black/10 bg-[#f7f4ee] px-4 py-3 outline-none focus:border-[#5d6948]"
+                                                            />
+
+                                                            <button
+                                                                type="button"
+                                                                onClick={() =>
+                                                                    setData(
+                                                                        'prices',
+                                                                        data.prices.filter(
+                                                                            (_, priceIndex) =>
+                                                                                priceIndex !== index,
+                                                                        ),
+                                                                    )
+                                                                }
+                                                                className="px-3 text-xs uppercase tracking-[0.1em] text-red-500 hover:text-red-700"
+                                                            >
+                                                                Remove
+                                                            </button>
+                                                        </div>
+                                                    ))}
+                                                </div>
+
+                                                {data.prices.length === 0 && (
+                                                    <p className="mt-2 text-xs text-[#20231f]/40">
+                                                        Use this when an item has multiple prices, such as 25cl and 50cl, or Glas and Fles.
+                                                    </p>
+                                                )}
+                                            </div>
+                                        </div>
+                                    )}
+
+
+                                    <br/>
                                     {/* Image */}
                                     <div className="mb-6">
                                         <label className="mb-2 block text-xs uppercase tracking-[0.15em]">

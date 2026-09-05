@@ -1,19 +1,28 @@
 import { Head, Link, useForm } from '@inertiajs/react';
 import AdminSidebar from "@/components/AdminSidebar";
 
-interface Category {
+interface Menu {
     id: number;
     name: string;
+}
+
+interface Category {
+    id: number;
+    menu_id: number;
+    name: string;
     slug: string;
+    description: string | null;
     sort_order: number;
 }
 
 interface Props {
     category: Category;
+    menus: Menu[];
 }
 
-export default function Edit({ category }: Props) {
+export default function Edit({ category, menus}: Props) {
     const { data, setData, put, processing, errors } = useForm({
+        menu_id: String(category.menu_id),
         name: category.name,
         slug: category.slug,
         sort_order: category.sort_order,
@@ -58,6 +67,31 @@ export default function Edit({ category }: Props) {
                                     onSubmit={submit}
                                     className="border border-black/10 bg-white p-8"
                                 >
+                                    <div>
+                                        <label className="mb-2 block text-xs uppercase tracking-[0.15em] text-[#20231f]/60">
+                                            Menu
+                                        </label>
+
+                                        <select
+                                            value={data.menu_id}
+                                            onChange={(e) => setData('menu_id', e.target.value)}
+                                            className="w-full border border-black/10 bg-[#f7f4ee] px-4 py-3 outline-none transition focus:border-[#5d6948]"
+                                        >
+                                            <option value="">Select a menu</option>
+
+                                            {menus.map((menu) => (
+                                                <option key={menu.id} value={menu.id}>
+                                                    {menu.name}
+                                                </option>
+                                            ))}
+                                        </select>
+
+                                        {errors.menu_id && (
+                                            <p className="mt-2 text-sm text-red-500">
+                                                {errors.menu_id}
+                                            </p>
+                                        )}
+                                    </div>
                                     <div className="mb-6">
                                         <label className="mb-2 block text-xs uppercase tracking-[0.15em]">
                                             Name

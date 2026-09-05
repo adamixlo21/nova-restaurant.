@@ -10,7 +10,7 @@ class ContactController extends Controller
 {
     public function create()
     {
-        return Inertia::render('contact');
+        return Inertia::render('contacts');
     }
 
     public function store(Request $request)
@@ -24,7 +24,7 @@ class ContactController extends Controller
         Contact::create($validated);
 
         return redirect()
-            ->route('contact')
-            ->with('success', 'Your message has been sent.');
+            ->route('contacts')
+            ->with('success', 'Your message has been received. Thank you for contacting us');
     }
 }

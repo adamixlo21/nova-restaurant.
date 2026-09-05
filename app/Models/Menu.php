@@ -1,25 +1,21 @@
 <?php
 
 namespace App\Models;
+
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-
-class Category extends Model
+class Menu extends Model
 {
     protected $fillable = [
-        'menu_id',
         'name',
         'slug',
+        'description',
         'sort_order',
     ];
 
-    public function menuItems(): HasMany
+    public function categories(): HasMany
     {
-        return $this->hasMany(MenuItem::class);
-    }
-    public function menu()
-    {
-        return $this->belongsTo(Menu::class);
+        return $this->hasMany(Category::class);
     }
 }
