@@ -76,11 +76,37 @@ class ActualiteitController extends Controller
             'remove_image' => ['nullable', 'boolean'],
         ]);
 
-        if ($request->boolean('remove_image') && $actualiteit->image) {
+        // Automatically set publication date.
+        if (
+            $validated['is_published'] &&
+            empty($validated['published_at'])
+        ) {
+            $validated['published_at'] = now();
+        }
+
+        /*
+         * IMPORTANT:
+         * Do not overwrite the existing image when no new image
+         * was uploaded.
+         */
+        unset($validated['image']);
+
+        /*
+         * Delete existing image only when the user explicitly
+         * selected "remove image".
+         */
+        if (
+            $request->boolean('remove_image') &&
+            $actualiteit->image
+        ) {
             Storage::disk('public')->delete($actualiteit->image);
+
             $validated['image'] = null;
         }
 
+        /*
+         * If a new image was uploaded, replace the old image.
+         */
         if ($request->hasFile('image')) {
             if ($actualiteit->image) {
                 Storage::disk('public')->delete($actualiteit->image);

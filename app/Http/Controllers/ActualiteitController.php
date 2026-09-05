@@ -11,7 +11,6 @@ class ActualiteitController extends Controller
     {
         $actualiteiten = Actualiteit::where('is_published', true)
             ->whereNotNull('published_at')
-            ->where('published_at', '<=', now())
             ->orderByDesc('published_at')
             ->get();
 
