@@ -28,21 +28,25 @@ export default function Show({ vacancy }: Props) {
 
             <main className="bg-[#f7f4ee] text-[#20231f]">
                 {/* HERO */}
-                <section className="px-6 pt-28 pb-16 sm:px-10 sm:pt-32 lg:px-16 lg:pb-20">
-                    <div className="mx-auto max-w-6xl">
+                <section className="relative overflow-hidden px-6 pb-16 pt-28 sm:px-10 sm:pt-32 lg:px-16 lg:pb-20">
+                    <div className="pointer-events-none absolute -right-24 top-10 h-72 w-72 rounded-full border border-[#5d6948]/10" />
+                    <div className="pointer-events-none absolute -left-20 bottom-0 h-52 w-52 rounded-full border border-[#5d6948]/10" />
+
+                    <div className="relative mx-auto max-w-6xl">
                         <Link
                             href="/vacatures"
-                            className="group inline-flex items-center gap-2 text-[10px] tracking-[0.22em] text-[#5d6948] uppercase"
+                            className="group inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.22em] text-[#5d6948]"
                         >
                             <span className="transition-transform duration-300 group-hover:-translate-x-1">
                                 ←
                             </span>
+
                             Terug naar vacatures
                         </Link>
 
                         <div className="mt-10 grid gap-10 lg:grid-cols-[1fr_360px] lg:items-end">
                             <div>
-                                <p className="text-[10px] tracking-[0.35em] text-[#5d6948] uppercase">
+                                <p className="text-[10px] uppercase tracking-[0.35em] text-[#5d6948]">
                                     Werken bij De Bank
                                 </p>
 
@@ -60,8 +64,8 @@ export default function Show({ vacancy }: Props) {
                                 )}
                             </div>
 
-                            <div className="border-t border-black/10 pt-6 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-8">
-                                <p className="text-[9px] tracking-[0.25em] text-[#20231f]/35 uppercase">
+                            <div className="border-t border-black/10 pt-6 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
+                                <p className="text-[9px] uppercase tracking-[0.25em] text-[#20231f]/35">
                                     Functiegegevens
                                 </p>
 
@@ -121,22 +125,27 @@ export default function Show({ vacancy }: Props) {
                 )}
 
                 {/* CONTENT */}
-                <section className="px-6 py-20 sm:px-10 lg:px-16 lg:py-28">
-                    <div className="mx-auto grid max-w-6xl gap-14 lg:grid-cols-[1fr_300px]">
+                <section className="bg-white px-6 py-20 sm:px-10 lg:px-16 lg:py-28">
+                    <div className="mx-auto grid max-w-6xl gap-14 lg:grid-cols-[1fr_320px]">
                         <article>
-                            <p className="text-[10px] tracking-[0.3em] text-[#5d6948] uppercase">
+                            <p className="text-[10px] uppercase tracking-[0.3em] text-[#5d6948]">
                                 De functie
                             </p>
 
-                            <div className="mt-6 text-base leading-8 whitespace-pre-line text-[#20231f]/70">
+                            <h2 className="mt-4 font-serif text-4xl leading-tight sm:text-5xl">
+                                Meer over deze functie
+                            </h2>
+
+                            <div className="mt-7 whitespace-pre-line text-base leading-8 text-[#20231f]/70">
                                 {vacancy.content ||
                                     'Meer informatie over deze vacature volgt binnenkort.'}
                             </div>
                         </article>
 
+                        {/* APPLICATION CARD */}
                         <aside className="lg:sticky lg:top-28 lg:self-start">
-                            <div className="bg-[#20231f] p-7 text-[#f7f4ee]">
-                                <p className="text-[9px] tracking-[0.25em] text-[#aeb69b] uppercase">
+                            <div className="border border-[#5d6948]/15 bg-[#f7f4ee] p-7 shadow-[0_18px_50px_rgba(32,35,31,0.04)]">
+                                <p className="text-[9px] uppercase tracking-[0.25em] text-[#5d6948]">
                                     Solliciteren
                                 </p>
 
@@ -144,7 +153,7 @@ export default function Show({ vacancy }: Props) {
                                     Enthousiast geworden?
                                 </h2>
 
-                                <p className="mt-4 text-sm leading-7 text-white/55">
+                                <p className="mt-4 text-sm leading-7 text-[#20231f]/55">
                                     Stuur je motivatie en cv naar Brasserie De
                                     Bank. We horen graag van je.
                                 </p>
@@ -153,14 +162,14 @@ export default function Show({ vacancy }: Props) {
                                     href={`mailto:info@brasseriedebank.nl?subject=Sollicitatie - ${encodeURIComponent(
                                         vacancy.title,
                                     )}`}
-                                    className="mt-7 inline-flex w-full items-center justify-center bg-[#5d6948] px-5 py-4 text-center text-[9px] tracking-[0.22em] text-white uppercase transition hover:bg-[#f7f4ee] hover:text-[#20231f]"
+                                    className="mt-7 inline-flex w-full items-center justify-center bg-[#5d6948] px-5 py-4 text-center text-[9px] uppercase tracking-[0.22em] text-white transition hover:bg-[#4f5a3d]"
                                 >
                                     Solliciteer direct
                                 </a>
 
                                 <a
                                     href="tel:+31341472582"
-                                    className="mt-3 inline-flex w-full items-center justify-center border border-white/15 px-5 py-4 text-center text-[9px] tracking-[0.22em] text-white/70 uppercase transition hover:border-white/40 hover:text-white"
+                                    className="mt-3 inline-flex w-full items-center justify-center border border-[#5d6948]/20 bg-white/60 px-5 py-4 text-center text-[9px] uppercase tracking-[0.22em] text-[#20231f]/65 transition hover:border-[#5d6948] hover:bg-white"
                                 >
                                     0341 - 472 582
                                 </a>
@@ -169,11 +178,77 @@ export default function Show({ vacancy }: Props) {
                     </div>
                 </section>
 
+                {/* WHY DE BANK */}
+                <section className="bg-[#f7f4ee] px-6 py-20 sm:px-10 lg:px-16 lg:py-24">
+                    <div className="mx-auto max-w-6xl">
+                        <div className="mx-auto mb-12 max-w-2xl text-center">
+                            <p className="text-[10px] uppercase tracking-[0.35em] text-[#5d6948]">
+                                Werken bij De Bank
+                            </p>
+
+                            <h2 className="mt-4 font-serif text-4xl leading-tight sm:text-5xl">
+                                Werken in een warme en gastvrije omgeving.
+                            </h2>
+
+                            <p className="mt-5 text-sm leading-7 text-[#20231f]/55 sm:text-base">
+                                Samen zorgen we voor een fijne sfeer, goed eten
+                                en persoonlijke aandacht voor iedere gast.
+                            </p>
+                        </div>
+
+                        <div className="grid gap-6 md:grid-cols-3">
+                            <div className="border border-black/10 bg-white p-8">
+                                <p className="text-[9px] uppercase tracking-[0.22em] text-[#5d6948]">
+                                    01
+                                </p>
+
+                                <h3 className="mt-5 font-serif text-3xl">
+                                    Samenwerken
+                                </h3>
+
+                                <p className="mt-4 text-sm leading-7 text-[#20231f]/55">
+                                    Je werkt in een team waarin samenwerken en
+                                    aandacht voor de gast centraal staan.
+                                </p>
+                            </div>
+
+                            <div className="border border-black/10 bg-[#ebe7dc] p-8">
+                                <p className="text-[9px] uppercase tracking-[0.22em] text-[#5d6948]">
+                                    02
+                                </p>
+
+                                <h3 className="mt-5 font-serif text-3xl">
+                                    Gastvrijheid
+                                </h3>
+
+                                <p className="mt-4 text-sm leading-7 text-[#20231f]/55">
+                                    Een ontspannen en persoonlijke sfeer voor
+                                    zowel gasten als collega’s.
+                                </p>
+                            </div>
+
+                            <div className="border border-black/10 bg-white p-8">
+                                <p className="text-[9px] uppercase tracking-[0.22em] text-[#5d6948]">
+                                    03
+                                </p>
+
+                                <h3 className="mt-5 font-serif text-3xl">
+                                    Harderwijk
+                                </h3>
+
+                                <p className="mt-4 text-sm leading-7 text-[#20231f]/55">
+                                    Een levendige werkplek midden in Harderwijk.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
                 {/* BOTTOM CTA */}
-                <section className="bg-[#5d6948] px-6 py-20 text-[#f7f4ee] sm:px-10 lg:px-16 lg:py-24">
+                <section className="border-t border-[#5d6948]/10 bg-[#edf0e7] px-6 py-20 sm:px-10 lg:px-16 lg:py-24">
                     <div className="mx-auto flex max-w-7xl flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
                         <div>
-                            <p className="text-[10px] tracking-[0.3em] text-[#f7f4ee]/55 uppercase">
+                            <p className="text-[10px] uppercase tracking-[0.3em] text-[#5d6948]">
                                 Brasserie De Bank
                             </p>
 
@@ -181,7 +256,7 @@ export default function Show({ vacancy }: Props) {
                                 Bekijk ook onze andere vacatures
                             </h2>
 
-                            <p className="mt-5 max-w-xl text-sm leading-7 text-[#f7f4ee]/65">
+                            <p className="mt-5 max-w-xl text-sm leading-7 text-[#20231f]/55">
                                 Misschien staat er nog een andere functie tussen
                                 die goed bij je past.
                             </p>
@@ -189,7 +264,7 @@ export default function Show({ vacancy }: Props) {
 
                         <Link
                             href="/vacatures"
-                            className="w-fit bg-[#20231f] px-7 py-4 text-[10px] tracking-[0.22em] text-[#f7f4ee] uppercase transition hover:bg-[#f7f4ee] hover:text-[#20231f]"
+                            className="w-fit bg-[#5d6948] px-7 py-4 text-[10px] uppercase tracking-[0.22em] text-white transition hover:bg-[#4f5a3d]"
                         >
                             Alle vacatures
                         </Link>

@@ -10,13 +10,13 @@ export default function About() {
             <Navbar />
 
             <main className="bg-[#f7f4ee] text-[#20231f]">
-                {/* Hero */}
+                {/* HERO */}
                 <section className="relative overflow-hidden px-6 py-24 sm:px-10 lg:px-16 lg:py-28">
                     <div className="pointer-events-none absolute top-10 -right-24 h-72 w-72 rounded-full border border-[#5d6948]/10" />
                     <div className="pointer-events-none absolute bottom-0 -left-20 h-52 w-52 rounded-full border border-[#5d6948]/10" />
 
                     <div className="relative mx-auto max-w-5xl text-center">
-                        <p className="mb-5 text-[11px] tracking-[0.35em] text-[#5d6948] uppercase">
+                        <p className="mb-5 text-[11px] uppercase tracking-[0.35em] text-[#5d6948]">
                             Brasserie De Bank
                         </p>
 
@@ -28,32 +28,47 @@ export default function About() {
 
                         <p className="mx-auto mt-7 max-w-2xl text-sm leading-7 text-[#20231f]/60 sm:text-base sm:leading-8">
                             Een warme, laagdrempelige en gastvrije plek in
-                            Harderwijk waar goed eten, gezelligheid en
-                            ontspannen samenkomen.
+                            Harderwijk waar goed eten, gezelligheid en ontspannen
+                            samenkomen.
                         </p>
                     </div>
                 </section>
 
-                {/* Story */}
-                <section className="border-t border-black/5 bg-[#ebe7dc] px-6 py-20 sm:px-10 lg:px-16">
+                {/* STORY */}
+                <section className="border-t border-black/5 bg-[#ebe7dc] px-6 py-20 sm:px-10 lg:px-16 lg:py-28">
                     <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2 lg:items-center">
-                        <div className="aspect-[4/5] overflow-hidden bg-[#d8d3c6]">
-                            <img
-                                src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1400&q=85"
-                                alt="Sfeer bij Brasserie De Bank"
-                                className="h-full w-full object-cover"
-                            />
+                        <div className="relative">
+                            <div className="aspect-[4/5] overflow-hidden bg-[#d8d3c6]">
+                                <img
+                                    src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1400&q=85"
+                                    alt="Sfeer bij Brasserie De Bank"
+                                    className="h-full w-full object-cover"
+                                />
+                            </div>
+
+                            <div className="absolute -bottom-7 -right-4 hidden bg-white px-7 py-6 shadow-[0_20px_60px_rgba(32,35,31,0.08)] sm:block">
+                                <p className="font-serif text-2xl text-[#5d6948]">
+                                    De Bank
+                                </p>
+
+                                <p className="mt-1 text-[9px] uppercase tracking-[0.25em] text-[#20231f]/35">
+                                    Harderwijk
+                                </p>
+                            </div>
                         </div>
 
                         <div>
-                            <p className="mb-4 text-[10px] tracking-[0.35em] text-[#5d6948] uppercase">
+                            <p className="mb-4 text-[10px] uppercase tracking-[0.35em] text-[#5d6948]">
                                 Ons verhaal
                             </p>
 
                             <h2 className="font-serif text-4xl leading-tight sm:text-5xl">
                                 Van passie voor koken
                                 <br />
-                                naar De Bank.
+                                naar{' '}
+                                <span className="text-[#5d6948] italic">
+                                    De Bank.
+                                </span>
                             </h2>
 
                             <div className="mt-8 space-y-5 text-sm leading-7 text-[#20231f]/65 sm:text-base sm:leading-8">
@@ -85,11 +100,11 @@ export default function About() {
                     </div>
                 </section>
 
-                {/* Quality */}
-                <section className="px-6 py-20 sm:px-10 lg:px-16 lg:py-24">
+                {/* QUALITY */}
+                <section className="bg-white px-6 py-20 sm:px-10 lg:px-16 lg:py-28">
                     <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
                         <div>
-                            <p className="text-[10px] tracking-[0.35em] text-[#5d6948] uppercase">
+                            <p className="text-[10px] uppercase tracking-[0.35em] text-[#5d6948]">
                                 Kwaliteit
                             </p>
 
@@ -113,9 +128,10 @@ export default function About() {
 
                             <Link
                                 href="/menus"
-                                className="group mt-8 inline-flex items-center gap-3 border-b border-[#5d6948]/50 pb-2 text-[10px] tracking-[0.25em] text-[#5d6948] uppercase"
+                                className="group mt-8 inline-flex items-center gap-3 border-b border-[#5d6948]/50 pb-2 text-[10px] uppercase tracking-[0.25em] text-[#5d6948]"
                             >
                                 Bekijk onze kaarten
+
                                 <span className="transition-transform duration-300 group-hover:translate-x-1">
                                     →
                                 </span>
@@ -123,8 +139,8 @@ export default function About() {
                         </div>
 
                         <div className="grid gap-5 sm:grid-cols-2">
-                            <div className="border border-[#5d6948]/15 bg-white p-8">
-                                <p className="text-[10px] tracking-[0.25em] text-[#5d6948] uppercase">
+                            <div className="border border-[#5d6948]/15 bg-[#f7f4ee] p-8 transition hover:-translate-y-1 hover:bg-white hover:shadow-[0_18px_50px_rgba(32,35,31,0.05)]">
+                                <p className="text-[10px] uppercase tracking-[0.25em] text-[#5d6948]">
                                     01
                                 </p>
 
@@ -138,8 +154,8 @@ export default function About() {
                                 </p>
                             </div>
 
-                            <div className="border border-[#5d6948]/15 bg-white p-8">
-                                <p className="text-[10px] tracking-[0.25em] text-[#5d6948] uppercase">
+                            <div className="border border-[#5d6948]/15 bg-[#f7f4ee] p-8 transition hover:-translate-y-1 hover:bg-white hover:shadow-[0_18px_50px_rgba(32,35,31,0.05)]">
+                                <p className="text-[10px] uppercase tracking-[0.25em] text-[#5d6948]">
                                     02
                                 </p>
 
@@ -153,8 +169,8 @@ export default function About() {
                                 </p>
                             </div>
 
-                            <div className="border border-[#5d6948]/15 bg-white p-8 sm:col-span-2">
-                                <p className="text-[10px] tracking-[0.25em] text-[#5d6948] uppercase">
+                            <div className="border border-[#5d6948]/15 bg-[#f7f4ee] p-8 transition hover:-translate-y-1 hover:bg-white hover:shadow-[0_18px_50px_rgba(32,35,31,0.05)] sm:col-span-2">
+                                <p className="text-[10px] uppercase tracking-[0.25em] text-[#5d6948]">
                                     03
                                 </p>
 
@@ -172,11 +188,11 @@ export default function About() {
                     </div>
                 </section>
 
-                {/* Experience */}
-                <section className="bg-[#20231f] px-6 py-20 text-[#f7f4ee] sm:px-10 lg:px-16 lg:py-24">
+                {/* EXPERIENCE */}
+                <section className="bg-[#f7f4ee] px-6 py-20 sm:px-10 lg:px-16 lg:py-28">
                     <div className="mx-auto max-w-6xl">
                         <div className="mx-auto mb-14 max-w-2xl text-center">
-                            <p className="text-[10px] tracking-[0.35em] text-[#aeb69b] uppercase">
+                            <p className="text-[10px] uppercase tracking-[0.35em] text-[#5d6948]">
                                 De Bank
                             </p>
 
@@ -184,7 +200,7 @@ export default function About() {
                                 Voor iedereen.
                             </h2>
 
-                            <p className="mt-6 text-sm leading-7 text-[#f7f4ee]/60 sm:text-base">
+                            <p className="mt-6 text-sm leading-7 text-[#20231f]/55 sm:text-base">
                                 Van jong tot oud: De Bank wil een warme,
                                 toegankelijke en gezellige plek zijn waar
                                 iedereen zich welkom voelt.
@@ -192,8 +208,8 @@ export default function About() {
                         </div>
 
                         <div className="grid gap-6 md:grid-cols-3">
-                            <div className="border border-white/10 p-8 sm:p-10">
-                                <p className="text-[10px] tracking-[0.25em] text-[#aeb69b] uppercase">
+                            <div className="border border-black/10 bg-white p-8 transition hover:-translate-y-1 hover:shadow-[0_18px_50px_rgba(32,35,31,0.05)] sm:p-10">
+                                <p className="text-[10px] uppercase tracking-[0.25em] text-[#5d6948]">
                                     Ontspannen
                                 </p>
 
@@ -201,15 +217,14 @@ export default function About() {
                                     Neem de tijd
                                 </h3>
 
-                                <p className="mt-5 text-sm leading-7 text-[#f7f4ee]/55">
-                                    Lees de krant aan de stamtafel, praat bij
-                                    met vrienden of geniet rustig van een kop
-                                    koffie.
+                                <p className="mt-5 text-sm leading-7 text-[#20231f]/55">
+                                    Lees de krant aan de stamtafel, praat bij met
+                                    vrienden of geniet rustig van een kop koffie.
                                 </p>
                             </div>
 
-                            <div className="border border-white/10 p-8 sm:p-10">
-                                <p className="text-[10px] tracking-[0.25em] text-[#aeb69b] uppercase">
+                            <div className="border border-black/10 bg-[#ebe7dc] p-8 transition hover:-translate-y-1 hover:bg-white hover:shadow-[0_18px_50px_rgba(32,35,31,0.05)] sm:p-10">
+                                <p className="text-[10px] uppercase tracking-[0.25em] text-[#5d6948]">
                                     Sfeer
                                 </p>
 
@@ -217,15 +232,14 @@ export default function About() {
                                     Warm & gastvrij
                                 </h3>
 
-                                <p className="mt-5 text-sm leading-7 text-[#f7f4ee]/55">
+                                <p className="mt-5 text-sm leading-7 text-[#20231f]/55">
                                     Van de open keuken tot kunst aan de muur:
-                                    sfeer, warmte en gastvrijheid staan
-                                    centraal.
+                                    sfeer, warmte en gastvrijheid staan centraal.
                                 </p>
                             </div>
 
-                            <div className="border border-white/10 p-8 sm:p-10">
-                                <p className="text-[10px] tracking-[0.25em] text-[#aeb69b] uppercase">
+                            <div className="border border-black/10 bg-white p-8 transition hover:-translate-y-1 hover:shadow-[0_18px_50px_rgba(32,35,31,0.05)] sm:p-10">
+                                <p className="text-[10px] uppercase tracking-[0.25em] text-[#5d6948]">
                                     Terras
                                 </p>
 
@@ -233,32 +247,48 @@ export default function About() {
                                     Buiten genieten
                                 </h3>
 
-                                <p className="mt-5 text-sm leading-7 text-[#f7f4ee]/55">
+                                <p className="mt-5 text-sm leading-7 text-[#20231f]/55">
                                     Ook op het terras kun je ontspannen genieten
-                                    van eten, drinken en de sfeer van
-                                    Harderwijk.
+                                    van eten, drinken en de sfeer van Harderwijk.
                                 </p>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                {/* Possibilities */}
-                <section className="bg-[#ebe7dc] px-6 py-20 sm:px-10 lg:px-16 lg:py-24">
+                {/* POSSIBILITIES */}
+                <section className="border-y border-black/5 bg-[#ebe7dc] px-6 py-20 sm:px-10 lg:px-16 lg:py-24">
                     <div className="mx-auto max-w-6xl">
-                        <div className="mb-12 max-w-2xl">
-                            <p className="text-[10px] tracking-[0.35em] text-[#5d6948] uppercase">
-                                Meer dan een brasserie
-                            </p>
+                        <div className="mb-12 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+                            <div>
+                                <p className="text-[10px] uppercase tracking-[0.35em] text-[#5d6948]">
+                                    Meer dan een brasserie
+                                </p>
 
-                            <h2 className="mt-4 font-serif text-4xl sm:text-5xl">
-                                Ook voor bijzondere momenten.
-                            </h2>
+                                <h2 className="mt-4 font-serif text-4xl sm:text-5xl">
+                                    Ook voor bijzondere momenten.
+                                </h2>
+                            </div>
+
+                            <Link
+                                href="/mogelijkheden"
+                                className="group inline-flex items-center gap-3 text-[10px] uppercase tracking-[0.25em] text-[#5d6948]"
+                            >
+                                Bekijk mogelijkheden
+
+                                <span className="transition-transform group-hover:translate-x-1">
+                                    →
+                                </span>
+                            </Link>
                         </div>
 
                         <div className="grid gap-6 md:grid-cols-3">
-                            <div className="bg-[#f7f4ee] p-8">
-                                <h3 className="font-serif text-3xl">
+                            <div className="border border-black/10 bg-[#f7f4ee] p-8">
+                                <p className="text-[9px] uppercase tracking-[0.22em] text-[#5d6948]">
+                                    01
+                                </p>
+
+                                <h3 className="mt-4 font-serif text-3xl">
                                     Private dining
                                 </h3>
 
@@ -268,8 +298,12 @@ export default function About() {
                                 </p>
                             </div>
 
-                            <div className="bg-[#f7f4ee] p-8">
-                                <h3 className="font-serif text-3xl">
+                            <div className="border border-black/10 bg-white p-8">
+                                <p className="text-[9px] uppercase tracking-[0.22em] text-[#5d6948]">
+                                    02
+                                </p>
+
+                                <h3 className="mt-4 font-serif text-3xl">
                                     Vergaderen
                                 </h3>
 
@@ -280,8 +314,12 @@ export default function About() {
                                 </p>
                             </div>
 
-                            <div className="bg-[#f7f4ee] p-8">
-                                <h3 className="font-serif text-3xl">
+                            <div className="border border-black/10 bg-[#f7f4ee] p-8">
+                                <p className="text-[9px] uppercase tracking-[0.22em] text-[#5d6948]">
+                                    03
+                                </p>
+
+                                <h3 className="mt-4 font-serif text-3xl">
                                     Feestelijk
                                 </h3>
 
@@ -294,10 +332,10 @@ export default function About() {
                     </div>
                 </section>
 
-                {/* Closing */}
-                <section className="bg-[#5d6948] px-6 py-24 text-[#f7f4ee] sm:px-10 lg:px-16">
+                {/* CLOSING */}
+                <section className="border-t border-[#5d6948]/10 bg-[#edf0e7] px-6 py-24 sm:px-10 lg:px-16 lg:py-28">
                     <div className="mx-auto max-w-4xl text-center">
-                        <p className="mb-5 text-[10px] tracking-[0.35em] text-[#f7f4ee]/60 uppercase">
+                        <p className="mb-5 text-[10px] uppercase tracking-[0.35em] text-[#5d6948]">
                             Kom langs
                         </p>
 
@@ -305,7 +343,7 @@ export default function About() {
                             Ervaar De Bank zelf.
                         </h2>
 
-                        <p className="mx-auto mt-7 max-w-xl text-sm leading-7 text-[#f7f4ee]/70 sm:text-base">
+                        <p className="mx-auto mt-7 max-w-xl text-sm leading-7 text-[#20231f]/55 sm:text-base">
                             Voor koffie, lunch, diner, een goed glas wijn of
                             gewoon een gezellig moment samen.
                         </p>
@@ -313,14 +351,14 @@ export default function About() {
                         <div className="mt-9 flex flex-wrap justify-center gap-4">
                             <Link
                                 href="/reservation"
-                                className="border border-[#f7f4ee] px-8 py-4 text-[10px] tracking-[0.25em] uppercase transition hover:bg-[#f7f4ee] hover:text-[#5d6948]"
+                                className="bg-[#5d6948] px-8 py-4 text-[10px] uppercase tracking-[0.25em] text-white transition hover:bg-[#4f5a3d]"
                             >
                                 Reserveer een tafel
                             </Link>
 
                             <Link
                                 href="/contacts"
-                                className="border border-[#f7f4ee]/35 px-8 py-4 text-[10px] tracking-[0.25em] uppercase transition hover:border-[#f7f4ee]"
+                                className="border border-[#5d6948]/30 bg-white/50 px-8 py-4 text-[10px] uppercase tracking-[0.25em] text-[#20231f] transition hover:border-[#5d6948] hover:bg-white"
                             >
                                 Contact
                             </Link>

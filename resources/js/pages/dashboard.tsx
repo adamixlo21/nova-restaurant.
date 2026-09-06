@@ -66,7 +66,7 @@ export default function Dashboard() {
             <Head title="Dashboard | Brasserie De Bank" />
 
             <div className="flex min-h-screen bg-[#f7f4ee] text-[#20231f]">
-                <AdminSidebar />
+
 
                 <main className="min-w-0 flex-1 px-4 py-8 sm:px-6 lg:px-10 lg:py-10">
                     <div className="mx-auto max-w-7xl">

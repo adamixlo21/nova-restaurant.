@@ -1,7 +1,20 @@
-import { Link, usePage } from '@inertiajs/react';
+import { Link, router, usePage } from '@inertiajs/react';
+
+type AuthUser = {
+    id: number;
+    name: string;
+    email: string;
+};
+
+type PageProps = {
+    auth?: {
+        user?: AuthUser;
+    };
+};
 
 export default function AdminSidebar() {
-    const { url } = usePage();
+    const { url, props } = usePage<PageProps>();
+    const user = props.auth?.user;
 
     const websiteLinks = [
         { name: 'Home', href: '/' },
@@ -12,7 +25,7 @@ export default function AdminSidebar() {
         { name: 'Vacatures', href: '/vacatures' },
         { name: 'Locatie', href: '/locatie' },
         { name: 'Contact', href: '/contacts' },
-        { name: 'Reservation', href: '/reservation' },
+        { name: 'Reserveren', href: '/reservation' },
     ];
 
     const managementLinks = [
@@ -38,6 +51,10 @@ export default function AdminSidebar() {
         return url === href || url.startsWith(`${href}/`);
     }
 
+    function logout() {
+        router.post('/logout');
+    }
+
     return (
         <aside className="hidden min-h-screen w-72 shrink-0 border-r border-black/5 bg-[#ebe7dc] lg:block">
             <div className="sticky top-0 flex min-h-screen flex-col">
@@ -48,19 +65,20 @@ export default function AdminSidebar() {
                             DE BANK
                         </p>
 
-                        <p className="mt-1 text-[8px] tracking-[0.3em] text-[#5d6948] uppercase">
+                        <p className="mt-1 text-[8px] uppercase tracking-[0.3em] text-[#5d6948]">
                             Brasserie Harderwijk
                         </p>
                     </Link>
 
-                    <div className="mt-5 inline-flex bg-[#20231f] px-3 py-1.5 text-[9px] tracking-[0.2em] text-[#f7f4ee] uppercase">
+                    <div className="mt-5 inline-flex bg-[#20231f] px-3 py-1.5 text-[9px] uppercase tracking-[0.2em] text-[#f7f4ee]">
                         Beheeromgeving
                     </div>
                 </div>
 
+                {/* Navigation */}
                 <nav className="flex-1 overflow-y-auto px-4 py-6">
                     {/* Website */}
-                    <p className="px-4 pb-3 text-[9px] tracking-[0.28em] text-[#20231f]/35 uppercase">
+                    <p className="px-4 pb-3 text-[9px] uppercase tracking-[0.28em] text-[#20231f]/35">
                         Website
                     </p>
 
@@ -81,7 +99,7 @@ export default function AdminSidebar() {
                                     <span>{link.name}</span>
 
                                     <span
-                                        className={`text-xs transition-transform duration-200 ${
+                                        className={`text-xs transition-all duration-200 ${
                                             active
                                                 ? 'translate-x-0 opacity-100'
                                                 : '-translate-x-1 opacity-0 group-hover:translate-x-0 group-hover:opacity-100'
@@ -95,7 +113,7 @@ export default function AdminSidebar() {
                     </div>
 
                     {/* Management */}
-                    <p className="mt-9 px-4 pb-3 text-[9px] tracking-[0.28em] text-[#20231f]/35 uppercase">
+                    <p className="mt-9 px-4 pb-3 text-[9px] uppercase tracking-[0.28em] text-[#20231f]/35">
                         Beheer
                     </p>
 
@@ -116,7 +134,7 @@ export default function AdminSidebar() {
                                     <span>{link.name}</span>
 
                                     <span
-                                        className={`text-xs transition-transform duration-200 ${
+                                        className={`text-xs transition-all duration-200 ${
                                             active
                                                 ? 'translate-x-0 opacity-100'
                                                 : '-translate-x-1 opacity-0 group-hover:translate-x-0 group-hover:opacity-100'
@@ -130,8 +148,39 @@ export default function AdminSidebar() {
                     </div>
                 </nav>
 
-                {/* Bottom */}
-                <div className="border-t border-black/5 p-4">
+                {/* User */}
+                <div className="border-t border-black/5 px-4 pt-4">
+                    {user && (
+                        <div className="mb-3 px-4">
+                            <p className="text-[9px] uppercase tracking-[0.22em] text-[#20231f]/35">
+                                Ingelogd als
+                            </p>
+
+                            <p className="mt-2 truncate text-sm font-medium text-[#20231f]">
+                                {user.name}
+                            </p>
+
+                            <p className="mt-1 truncate text-xs text-[#20231f]/45">
+                                {user.email}
+                            </p>
+                        </div>
+                    )}
+
+                    <Link
+                        href="/settings/profile"
+                        className={`group flex items-center justify-between px-4 py-3 text-sm transition ${
+                            isActive('/settings/profile')
+                                ? 'bg-white text-[#20231f]'
+                                : 'text-[#20231f]/60 hover:bg-white/60 hover:text-[#20231f]'
+                        }`}
+                    >
+                        <span>Profiel</span>
+
+                        <span className="transition-transform duration-200 group-hover:translate-x-1">
+                            →
+                        </span>
+                    </Link>
+
                     <Link
                         href="/"
                         className="group flex items-center justify-between px-4 py-3 text-sm text-[#20231f]/60 transition hover:bg-white/60 hover:text-[#20231f]"
@@ -142,6 +191,18 @@ export default function AdminSidebar() {
                             →
                         </span>
                     </Link>
+
+                    <button
+                        type="button"
+                        onClick={logout}
+                        className="group mb-4 flex w-full items-center justify-between px-4 py-3 text-left text-sm text-red-600 transition hover:bg-red-50"
+                    >
+                        <span>Uitloggen</span>
+
+                        <span className="transition-transform duration-200 group-hover:translate-x-1">
+                            →
+                        </span>
+                    </button>
                 </div>
             </div>
         </aside>

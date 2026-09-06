@@ -120,24 +120,24 @@ export default function Show({ menu }: Props) {
                                                     className="border-b border-black/10 pb-8"
                                                 >
                                                     <div className="flex flex-col gap-5 sm:flex-row sm:gap-6">
-                                                        {/* Image */}
-                                                        {item.image && (
-                                                            <div
-                                                                className="shrink-0 overflow-hidden bg-[#f7f4ee]"
-                                                                style={{
-                                                                    width: '140px',
-                                                                    height: '140px',
-                                                                }}
-                                                            >
-                                                                <img
-                                                                    src={`/storage/${item.image}`}
-                                                                    alt={
-                                                                        item.name
-                                                                    }
-                                                                    className="block h-full w-full object-contain"
-                                                                />
-                                                            </div>
-                                                        )}
+                                                        {/*/!* Image *!/*/}
+                                                        {/*{item.image && (*/}
+                                                        {/*    <div*/}
+                                                        {/*        className="shrink-0 overflow-hidden bg-[#f7f4ee]"*/}
+                                                        {/*        style={{*/}
+                                                        {/*            width: '140px',*/}
+                                                        {/*            height: '140px',*/}
+                                                        {/*        }}*/}
+                                                        {/*    >*/}
+                                                        {/*        <img*/}
+                                                        {/*            src={`/storage/${item.image}`}*/}
+                                                        {/*            alt={*/}
+                                                        {/*                item.name*/}
+                                                        {/*            }*/}
+                                                        {/*            className="block h-full w-full object-contain"*/}
+                                                        {/*        />*/}
+                                                        {/*    </div>*/}
+                                                        {/*)}*/}
 
                                                         {/* Content */}
                                                         <div className="min-w-0 flex-1">

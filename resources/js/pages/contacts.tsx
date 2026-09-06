@@ -25,22 +25,27 @@ export default function Contacts() {
             <Navbar />
 
             <main className="bg-[#f7f4ee] text-[#20231f]">
-                {/* Hero */}
-                <section className="relative overflow-hidden px-6 py-20 sm:px-10 lg:px-16 lg:py-24">
-                    <div className="pointer-events-none absolute top-0 -right-20 h-64 w-64 rounded-full border border-[#5d6948]/10" />
+                {/* HERO */}
+                <section className="relative overflow-hidden px-6 py-24 sm:px-10 lg:px-16 lg:py-28">
+                    <div className="pointer-events-none absolute -right-24 top-10 h-72 w-72 rounded-full border border-[#5d6948]/10" />
+                    <div className="pointer-events-none absolute -left-20 bottom-0 h-52 w-52 rounded-full border border-[#5d6948]/10" />
 
                     <div className="relative mx-auto max-w-5xl text-center">
-                        <p className="mb-4 text-[11px] tracking-[0.35em] text-[#5d6948] uppercase">
+                        <p className="text-[10px] uppercase tracking-[0.4em] text-[#5d6948]">
                             Brasserie De Bank
                         </p>
 
-                        <h1 className="font-serif text-5xl tracking-tight sm:text-6xl lg:text-7xl">
-                            Neem contact op
+                        <h1 className="mt-5 font-serif text-5xl leading-tight tracking-tight sm:text-6xl lg:text-7xl">
+                            Neem contact
+                            <br />
+                            <span className="text-[#5d6948] italic">
+                                met ons op.
+                            </span>
                         </h1>
 
-                        <div className="mx-auto mt-6 h-px w-14 bg-[#5d6948]/40" />
+                        <div className="mx-auto mt-7 h-px w-16 bg-[#5d6948]/40" />
 
-                        <p className="mx-auto mt-6 max-w-xl text-sm leading-7 text-[#20231f]/55 sm:text-base sm:leading-8">
+                        <p className="mx-auto mt-7 max-w-2xl text-sm leading-7 text-[#20231f]/60 sm:text-base sm:leading-8">
                             Heb je een vraag, wil je iets met ons bespreken of
                             heb je een speciale wens? Neem gerust contact met
                             ons op.
@@ -48,31 +53,66 @@ export default function Contacts() {
                     </div>
                 </section>
 
-                {/* Contact + Form */}
-                <section className="border-t border-black/5 bg-[#ebe7dc] px-6 py-16 sm:px-10 lg:px-16 lg:py-20">
+                {/* INTRO STRIP */}
+                <section className="border-y border-black/5 bg-[#ebe7dc] px-6 py-9 sm:px-10 lg:px-16">
+                    <div className="mx-auto grid max-w-5xl gap-6 text-center sm:grid-cols-3">
+                        <div>
+                            <p className="font-serif text-2xl">
+                                Persoonlijk
+                            </p>
+
+                            <p className="mt-2 text-[9px] uppercase tracking-[0.22em] text-[#20231f]/35">
+                                We denken graag mee
+                            </p>
+                        </div>
+
+                        <div className="sm:border-x sm:border-black/10">
+                            <p className="font-serif text-2xl">
+                                Bereikbaar
+                            </p>
+
+                            <p className="mt-2 text-[9px] uppercase tracking-[0.22em] text-[#20231f]/35">
+                                Bellen of mailen
+                            </p>
+                        </div>
+
+                        <div>
+                            <p className="font-serif text-2xl">
+                                Harderwijk
+                            </p>
+
+                            <p className="mt-2 text-[9px] uppercase tracking-[0.22em] text-[#20231f]/35">
+                                Smeepoortstraat 1
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                {/* CONTACT + FORM */}
+                <section className="bg-white px-6 py-20 sm:px-10 lg:px-16 lg:py-28">
                     <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.85fr_1.15fr]">
-                        {/* Information */}
-                        <div className="flex flex-col justify-between bg-[#20231f] p-8 text-[#f7f4ee] sm:p-10">
+                        {/* INFO */}
+                        <div className="flex flex-col justify-between border border-black/10 bg-[#f7f4ee] p-8 sm:p-10">
                             <div>
-                                <p className="text-[10px] tracking-[0.3em] text-[#f7f4ee]/45 uppercase">
+                                <p className="text-[10px] uppercase tracking-[0.3em] text-[#5d6948]">
                                     Contact
                                 </p>
 
-                                <h2 className="mt-4 max-w-sm font-serif text-4xl leading-tight">
-                                    We helpen je graag verder
+                                <h2 className="mt-4 max-w-sm font-serif text-4xl leading-tight sm:text-5xl">
+                                    We helpen je graag verder.
                                 </h2>
 
-                                <p className="mt-5 max-w-md text-sm leading-7 text-[#f7f4ee]/60">
+                                <p className="mt-5 max-w-md text-sm leading-7 text-[#20231f]/55">
                                     Voor vragen over reserveringen, groepen,
                                     menu&apos;s of andere wensen kun je ons
                                     bellen, mailen of het formulier gebruiken.
                                 </p>
                             </div>
 
-                            <div className="mt-12 space-y-8 border-t border-white/10 pt-8">
+                            <div className="mt-12 space-y-8 border-t border-black/10 pt-8">
                                 {/* Address */}
                                 <div>
-                                    <p className="text-[10px] tracking-[0.25em] text-[#f7f4ee]/35 uppercase">
+                                    <p className="text-[9px] uppercase tracking-[0.25em] text-[#20231f]/35">
                                         Adres
                                     </p>
 
@@ -80,7 +120,7 @@ export default function Contacts() {
                                         href="https://www.google.com/maps/place/Smeepoortstraat+1,+3841+EG+Harderwijk"
                                         target="_blank"
                                         rel="noreferrer"
-                                        className="mt-2 block text-sm leading-6 text-[#f7f4ee]/75 transition hover:text-white"
+                                        className="mt-2 block text-sm leading-6 text-[#20231f]/65 transition hover:text-[#5d6948]"
                                     >
                                         Brasserie De Bank
                                         <br />
@@ -92,13 +132,13 @@ export default function Contacts() {
 
                                 {/* Phone */}
                                 <div>
-                                    <p className="text-[10px] tracking-[0.25em] text-[#f7f4ee]/35 uppercase">
+                                    <p className="text-[9px] uppercase tracking-[0.25em] text-[#20231f]/35">
                                         Telefoon
                                     </p>
 
                                     <a
                                         href="tel:0341472582"
-                                        className="mt-2 block text-sm text-[#f7f4ee]/75 transition hover:text-white"
+                                        className="mt-2 block text-sm text-[#20231f]/65 transition hover:text-[#5d6948]"
                                     >
                                         0341 - 472 582
                                     </a>
@@ -106,13 +146,13 @@ export default function Contacts() {
 
                                 {/* Email */}
                                 <div>
-                                    <p className="text-[10px] tracking-[0.25em] text-[#f7f4ee]/35 uppercase">
+                                    <p className="text-[9px] uppercase tracking-[0.25em] text-[#20231f]/35">
                                         E-mail
                                     </p>
 
                                     <a
                                         href="mailto:info@brasseriedebank.nl"
-                                        className="mt-2 block text-sm text-[#f7f4ee]/75 transition hover:text-white"
+                                        className="mt-2 block text-sm text-[#20231f]/65 transition hover:text-[#5d6948]"
                                     >
                                         info@brasseriedebank.nl
                                     </a>
@@ -120,11 +160,11 @@ export default function Contacts() {
 
                                 {/* Opening hours */}
                                 <div>
-                                    <p className="text-[10px] tracking-[0.25em] text-[#f7f4ee]/35 uppercase">
+                                    <p className="text-[9px] uppercase tracking-[0.25em] text-[#20231f]/35">
                                         Openingstijden
                                     </p>
 
-                                    <div className="mt-3 space-y-2 text-sm text-[#f7f4ee]/70">
+                                    <div className="mt-4 space-y-3 text-sm text-[#20231f]/60">
                                         {[
                                             ['Maandag', '10:00 - 23:00'],
                                             ['Dinsdag', '10:00 - 23:00'],
@@ -136,7 +176,7 @@ export default function Contacts() {
                                         ].map(([day, time]) => (
                                             <div
                                                 key={day}
-                                                className="flex justify-between gap-6"
+                                                className="flex justify-between gap-6 border-b border-black/5 pb-3 last:border-0 last:pb-0"
                                             >
                                                 <span>{day}</span>
                                                 <span>{time}</span>
@@ -149,7 +189,7 @@ export default function Contacts() {
                                 <div className="flex flex-wrap gap-3 pt-2">
                                     <Link
                                         href="/reservation"
-                                        className="bg-[#f7f4ee] px-5 py-3 text-[10px] tracking-[0.2em] text-[#20231f] uppercase transition hover:bg-white"
+                                        className="bg-[#5d6948] px-5 py-3 text-[10px] uppercase tracking-[0.2em] text-white transition hover:bg-[#4f5a3d]"
                                     >
                                         Reserveer
                                     </Link>
@@ -158,7 +198,7 @@ export default function Contacts() {
                                         href="https://www.google.com/maps/place/Smeepoortstraat+1,+3841+EG+Harderwijk"
                                         target="_blank"
                                         rel="noreferrer"
-                                        className="border border-white/25 px-5 py-3 text-[10px] tracking-[0.2em] text-[#f7f4ee] uppercase transition hover:border-white"
+                                        className="border border-[#5d6948]/25 bg-white/60 px-5 py-3 text-[10px] uppercase tracking-[0.2em] text-[#20231f] transition hover:border-[#5d6948] hover:bg-white"
                                     >
                                         Plan je route
                                     </a>
@@ -166,16 +206,16 @@ export default function Contacts() {
                             </div>
                         </div>
 
-                        {/* Form */}
+                        {/* FORM */}
                         <div>
                             {flash.success && (
-                                <div className="mb-6 flex items-start gap-4 border border-[#5d6948]/20 bg-[#f7f4ee] px-6 py-5 shadow-sm">
-                                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#5d6948] text-[#f7f4ee]">
+                                <div className="mb-6 flex items-start gap-4 border border-[#5d6948]/20 bg-[#edf0e7] px-6 py-5">
+                                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#5d6948] text-white">
                                         ✓
                                     </div>
 
                                     <div>
-                                        <p className="text-[10px] font-medium tracking-[0.22em] text-[#5d6948] uppercase">
+                                        <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-[#5d6948]">
                                             Bericht ontvangen
                                         </p>
 
@@ -197,10 +237,10 @@ export default function Contacts() {
                                         },
                                     });
                                 }}
-                                className="border border-[#5d6948]/15 bg-white p-7 shadow-[0_20px_50px_rgba(32,35,31,0.06)] sm:p-10"
+                                className="border border-[#5d6948]/15 bg-white p-7 shadow-[0_20px_60px_rgba(32,35,31,0.05)] sm:p-10"
                             >
                                 <div className="mb-9">
-                                    <p className="text-[10px] tracking-[0.3em] text-[#5d6948] uppercase">
+                                    <p className="text-[10px] uppercase tracking-[0.3em] text-[#5d6948]">
                                         Stuur een bericht
                                     </p>
 
@@ -217,7 +257,7 @@ export default function Contacts() {
                                 <div className="mb-6">
                                     <label
                                         htmlFor="name"
-                                        className="mb-2 block text-[11px] tracking-[0.18em] text-[#20231f]/65 uppercase"
+                                        className="mb-2 block text-[11px] uppercase tracking-[0.18em] text-[#20231f]/65"
                                     >
                                         Naam
                                     </label>
@@ -243,7 +283,7 @@ export default function Contacts() {
                                 <div className="mb-6">
                                     <label
                                         htmlFor="email"
-                                        className="mb-2 block text-[11px] tracking-[0.18em] text-[#20231f]/65 uppercase"
+                                        className="mb-2 block text-[11px] uppercase tracking-[0.18em] text-[#20231f]/65"
                                     >
                                         E-mail
                                     </label>
@@ -269,7 +309,7 @@ export default function Contacts() {
                                 <div className="mb-8">
                                     <label
                                         htmlFor="message"
-                                        className="mb-2 block text-[11px] tracking-[0.18em] text-[#20231f]/65 uppercase"
+                                        className="mb-2 block text-[11px] uppercase tracking-[0.18em] text-[#20231f]/65"
                                     >
                                         Bericht
                                     </label>
@@ -295,7 +335,7 @@ export default function Contacts() {
                                 <button
                                     type="submit"
                                     disabled={processing}
-                                    className="group flex w-full items-center justify-center gap-3 bg-[#20231f] px-6 py-4 text-[10px] tracking-[0.25em] text-[#f7f4ee] uppercase transition hover:bg-[#5d6948] disabled:cursor-not-allowed disabled:opacity-50"
+                                    className="group flex w-full items-center justify-center gap-3 bg-[#5d6948] px-6 py-4 text-[10px] uppercase tracking-[0.25em] text-white transition hover:bg-[#4f5a3d] disabled:cursor-not-allowed disabled:opacity-50"
                                 >
                                     {processing
                                         ? 'Bezig met versturen...'
@@ -312,25 +352,93 @@ export default function Contacts() {
                     </div>
                 </section>
 
-                {/* Map */}
-                <section className="bg-[#f7f4ee] px-6 py-20 sm:px-10 lg:px-16">
+                {/* EXTRA INFO */}
+                <section className="bg-[#f7f4ee] px-6 py-20 sm:px-10 lg:px-16 lg:py-24">
                     <div className="mx-auto max-w-6xl">
-                        <div className="mb-10 max-w-xl">
-                            <p className="text-[10px] tracking-[0.35em] text-[#5d6948] uppercase">
-                                Locatie
-                            </p>
+                        <div className="grid gap-6 md:grid-cols-3">
+                            <div className="border border-black/10 bg-white p-8">
+                                <p className="text-[9px] uppercase tracking-[0.22em] text-[#5d6948]">
+                                    01
+                                </p>
 
-                            <h2 className="mt-4 font-serif text-4xl sm:text-5xl">
-                                Midden in Harderwijk
-                            </h2>
+                                <h3 className="mt-5 font-serif text-3xl">
+                                    Reserveringen
+                                </h3>
 
-                            <p className="mt-4 text-sm leading-7 text-[#20231f]/55">
-                                Je vindt Brasserie De Bank aan de
-                                Smeepoortstraat 1 in het centrum van Harderwijk.
-                            </p>
+                                <p className="mt-4 text-sm leading-7 text-[#20231f]/55">
+                                    Vragen over een reservering? Neem gerust
+                                    contact met ons op.
+                                </p>
+                            </div>
+
+                            <div className="border border-black/10 bg-[#ebe7dc] p-8">
+                                <p className="text-[9px] uppercase tracking-[0.22em] text-[#5d6948]">
+                                    02
+                                </p>
+
+                                <h3 className="mt-5 font-serif text-3xl">
+                                    Groepen
+                                </h3>
+
+                                <p className="mt-4 text-sm leading-7 text-[#20231f]/55">
+                                    Voor groepen of bijzondere gelegenheden
+                                    denken we graag mee.
+                                </p>
+                            </div>
+
+                            <div className="border border-black/10 bg-white p-8">
+                                <p className="text-[9px] uppercase tracking-[0.22em] text-[#5d6948]">
+                                    03
+                                </p>
+
+                                <h3 className="mt-5 font-serif text-3xl">
+                                    Algemene vragen
+                                </h3>
+
+                                <p className="mt-4 text-sm leading-7 text-[#20231f]/55">
+                                    Ook voor andere vragen ben je altijd welkom
+                                    om ons een bericht te sturen.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* MAP */}
+                <section className="border-y border-black/5 bg-[#ebe7dc] px-6 py-20 sm:px-10 lg:px-16 lg:py-24">
+                    <div className="mx-auto max-w-6xl">
+                        <div className="mb-10 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+                            <div>
+                                <p className="text-[10px] uppercase tracking-[0.35em] text-[#5d6948]">
+                                    Locatie
+                                </p>
+
+                                <h2 className="mt-4 font-serif text-4xl sm:text-5xl">
+                                    Midden in Harderwijk
+                                </h2>
+
+                                <p className="mt-4 max-w-xl text-sm leading-7 text-[#20231f]/55">
+                                    Je vindt Brasserie De Bank aan de
+                                    Smeepoortstraat 1 in het centrum van
+                                    Harderwijk.
+                                </p>
+                            </div>
+
+                            <a
+                                href="https://www.google.com/maps/place/Smeepoortstraat+1,+3841+EG+Harderwijk"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="group inline-flex items-center gap-3 text-[10px] uppercase tracking-[0.25em] text-[#5d6948]"
+                            >
+                                Open in Google Maps
+
+                                <span className="transition-transform group-hover:translate-x-1">
+                                    →
+                                </span>
+                            </a>
                         </div>
 
-                        <div className="overflow-hidden border border-black/10 bg-[#ebe7dc]">
+                        <div className="overflow-hidden border border-black/10 bg-[#f7f4ee]">
                             <iframe
                                 title="Brasserie De Bank locatie"
                                 src="https://www.google.com/maps?q=Smeepoortstraat+1,+3841+EG+Harderwijk&output=embed"
@@ -339,16 +447,44 @@ export default function Contacts() {
                                 referrerPolicy="no-referrer-when-downgrade"
                             />
                         </div>
+                    </div>
+                </section>
 
-                        <div className="mt-6">
+                {/* CTA */}
+                <section className="border-t border-[#5d6948]/10 bg-[#edf0e7] px-6 py-20 sm:px-10 lg:px-16 lg:py-24">
+                    <div className="mx-auto max-w-4xl text-center">
+                        <p className="text-[10px] uppercase tracking-[0.35em] text-[#5d6948]">
+                            Liever langskomen?
+                        </p>
+
+                        <h2 className="mt-5 font-serif text-4xl leading-tight sm:text-5xl lg:text-6xl">
+                            Zien we je binnenkort
+                            <br />
+                            <span className="text-[#5d6948] italic">
+                                bij De Bank?
+                            </span>
+                        </h2>
+
+                        <p className="mx-auto mt-6 max-w-xl text-sm leading-7 text-[#20231f]/55 sm:text-base">
+                            Reserveer een tafel of plan je route naar
+                            Smeepoortstraat 1 in Harderwijk.
+                        </p>
+
+                        <div className="mt-9 flex flex-wrap justify-center gap-4">
+                            <Link
+                                href="/reservation"
+                                className="bg-[#5d6948] px-8 py-4 text-[10px] uppercase tracking-[0.25em] text-white transition hover:bg-[#4f5a3d]"
+                            >
+                                Reserveer een tafel
+                            </Link>
+
                             <a
                                 href="https://www.google.com/maps/place/Smeepoortstraat+1,+3841+EG+Harderwijk"
                                 target="_blank"
                                 rel="noreferrer"
-                                className="inline-flex items-center gap-3 bg-[#20231f] px-6 py-4 text-[10px] tracking-[0.22em] text-[#f7f4ee] uppercase transition hover:bg-[#5d6948]"
+                                className="border border-[#5d6948]/25 bg-white/60 px-8 py-4 text-[10px] uppercase tracking-[0.25em] text-[#20231f] transition hover:border-[#5d6948] hover:bg-white"
                             >
                                 Plan je route
-                                <span>→</span>
                             </a>
                         </div>
                     </div>
