@@ -410,6 +410,214 @@ export default function Home({ featuredDishes, actualiteiten }: Props) {
                     </div>
                 </section>
 
+                {/* MOGELIJKHEDEN */}
+                <section className="bg-[#20231f] px-6 py-20 text-[#f7f4ee] sm:px-10 lg:px-16 lg:py-28">
+                    <div className="mx-auto max-w-7xl">
+                        {/* Header */}
+                        <div className="mb-12 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+                            <div>
+                                <p className="text-[10px] tracking-[0.35em] text-[#aeb69b] uppercase">
+                                    Mogelijkheden
+                                </p>
+
+                                <h2 className="mt-4 max-w-3xl font-serif text-4xl leading-tight tracking-tight sm:text-5xl lg:text-6xl">
+                                    Meer dan alleen
+                                    <span className="text-[#aeb69b] italic">
+                                        {' '}
+                                        een tafel.
+                                    </span>
+                                </h2>
+
+                                <p className="mt-5 max-w-xl text-sm leading-7 text-white/55 sm:text-base">
+                                    Voor een besloten diner, vergadering,
+                                    feestelijke gelegenheid of wijnproeverij
+                                    denken we graag met je mee.
+                                </p>
+                            </div>
+
+                            <Link
+                                href="/mogelijkheden"
+                                className="group inline-flex items-center gap-3 text-[10px] tracking-[0.25em] text-[#aeb69b] uppercase"
+                            >
+                                Bekijk alle mogelijkheden
+                                <span className="transition-transform duration-300 group-hover:translate-x-1">
+                                    →
+                                </span>
+                            </Link>
+                        </div>
+
+                        {/* Cards */}
+                        <div className="grid gap-px bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
+                            {/* Private dining */}
+                            <Link
+                                href="/mogelijkheden"
+                                className="group relative flex min-h-[340px] flex-col justify-between overflow-hidden bg-[#20231f] p-7 transition duration-500 hover:bg-[#272b26] sm:p-8"
+                            >
+                                <div>
+                                    <div className="flex items-center justify-between">
+                                        <span className="font-serif text-4xl text-white/10">
+                                            01
+                                        </span>
+
+                                        <span className="text-lg text-[#aeb69b] transition-transform duration-300 group-hover:translate-x-1">
+                                            →
+                                        </span>
+                                    </div>
+
+                                    <p className="mt-10 text-[9px] tracking-[0.25em] text-[#aeb69b] uppercase">
+                                        Besloten genieten
+                                    </p>
+
+                                    <h3 className="mt-3 font-serif text-3xl">
+                                        Private dining
+                                    </h3>
+
+                                    <p className="mt-5 text-sm leading-7 text-white/50">
+                                        Een sfeervol diner met familie, vrienden
+                                        of collega’s in een eigen ruimte.
+                                    </p>
+                                </div>
+
+                                <div className="mt-8 border-t border-white/10 pt-5">
+                                    <p className="text-[9px] tracking-[0.2em] text-white/35 uppercase">
+                                        8 – 20 personen
+                                    </p>
+                                </div>
+                            </Link>
+
+                            {/* Vergaderen */}
+                            <Link
+                                href="/mogelijkheden"
+                                className="group relative flex min-h-[340px] flex-col justify-between overflow-hidden bg-[#20231f] p-7 transition duration-500 hover:bg-[#272b26] sm:p-8"
+                            >
+                                <div>
+                                    <div className="flex items-center justify-between">
+                                        <span className="font-serif text-4xl text-white/10">
+                                            02
+                                        </span>
+
+                                        <span className="text-lg text-[#aeb69b] transition-transform duration-300 group-hover:translate-x-1">
+                                            →
+                                        </span>
+                                    </div>
+
+                                    <p className="mt-10 text-[9px] tracking-[0.25em] text-[#aeb69b] uppercase">
+                                        Zakelijk & gastvrij
+                                    </p>
+
+                                    <h3 className="mt-3 font-serif text-3xl">
+                                        Vergaderen
+                                    </h3>
+
+                                    <p className="mt-5 text-sm leading-7 text-white/50">
+                                        Rustig samenkomen met koffie, lunch,
+                                        high tea of diner in een warme omgeving.
+                                    </p>
+                                </div>
+
+                                <div className="mt-8 border-t border-white/10 pt-5">
+                                    <p className="text-[9px] tracking-[0.2em] text-white/35 uppercase">
+                                        Tot 20 personen per zaal
+                                    </p>
+                                </div>
+                            </Link>
+
+                            {/* Feestelijke gelegenheden */}
+                            <Link
+                                href="/mogelijkheden"
+                                className="group relative flex min-h-[340px] flex-col justify-between overflow-hidden bg-[#20231f] p-7 transition duration-500 hover:bg-[#272b26] sm:p-8"
+                            >
+                                <div>
+                                    <div className="flex items-center justify-between">
+                                        <span className="font-serif text-4xl text-white/10">
+                                            03
+                                        </span>
+
+                                        <span className="text-lg text-[#aeb69b] transition-transform duration-300 group-hover:translate-x-1">
+                                            →
+                                        </span>
+                                    </div>
+
+                                    <p className="mt-10 text-[9px] tracking-[0.25em] text-[#aeb69b] uppercase">
+                                        Samen vieren
+                                    </p>
+
+                                    <h3 className="mt-3 font-serif text-3xl leading-tight">
+                                        Feestelijke gelegenheden
+                                    </h3>
+
+                                    <p className="mt-5 text-sm leading-7 text-white/50">
+                                        Van een verjaardag of babyshower tot een
+                                        gezellige bedrijfsborrel.
+                                    </p>
+                                </div>
+
+                                <div className="mt-8 border-t border-white/10 pt-5">
+                                    <p className="text-[9px] tracking-[0.2em] text-white/35 uppercase">
+                                        Tot 50 personen per zaal
+                                    </p>
+                                </div>
+                            </Link>
+
+                            {/* Wijnproeverij */}
+                            <Link
+                                href="/mogelijkheden"
+                                className="group relative flex min-h-[340px] flex-col justify-between overflow-hidden bg-[#20231f] p-7 transition duration-500 hover:bg-[#272b26] sm:p-8"
+                            >
+                                <div>
+                                    <div className="flex items-center justify-between">
+                                        <span className="font-serif text-4xl text-white/10">
+                                            04
+                                        </span>
+
+                                        <span className="text-lg text-[#aeb69b] transition-transform duration-300 group-hover:translate-x-1">
+                                            →
+                                        </span>
+                                    </div>
+
+                                    <p className="mt-10 text-[9px] tracking-[0.25em] text-[#aeb69b] uppercase">
+                                        Ontdek, proef & geniet
+                                    </p>
+
+                                    <h3 className="mt-3 font-serif text-3xl">
+                                        Wijnproeverij
+                                    </h3>
+
+                                    <p className="mt-5 text-sm leading-7 text-white/50">
+                                        Een begeleide wijnproeverij met
+                                        zorgvuldig geselecteerde wijnen en
+                                        bijpassende hapjes.
+                                    </p>
+                                </div>
+
+                                <div className="mt-8 border-t border-white/10 pt-5">
+                                    <p className="text-[9px] tracking-[0.2em] text-white/35 uppercase">
+                                        8 – 25 personen
+                                    </p>
+                                </div>
+                            </Link>
+                        </div>
+
+                        {/* Bottom CTA */}
+                        <div className="mt-10 flex flex-col gap-5 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
+                            <p className="max-w-xl text-sm leading-7 text-white/45">
+                                Heb je iets anders in gedachten? We kijken graag
+                                samen naar een passende invulling.
+                            </p>
+
+                            <Link
+                                href="/contacts"
+                                className="group inline-flex items-center gap-3 text-[10px] tracking-[0.25em] text-[#aeb69b] uppercase"
+                            >
+                                Neem contact op
+                                <span className="transition-transform duration-300 group-hover:translate-x-1">
+                                    →
+                                </span>
+                            </Link>
+                        </div>
+                    </div>
+                </section>
+
                 {/* REVIEWS */}
                 <section className="bg-[#ebe7dc] px-6 py-20 sm:px-10 lg:px-16 lg:py-28">
                     <div className="mx-auto max-w-7xl">
