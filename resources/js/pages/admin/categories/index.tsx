@@ -28,8 +28,6 @@ export default function Index({ categories }: Props) {
             <Head title="Categorieën beheren" />
 
             <div className="flex min-h-screen bg-[#f7f4ee] text-[#20231f]">
-
-
                 <main className="min-w-0 flex-1 px-4 py-8 sm:px-6 lg:px-10 lg:py-10">
                     <div className="mx-auto max-w-7xl">
                         {/* Header */}

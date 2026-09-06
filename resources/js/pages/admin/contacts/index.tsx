@@ -1,4 +1,4 @@
-import { Head, router } from '@inertiajs/react';
+import {Head, Link, router} from '@inertiajs/react';
 import { useMemo, useState } from 'react';
 import AdminSidebar from '@/components/AdminSidebar';
 
@@ -71,12 +71,19 @@ export default function Index({ contacts }: Props) {
             <Head title="Berichten" />
 
             <div className="flex min-h-screen bg-[#f7f4ee] text-[#20231f]">
-
-
                 <main className="min-w-0 flex-1 px-4 py-8 sm:px-6 lg:px-10 lg:py-10">
                     <div className="mx-auto max-w-7xl">
                         {/* Header */}
                         <div className="mb-10">
+                            <Link
+                                href="/dashboard"
+                                className="group inline-flex items-center gap-2 text-[10px] tracking-[0.22em] text-[#5d6948] uppercase"
+                            >
+                                    <span className="transition-transform duration-300 group-hover:-translate-x-1">
+                                        ←
+                                    </span>
+                                Terug naar dashboard
+                            </Link>
                             <p className="text-[10px] tracking-[0.35em] text-[#5d6948] uppercase">
                                 Admin · Berichten
                             </p>

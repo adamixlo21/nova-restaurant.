@@ -77,6 +77,11 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::put('reservations/{reservation}', [AdminReservationController::class, 'update'])
         ->name('reservations.update');
 
+    Route::delete(
+        'reservations/{reservation}',
+        [AdminReservationController::class, 'destroy']
+    )->name('reservations.destroy');
+
     Route::get('contacts', [AdminContactController::class, 'index'])
         ->name('contacts.index');
 

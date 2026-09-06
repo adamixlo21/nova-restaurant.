@@ -17,23 +17,22 @@ export default function Login({ status }: Props) {
                 <div className="grid min-h-screen w-full lg:grid-cols-2">
                     {/* LEFT SIDE */}
                     <section className="relative flex min-h-screen w-full items-center justify-center overflow-hidden px-6 py-12 sm:px-10 lg:px-16">
-                        <div className="pointer-events-none absolute -left-24 bottom-0 h-64 w-64 rounded-full border border-[#5d6948]/10" />
-                        <div className="pointer-events-none absolute -right-20 top-10 h-56 w-56 rounded-full border border-[#5d6948]/10 lg:hidden" />
+                        <div className="pointer-events-none absolute bottom-0 -left-24 h-64 w-64 rounded-full border border-[#5d6948]/10" />
+                        <div className="pointer-events-none absolute top-10 -right-20 h-56 w-56 rounded-full border border-[#5d6948]/10 lg:hidden" />
 
                         <div className="relative w-full max-w-md">
                             <Link
                                 href="/"
-                                className="group inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.22em] text-[#5d6948]"
+                                className="group inline-flex items-center gap-2 text-[10px] tracking-[0.22em] text-[#5d6948] uppercase"
                             >
                                 <span className="transition-transform duration-300 group-hover:-translate-x-1">
                                     ←
                                 </span>
-
                                 Terug naar website
                             </Link>
 
                             <div className="mt-12">
-                                <p className="text-[10px] uppercase tracking-[0.35em] text-[#5d6948]">
+                                <p className="text-[10px] tracking-[0.35em] text-[#5d6948] uppercase">
                                     Brasserie De Bank
                                 </p>
 
@@ -65,7 +64,7 @@ export default function Login({ status }: Props) {
                                         <div>
                                             <label
                                                 htmlFor="email"
-                                                className="mb-2 block text-[10px] uppercase tracking-[0.2em] text-[#20231f]/55"
+                                                className="mb-2 block text-[10px] tracking-[0.2em] text-[#20231f]/55 uppercase"
                                             >
                                                 E-mailadres
                                             </label>
@@ -78,7 +77,7 @@ export default function Login({ status }: Props) {
                                                 autoFocus
                                                 autoComplete="email"
                                                 placeholder="info@brasseriedebank.nl"
-                                                className="w-full border border-black/10 bg-white px-4 py-4 text-sm text-[#20231f] outline-none transition placeholder:text-[#20231f]/30 focus:border-[#5d6948] focus:ring-2 focus:ring-[#5d6948]/10"
+                                                className="w-full border border-black/10 bg-white px-4 py-4 text-sm text-[#20231f] transition outline-none placeholder:text-[#20231f]/30 focus:border-[#5d6948] focus:ring-2 focus:ring-[#5d6948]/10"
                                             />
 
                                             <InputError
@@ -90,7 +89,7 @@ export default function Login({ status }: Props) {
                                         <div className="mt-6">
                                             <label
                                                 htmlFor="password"
-                                                className="mb-2 block text-[10px] uppercase tracking-[0.2em] text-[#20231f]/55"
+                                                className="mb-2 block text-[10px] tracking-[0.2em] text-[#20231f]/55 uppercase"
                                             >
                                                 Wachtwoord
                                             </label>
@@ -101,7 +100,7 @@ export default function Login({ status }: Props) {
                                                 required
                                                 autoComplete="current-password"
                                                 placeholder="Wachtwoord"
-                                                className="w-full border border-black/10 bg-white px-4 py-4 text-sm text-[#20231f] outline-none transition placeholder:text-[#20231f]/30 focus:border-[#5d6948] focus:ring-2 focus:ring-[#5d6948]/10"
+                                                className="w-full border border-black/10 bg-white px-4 py-4 text-sm text-[#20231f] transition outline-none placeholder:text-[#20231f]/30 focus:border-[#5d6948] focus:ring-2 focus:ring-[#5d6948]/10"
                                             />
 
                                             <InputError
@@ -117,7 +116,6 @@ export default function Login({ status }: Props) {
                                                 value="1"
                                                 className="h-4 w-4 accent-[#5d6948]"
                                             />
-
                                             Ingelogd blijven
                                         </label>
 
@@ -125,7 +123,7 @@ export default function Login({ status }: Props) {
                                         <button
                                             type="submit"
                                             disabled={processing}
-                                            className="group mt-8 flex w-full items-center justify-center gap-3 bg-[#5d6948] px-6 py-4 text-[10px] uppercase tracking-[0.25em] text-white transition duration-300 hover:bg-[#4f5a3d] disabled:cursor-not-allowed disabled:opacity-50"
+                                            className="group mt-8 flex w-full items-center justify-center gap-3 bg-[#5d6948] px-6 py-4 text-[10px] tracking-[0.25em] text-white uppercase transition duration-300 hover:bg-[#4f5a3d] disabled:cursor-not-allowed disabled:opacity-50"
                                         >
                                             {processing
                                                 ? 'Bezig met inloggen...'
@@ -159,8 +157,8 @@ export default function Login({ status }: Props) {
 
                         <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/5 to-transparent" />
 
-                        <div className="absolute bottom-12 left-12 right-12 text-white">
-                            <p className="text-[9px] uppercase tracking-[0.3em] text-white/60">
+                        <div className="absolute right-12 bottom-12 left-12 text-white">
+                            <p className="text-[9px] tracking-[0.3em] text-white/60 uppercase">
                                 Brasserie De Bank
                             </p>
 

@@ -10,7 +10,7 @@ export default function Appearance() {
                 <div className="mx-auto max-w-4xl">
                     {/* Header */}
                     <div className="border-b border-black/10 pb-8">
-                        <p className="text-[10px] uppercase tracking-[0.3em] text-[#5d6948]">
+                        <p className="text-[10px] tracking-[0.3em] text-[#5d6948] uppercase">
                             Instellingen
                         </p>
 
@@ -27,7 +27,7 @@ export default function Appearance() {
                     {/* Appearance card */}
                     <section className="mt-10 border border-black/10 bg-white p-7 shadow-[0_20px_60px_rgba(32,35,31,0.04)] sm:p-10">
                         <div className="mb-8">
-                            <p className="text-[10px] uppercase tracking-[0.3em] text-[#5d6948]">
+                            <p className="text-[10px] tracking-[0.3em] text-[#5d6948] uppercase">
                                 Thema
                             </p>
 
@@ -48,7 +48,7 @@ export default function Appearance() {
 
                     {/* Info */}
                     <section className="mt-8 border border-[#5d6948]/10 bg-[#edf0e7] p-7 sm:p-8">
-                        <p className="text-[9px] uppercase tracking-[0.25em] text-[#5d6948]">
+                        <p className="text-[9px] tracking-[0.25em] text-[#5d6948] uppercase">
                             Persoonlijke voorkeur
                         </p>
 

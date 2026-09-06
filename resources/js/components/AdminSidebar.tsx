@@ -65,12 +65,12 @@ export default function AdminSidebar() {
                             DE BANK
                         </p>
 
-                        <p className="mt-1 text-[8px] uppercase tracking-[0.3em] text-[#5d6948]">
+                        <p className="mt-1 text-[8px] tracking-[0.3em] text-[#5d6948] uppercase">
                             Brasserie Harderwijk
                         </p>
                     </Link>
 
-                    <div className="mt-5 inline-flex bg-[#20231f] px-3 py-1.5 text-[9px] uppercase tracking-[0.2em] text-[#f7f4ee]">
+                    <div className="mt-5 inline-flex bg-[#20231f] px-3 py-1.5 text-[9px] tracking-[0.2em] text-[#f7f4ee] uppercase">
                         Beheeromgeving
                     </div>
                 </div>
@@ -78,7 +78,7 @@ export default function AdminSidebar() {
                 {/* Navigation */}
                 <nav className="flex-1 overflow-y-auto px-4 py-6">
                     {/* Website */}
-                    <p className="px-4 pb-3 text-[9px] uppercase tracking-[0.28em] text-[#20231f]/35">
+                    <p className="px-4 pb-3 text-[9px] tracking-[0.28em] text-[#20231f]/35 uppercase">
                         Website
                     </p>
 
@@ -113,7 +113,7 @@ export default function AdminSidebar() {
                     </div>
 
                     {/* Management */}
-                    <p className="mt-9 px-4 pb-3 text-[9px] uppercase tracking-[0.28em] text-[#20231f]/35">
+                    <p className="mt-9 px-4 pb-3 text-[9px] tracking-[0.28em] text-[#20231f]/35 uppercase">
                         Beheer
                     </p>
 
@@ -152,7 +152,7 @@ export default function AdminSidebar() {
                 <div className="border-t border-black/5 px-4 pt-4">
                     {user && (
                         <div className="mb-3 px-4">
-                            <p className="text-[9px] uppercase tracking-[0.22em] text-[#20231f]/35">
+                            <p className="text-[9px] tracking-[0.22em] text-[#20231f]/35 uppercase">
                                 Ingelogd als
                             </p>
 

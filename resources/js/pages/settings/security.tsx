@@ -23,7 +23,7 @@ export default function Security(props: Props) {
                 <div className="mx-auto max-w-5xl">
                     {/* Header */}
                     <div className="border-b border-black/10 pb-8">
-                        <p className="text-[10px] uppercase tracking-[0.3em] text-[#5d6948]">
+                        <p className="text-[10px] tracking-[0.3em] text-[#5d6948] uppercase">
                             Account
                         </p>
 
@@ -40,7 +40,7 @@ export default function Security(props: Props) {
                     {/* Password */}
                     <section className="mt-10 border border-black/10 bg-white p-7 shadow-[0_20px_60px_rgba(32,35,31,0.04)] sm:p-10">
                         <div className="mb-8">
-                            <p className="text-[10px] uppercase tracking-[0.3em] text-[#5d6948]">
+                            <p className="text-[10px] tracking-[0.3em] text-[#5d6948] uppercase">
                                 Wachtwoord
                             </p>
 
@@ -81,7 +81,7 @@ export default function Security(props: Props) {
                                     <div>
                                         <label
                                             htmlFor="current_password"
-                                            className="mb-2 block text-[10px] uppercase tracking-[0.2em] text-[#20231f]/55"
+                                            className="mb-2 block text-[10px] tracking-[0.2em] text-[#20231f]/55 uppercase"
                                         >
                                             Huidig wachtwoord
                                         </label>
@@ -92,7 +92,7 @@ export default function Security(props: Props) {
                                             name="current_password"
                                             autoComplete="current-password"
                                             placeholder="Huidig wachtwoord"
-                                            className="w-full border border-black/10 bg-[#f7f4ee] px-4 py-4 text-sm outline-none transition focus:border-[#5d6948] focus:ring-2 focus:ring-[#5d6948]/10"
+                                            className="w-full border border-black/10 bg-[#f7f4ee] px-4 py-4 text-sm transition outline-none focus:border-[#5d6948] focus:ring-2 focus:ring-[#5d6948]/10"
                                         />
 
                                         <InputError
@@ -104,7 +104,7 @@ export default function Security(props: Props) {
                                     <div>
                                         <label
                                             htmlFor="password"
-                                            className="mb-2 block text-[10px] uppercase tracking-[0.2em] text-[#20231f]/55"
+                                            className="mb-2 block text-[10px] tracking-[0.2em] text-[#20231f]/55 uppercase"
                                         >
                                             Nieuw wachtwoord
                                         </label>
@@ -116,7 +116,7 @@ export default function Security(props: Props) {
                                             autoComplete="new-password"
                                             placeholder="Nieuw wachtwoord"
                                             passwordrules={props.passwordRules}
-                                            className="w-full border border-black/10 bg-[#f7f4ee] px-4 py-4 text-sm outline-none transition focus:border-[#5d6948] focus:ring-2 focus:ring-[#5d6948]/10"
+                                            className="w-full border border-black/10 bg-[#f7f4ee] px-4 py-4 text-sm transition outline-none focus:border-[#5d6948] focus:ring-2 focus:ring-[#5d6948]/10"
                                         />
 
                                         <InputError
@@ -128,7 +128,7 @@ export default function Security(props: Props) {
                                     <div>
                                         <label
                                             htmlFor="password_confirmation"
-                                            className="mb-2 block text-[10px] uppercase tracking-[0.2em] text-[#20231f]/55"
+                                            className="mb-2 block text-[10px] tracking-[0.2em] text-[#20231f]/55 uppercase"
                                         >
                                             Bevestig nieuw wachtwoord
                                         </label>
@@ -139,7 +139,7 @@ export default function Security(props: Props) {
                                             autoComplete="new-password"
                                             placeholder="Herhaal nieuw wachtwoord"
                                             passwordrules={props.passwordRules}
-                                            className="w-full border border-black/10 bg-[#f7f4ee] px-4 py-4 text-sm outline-none transition focus:border-[#5d6948] focus:ring-2 focus:ring-[#5d6948]/10"
+                                            className="w-full border border-black/10 bg-[#f7f4ee] px-4 py-4 text-sm transition outline-none focus:border-[#5d6948] focus:ring-2 focus:ring-[#5d6948]/10"
                                         />
 
                                         <InputError
@@ -154,7 +154,7 @@ export default function Security(props: Props) {
                                         <button
                                             type="submit"
                                             disabled={processing}
-                                            className="group flex w-full items-center justify-center gap-3 bg-[#5d6948] px-6 py-4 text-[10px] uppercase tracking-[0.25em] text-white transition hover:bg-[#4f5a3d] disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+                                            className="group flex w-full items-center justify-center gap-3 bg-[#5d6948] px-6 py-4 text-[10px] tracking-[0.25em] text-white uppercase transition hover:bg-[#4f5a3d] disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
                                         >
                                             {processing
                                                 ? 'Bezig met opslaan...'
@@ -175,7 +175,7 @@ export default function Security(props: Props) {
                     {/* Two-factor */}
                     <section className="mt-8 border border-[#5d6948]/10 bg-[#edf0e7] p-7 sm:p-10">
                         <div className="mb-8">
-                            <p className="text-[10px] uppercase tracking-[0.3em] text-[#5d6948]">
+                            <p className="text-[10px] tracking-[0.3em] text-[#5d6948] uppercase">
                                 Extra beveiliging
                             </p>
 
@@ -200,7 +200,7 @@ export default function Security(props: Props) {
                     {/* Security info */}
                     <section className="mt-8 grid gap-6 md:grid-cols-2">
                         <div className="border border-black/10 bg-white p-7">
-                            <p className="text-[9px] uppercase tracking-[0.22em] text-[#5d6948]">
+                            <p className="text-[9px] tracking-[0.22em] text-[#5d6948] uppercase">
                                 Tip
                             </p>
 
@@ -216,7 +216,7 @@ export default function Security(props: Props) {
                         </div>
 
                         <div className="border border-black/10 bg-[#ebe7dc] p-7">
-                            <p className="text-[9px] uppercase tracking-[0.22em] text-[#5d6948]">
+                            <p className="text-[9px] tracking-[0.22em] text-[#5d6948] uppercase">
                                 Beheeraccount
                             </p>
 

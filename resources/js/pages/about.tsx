@@ -16,7 +16,7 @@ export default function About() {
                     <div className="pointer-events-none absolute bottom-0 -left-20 h-52 w-52 rounded-full border border-[#5d6948]/10" />
 
                     <div className="relative mx-auto max-w-5xl text-center">
-                        <p className="mb-5 text-[11px] uppercase tracking-[0.35em] text-[#5d6948]">
+                        <p className="mb-5 text-[11px] tracking-[0.35em] text-[#5d6948] uppercase">
                             Brasserie De Bank
                         </p>
 
@@ -28,8 +28,8 @@ export default function About() {
 
                         <p className="mx-auto mt-7 max-w-2xl text-sm leading-7 text-[#20231f]/60 sm:text-base sm:leading-8">
                             Een warme, laagdrempelige en gastvrije plek in
-                            Harderwijk waar goed eten, gezelligheid en ontspannen
-                            samenkomen.
+                            Harderwijk waar goed eten, gezelligheid en
+                            ontspannen samenkomen.
                         </p>
                     </div>
                 </section>
@@ -46,19 +46,19 @@ export default function About() {
                                 />
                             </div>
 
-                            <div className="absolute -bottom-7 -right-4 hidden bg-white px-7 py-6 shadow-[0_20px_60px_rgba(32,35,31,0.08)] sm:block">
+                            <div className="absolute -right-4 -bottom-7 hidden bg-white px-7 py-6 shadow-[0_20px_60px_rgba(32,35,31,0.08)] sm:block">
                                 <p className="font-serif text-2xl text-[#5d6948]">
                                     De Bank
                                 </p>
 
-                                <p className="mt-1 text-[9px] uppercase tracking-[0.25em] text-[#20231f]/35">
+                                <p className="mt-1 text-[9px] tracking-[0.25em] text-[#20231f]/35 uppercase">
                                     Harderwijk
                                 </p>
                             </div>
                         </div>
 
                         <div>
-                            <p className="mb-4 text-[10px] uppercase tracking-[0.35em] text-[#5d6948]">
+                            <p className="mb-4 text-[10px] tracking-[0.35em] text-[#5d6948] uppercase">
                                 Ons verhaal
                             </p>
 
@@ -104,7 +104,7 @@ export default function About() {
                 <section className="bg-white px-6 py-20 sm:px-10 lg:px-16 lg:py-28">
                     <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
                         <div>
-                            <p className="text-[10px] uppercase tracking-[0.35em] text-[#5d6948]">
+                            <p className="text-[10px] tracking-[0.35em] text-[#5d6948] uppercase">
                                 Kwaliteit
                             </p>
 
@@ -128,10 +128,9 @@ export default function About() {
 
                             <Link
                                 href="/menus"
-                                className="group mt-8 inline-flex items-center gap-3 border-b border-[#5d6948]/50 pb-2 text-[10px] uppercase tracking-[0.25em] text-[#5d6948]"
+                                className="group mt-8 inline-flex items-center gap-3 border-b border-[#5d6948]/50 pb-2 text-[10px] tracking-[0.25em] text-[#5d6948] uppercase"
                             >
                                 Bekijk onze kaarten
-
                                 <span className="transition-transform duration-300 group-hover:translate-x-1">
                                     →
                                 </span>
@@ -140,7 +139,7 @@ export default function About() {
 
                         <div className="grid gap-5 sm:grid-cols-2">
                             <div className="border border-[#5d6948]/15 bg-[#f7f4ee] p-8 transition hover:-translate-y-1 hover:bg-white hover:shadow-[0_18px_50px_rgba(32,35,31,0.05)]">
-                                <p className="text-[10px] uppercase tracking-[0.25em] text-[#5d6948]">
+                                <p className="text-[10px] tracking-[0.25em] text-[#5d6948] uppercase">
                                     01
                                 </p>
 
@@ -155,7 +154,7 @@ export default function About() {
                             </div>
 
                             <div className="border border-[#5d6948]/15 bg-[#f7f4ee] p-8 transition hover:-translate-y-1 hover:bg-white hover:shadow-[0_18px_50px_rgba(32,35,31,0.05)]">
-                                <p className="text-[10px] uppercase tracking-[0.25em] text-[#5d6948]">
+                                <p className="text-[10px] tracking-[0.25em] text-[#5d6948] uppercase">
                                     02
                                 </p>
 
@@ -170,7 +169,7 @@ export default function About() {
                             </div>
 
                             <div className="border border-[#5d6948]/15 bg-[#f7f4ee] p-8 transition hover:-translate-y-1 hover:bg-white hover:shadow-[0_18px_50px_rgba(32,35,31,0.05)] sm:col-span-2">
-                                <p className="text-[10px] uppercase tracking-[0.25em] text-[#5d6948]">
+                                <p className="text-[10px] tracking-[0.25em] text-[#5d6948] uppercase">
                                     03
                                 </p>
 
@@ -192,7 +191,7 @@ export default function About() {
                 <section className="bg-[#f7f4ee] px-6 py-20 sm:px-10 lg:px-16 lg:py-28">
                     <div className="mx-auto max-w-6xl">
                         <div className="mx-auto mb-14 max-w-2xl text-center">
-                            <p className="text-[10px] uppercase tracking-[0.35em] text-[#5d6948]">
+                            <p className="text-[10px] tracking-[0.35em] text-[#5d6948] uppercase">
                                 De Bank
                             </p>
 
@@ -209,7 +208,7 @@ export default function About() {
 
                         <div className="grid gap-6 md:grid-cols-3">
                             <div className="border border-black/10 bg-white p-8 transition hover:-translate-y-1 hover:shadow-[0_18px_50px_rgba(32,35,31,0.05)] sm:p-10">
-                                <p className="text-[10px] uppercase tracking-[0.25em] text-[#5d6948]">
+                                <p className="text-[10px] tracking-[0.25em] text-[#5d6948] uppercase">
                                     Ontspannen
                                 </p>
 
@@ -218,13 +217,14 @@ export default function About() {
                                 </h3>
 
                                 <p className="mt-5 text-sm leading-7 text-[#20231f]/55">
-                                    Lees de krant aan de stamtafel, praat bij met
-                                    vrienden of geniet rustig van een kop koffie.
+                                    Lees de krant aan de stamtafel, praat bij
+                                    met vrienden of geniet rustig van een kop
+                                    koffie.
                                 </p>
                             </div>
 
                             <div className="border border-black/10 bg-[#ebe7dc] p-8 transition hover:-translate-y-1 hover:bg-white hover:shadow-[0_18px_50px_rgba(32,35,31,0.05)] sm:p-10">
-                                <p className="text-[10px] uppercase tracking-[0.25em] text-[#5d6948]">
+                                <p className="text-[10px] tracking-[0.25em] text-[#5d6948] uppercase">
                                     Sfeer
                                 </p>
 
@@ -234,12 +234,13 @@ export default function About() {
 
                                 <p className="mt-5 text-sm leading-7 text-[#20231f]/55">
                                     Van de open keuken tot kunst aan de muur:
-                                    sfeer, warmte en gastvrijheid staan centraal.
+                                    sfeer, warmte en gastvrijheid staan
+                                    centraal.
                                 </p>
                             </div>
 
                             <div className="border border-black/10 bg-white p-8 transition hover:-translate-y-1 hover:shadow-[0_18px_50px_rgba(32,35,31,0.05)] sm:p-10">
-                                <p className="text-[10px] uppercase tracking-[0.25em] text-[#5d6948]">
+                                <p className="text-[10px] tracking-[0.25em] text-[#5d6948] uppercase">
                                     Terras
                                 </p>
 
@@ -249,7 +250,8 @@ export default function About() {
 
                                 <p className="mt-5 text-sm leading-7 text-[#20231f]/55">
                                     Ook op het terras kun je ontspannen genieten
-                                    van eten, drinken en de sfeer van Harderwijk.
+                                    van eten, drinken en de sfeer van
+                                    Harderwijk.
                                 </p>
                             </div>
                         </div>
@@ -261,7 +263,7 @@ export default function About() {
                     <div className="mx-auto max-w-6xl">
                         <div className="mb-12 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
                             <div>
-                                <p className="text-[10px] uppercase tracking-[0.35em] text-[#5d6948]">
+                                <p className="text-[10px] tracking-[0.35em] text-[#5d6948] uppercase">
                                     Meer dan een brasserie
                                 </p>
 
@@ -272,10 +274,9 @@ export default function About() {
 
                             <Link
                                 href="/mogelijkheden"
-                                className="group inline-flex items-center gap-3 text-[10px] uppercase tracking-[0.25em] text-[#5d6948]"
+                                className="group inline-flex items-center gap-3 text-[10px] tracking-[0.25em] text-[#5d6948] uppercase"
                             >
                                 Bekijk mogelijkheden
-
                                 <span className="transition-transform group-hover:translate-x-1">
                                     →
                                 </span>
@@ -284,7 +285,7 @@ export default function About() {
 
                         <div className="grid gap-6 md:grid-cols-3">
                             <div className="border border-black/10 bg-[#f7f4ee] p-8">
-                                <p className="text-[9px] uppercase tracking-[0.22em] text-[#5d6948]">
+                                <p className="text-[9px] tracking-[0.22em] text-[#5d6948] uppercase">
                                     01
                                 </p>
 
@@ -299,7 +300,7 @@ export default function About() {
                             </div>
 
                             <div className="border border-black/10 bg-white p-8">
-                                <p className="text-[9px] uppercase tracking-[0.22em] text-[#5d6948]">
+                                <p className="text-[9px] tracking-[0.22em] text-[#5d6948] uppercase">
                                     02
                                 </p>
 
@@ -315,7 +316,7 @@ export default function About() {
                             </div>
 
                             <div className="border border-black/10 bg-[#f7f4ee] p-8">
-                                <p className="text-[9px] uppercase tracking-[0.22em] text-[#5d6948]">
+                                <p className="text-[9px] tracking-[0.22em] text-[#5d6948] uppercase">
                                     03
                                 </p>
 
@@ -335,7 +336,7 @@ export default function About() {
                 {/* CLOSING */}
                 <section className="border-t border-[#5d6948]/10 bg-[#edf0e7] px-6 py-24 sm:px-10 lg:px-16 lg:py-28">
                     <div className="mx-auto max-w-4xl text-center">
-                        <p className="mb-5 text-[10px] uppercase tracking-[0.35em] text-[#5d6948]">
+                        <p className="mb-5 text-[10px] tracking-[0.35em] text-[#5d6948] uppercase">
                             Kom langs
                         </p>
 
@@ -351,14 +352,14 @@ export default function About() {
                         <div className="mt-9 flex flex-wrap justify-center gap-4">
                             <Link
                                 href="/reservation"
-                                className="bg-[#5d6948] px-8 py-4 text-[10px] uppercase tracking-[0.25em] text-white transition hover:bg-[#4f5a3d]"
+                                className="bg-[#5d6948] px-8 py-4 text-[10px] tracking-[0.25em] text-white uppercase transition hover:bg-[#4f5a3d]"
                             >
                                 Reserveer een tafel
                             </Link>
 
                             <Link
                                 href="/contacts"
-                                className="border border-[#5d6948]/30 bg-white/50 px-8 py-4 text-[10px] uppercase tracking-[0.25em] text-[#20231f] transition hover:border-[#5d6948] hover:bg-white"
+                                className="border border-[#5d6948]/30 bg-white/50 px-8 py-4 text-[10px] tracking-[0.25em] text-[#20231f] uppercase transition hover:border-[#5d6948] hover:bg-white"
                             >
                                 Contact
                             </Link>

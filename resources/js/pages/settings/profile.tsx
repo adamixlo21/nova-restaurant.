@@ -10,9 +10,9 @@ type PageProps = {
 };
 
 export default function Profile({
-                                    mustVerifyEmail,
-                                    status,
-                                }: {
+    mustVerifyEmail,
+    status,
+}: {
     mustVerifyEmail: boolean;
     status?: string;
 }) {
@@ -27,7 +27,7 @@ export default function Profile({
                     {/* Header */}
                     <div className="flex flex-col gap-6 border-b border-black/10 pb-8 sm:flex-row sm:items-end sm:justify-between">
                         <div>
-                            <p className="text-[10px] uppercase tracking-[0.3em] text-[#5d6948]">
+                            <p className="text-[10px] tracking-[0.3em] text-[#5d6948] uppercase">
                                 Account
                             </p>
 
@@ -44,12 +44,11 @@ export default function Profile({
 
                         <Link
                             href="/dashboard"
-                            className="group inline-flex items-center gap-3 text-[10px] uppercase tracking-[0.22em] text-[#5d6948]"
+                            className="group inline-flex items-center gap-3 text-[10px] tracking-[0.22em] text-[#5d6948] uppercase"
                         >
                             <span className="transition-transform group-hover:-translate-x-1">
                                 ←
                             </span>
-
                             Dashboard
                         </Link>
                     </div>
@@ -58,26 +57,24 @@ export default function Profile({
                         {/* User card */}
                         <aside>
                             <div className="border border-black/10 bg-[#ebe7dc] p-7">
-                                <p className="text-[9px] uppercase tracking-[0.25em] text-[#20231f]/35">
+                                <p className="text-[9px] tracking-[0.25em] text-[#20231f]/35 uppercase">
                                     Ingelogd als
                                 </p>
 
                                 <div className="mt-6 flex h-14 w-14 items-center justify-center rounded-full bg-[#5d6948] font-serif text-xl text-white">
-                                    {auth.user.name
-                                        .charAt(0)
-                                        .toUpperCase()}
+                                    {auth.user.name.charAt(0).toUpperCase()}
                                 </div>
 
                                 <h2 className="mt-5 font-serif text-2xl">
                                     {auth.user.name}
                                 </h2>
 
-                                <p className="mt-2 break-all text-sm text-[#20231f]/50">
+                                <p className="mt-2 text-sm break-all text-[#20231f]/50">
                                     {auth.user.email}
                                 </p>
 
                                 <div className="mt-7 border-t border-black/10 pt-6">
-                                    <p className="text-[9px] uppercase tracking-[0.22em] text-[#5d6948]">
+                                    <p className="text-[9px] tracking-[0.22em] text-[#5d6948] uppercase">
                                         Beheerder
                                     </p>
 
@@ -92,7 +89,7 @@ export default function Profile({
                         {/* Form */}
                         <section className="border border-black/10 bg-white p-7 shadow-[0_20px_60px_rgba(32,35,31,0.04)] sm:p-10">
                             <div className="mb-8">
-                                <p className="text-[10px] uppercase tracking-[0.3em] text-[#5d6948]">
+                                <p className="text-[10px] tracking-[0.3em] text-[#5d6948] uppercase">
                                     Profielgegevens
                                 </p>
 
@@ -113,7 +110,7 @@ export default function Profile({
                                     </div>
 
                                     <div>
-                                        <p className="text-[9px] uppercase tracking-[0.22em] text-[#5d6948]">
+                                        <p className="text-[9px] tracking-[0.22em] text-[#5d6948] uppercase">
                                             Opgeslagen
                                         </p>
 
@@ -137,7 +134,7 @@ export default function Profile({
                                         <div>
                                             <label
                                                 htmlFor="name"
-                                                className="mb-2 block text-[10px] uppercase tracking-[0.2em] text-[#20231f]/55"
+                                                className="mb-2 block text-[10px] tracking-[0.2em] text-[#20231f]/55 uppercase"
                                             >
                                                 Naam
                                             </label>
@@ -150,7 +147,7 @@ export default function Profile({
                                                 required
                                                 autoComplete="name"
                                                 placeholder="Naam"
-                                                className="w-full border border-black/10 bg-[#f7f4ee] px-4 py-4 text-sm outline-none transition focus:border-[#5d6948] focus:ring-2 focus:ring-[#5d6948]/10"
+                                                className="w-full border border-black/10 bg-[#f7f4ee] px-4 py-4 text-sm transition outline-none focus:border-[#5d6948] focus:ring-2 focus:ring-[#5d6948]/10"
                                             />
 
                                             <InputError
@@ -163,7 +160,7 @@ export default function Profile({
                                         <div>
                                             <label
                                                 htmlFor="email"
-                                                className="mb-2 block text-[10px] uppercase tracking-[0.2em] text-[#20231f]/55"
+                                                className="mb-2 block text-[10px] tracking-[0.2em] text-[#20231f]/55 uppercase"
                                             >
                                                 E-mailadres
                                             </label>
@@ -176,7 +173,7 @@ export default function Profile({
                                                 required
                                                 autoComplete="username"
                                                 placeholder="E-mailadres"
-                                                className="w-full border border-black/10 bg-[#f7f4ee] px-4 py-4 text-sm outline-none transition focus:border-[#5d6948] focus:ring-2 focus:ring-[#5d6948]/10"
+                                                className="w-full border border-black/10 bg-[#f7f4ee] px-4 py-4 text-sm transition outline-none focus:border-[#5d6948] focus:ring-2 focus:ring-[#5d6948]/10"
                                             />
 
                                             <InputError
@@ -188,7 +185,7 @@ export default function Profile({
                                         {/* Email verification */}
                                         {mustVerifyEmail &&
                                             auth.user.email_verified_at ===
-                                            null && (
+                                                null && (
                                                 <div className="border border-amber-200 bg-amber-50 px-5 py-4">
                                                     <p className="text-sm leading-6 text-amber-900/70">
                                                         Je e-mailadres is nog
@@ -198,7 +195,7 @@ export default function Profile({
                                                     <Link
                                                         href={send()}
                                                         as="button"
-                                                        className="mt-3 text-[10px] uppercase tracking-[0.2em] text-[#5d6948] underline underline-offset-4"
+                                                        className="mt-3 text-[10px] tracking-[0.2em] text-[#5d6948] uppercase underline underline-offset-4"
                                                     >
                                                         Verificatiemail opnieuw
                                                         versturen
@@ -206,12 +203,12 @@ export default function Profile({
 
                                                     {status ===
                                                         'verification-link-sent' && (
-                                                            <p className="mt-3 text-sm text-green-700">
-                                                                Er is een nieuwe
-                                                                verificatiemail
-                                                                verstuurd.
-                                                            </p>
-                                                        )}
+                                                        <p className="mt-3 text-sm text-green-700">
+                                                            Er is een nieuwe
+                                                            verificatiemail
+                                                            verstuurd.
+                                                        </p>
+                                                    )}
                                                 </div>
                                             )}
 
@@ -220,7 +217,7 @@ export default function Profile({
                                             <button
                                                 type="submit"
                                                 disabled={processing}
-                                                className="group flex w-full items-center justify-center gap-3 bg-[#5d6948] px-6 py-4 text-[10px] uppercase tracking-[0.25em] text-white transition hover:bg-[#4f5a3d] disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+                                                className="group flex w-full items-center justify-center gap-3 bg-[#5d6948] px-6 py-4 text-[10px] tracking-[0.25em] text-white uppercase transition hover:bg-[#4f5a3d] disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
                                             >
                                                 {processing
                                                     ? 'Bezig met opslaan...'
@@ -243,7 +240,7 @@ export default function Profile({
                     <section className="mt-8 border border-black/10 bg-[#edf0e7] p-7 sm:p-8">
                         <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
                             <div>
-                                <p className="text-[9px] uppercase tracking-[0.25em] text-[#5d6948]">
+                                <p className="text-[9px] tracking-[0.25em] text-[#5d6948] uppercase">
                                     Beveiliging
                                 </p>
 
@@ -259,7 +256,7 @@ export default function Profile({
 
                             <Link
                                 href={editSecurity()}
-                                className="shrink-0 border border-[#5d6948]/25 bg-white px-6 py-4 text-center text-[10px] uppercase tracking-[0.22em] text-[#20231f] transition hover:border-[#5d6948]"
+                                className="shrink-0 border border-[#5d6948]/25 bg-white px-6 py-4 text-center text-[10px] tracking-[0.22em] text-[#20231f] uppercase transition hover:border-[#5d6948]"
                             >
                                 Wachtwoord wijzigen
                             </Link>

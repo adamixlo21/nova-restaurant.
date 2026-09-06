@@ -89,13 +89,20 @@ export default function Index({ vacancies }: Props) {
             <Head title="Vacatures beheren" />
 
             <div className="flex min-h-screen bg-[#f7f4ee] text-[#20231f]">
-
-
                 <main className="min-w-0 flex-1 px-4 py-8 sm:px-6 lg:px-10 lg:py-10">
                     <div className="mx-auto max-w-7xl">
                         {/* Header */}
                         <div className="mb-10">
                             <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+                                <Link
+                                    href="/dashboard"
+                                    className="group inline-flex items-center gap-2 text-[10px] tracking-[0.22em] text-[#5d6948] uppercase"
+                                >
+                                    <span className="transition-transform duration-300 group-hover:-translate-x-1">
+                                        ←
+                                    </span>
+                                    Terug naar dashboard
+                                </Link>
                                 <div>
                                     <p className="text-[10px] tracking-[0.35em] text-[#5d6948] uppercase">
                                         Admin · Vacatures

@@ -53,6 +53,26 @@ export default function Index({
         resetFilters();
     }
 
+    function deleteReservation(reservation: Reservation) {
+        const confirmed = window.confirm(
+            `Weet je zeker dat je de reservering van ${reservation.name} wilt verwijderen?`,
+        );
+
+        if (!confirmed) {
+            return;
+        }
+
+        router.delete(`/admin/reservations/${reservation.id}`, {
+            preserveScroll: true,
+
+            onSuccess: () => {
+                if (selectedReservation?.id === reservation.id) {
+                    setSelectedReservation(null);
+                }
+            },
+        });
+    }
+
     function updateStatus(id: number, status: string) {
         router.put(
             `/admin/reservations/${id}`,
@@ -201,8 +221,6 @@ export default function Index({
             <Head title="Reserveringen" />
 
             <div className="flex min-h-screen bg-[#f7f4ee] text-[#20231f]">
-
-
                 <main className="min-w-0 flex-1 px-4 py-8 sm:px-6 lg:px-10 lg:py-10">
                     <div className="mx-auto max-w-7xl">
                         {/* Header */}
@@ -909,13 +927,25 @@ export default function Index({
                                 </div>
                             )}
 
-                            <button
-                                type="button"
-                                onClick={() => setSelectedReservation(null)}
-                                className="mt-6 w-full border border-black/10 px-6 py-4 text-[9px] tracking-[0.18em] text-black uppercase transition hover:bg-[#20231f] hover:text-white"
-                            >
-                                Sluiten
-                            </button>
+                            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                                <button
+                                    type="button"
+                                    onClick={() => setSelectedReservation(null)}
+                                    className="w-full border border-black/10 bg-white px-6 py-4 text-[9px] tracking-[0.18em] text-black uppercase transition hover:bg-[#20231f] hover:text-white"
+                                >
+                                    Sluiten
+                                </button>
+
+                                <button
+                                    type="button"
+                                    onClick={() =>
+                                        deleteReservation(selectedReservation)
+                                    }
+                                    className="w-full border border-red-200 bg-red-50 px-6 py-4 text-[9px] tracking-[0.18em] text-red-700 uppercase transition hover:border-red-600 hover:bg-red-600 hover:text-white"
+                                >
+                                    Reservering verwijderen
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -51,4 +51,13 @@ class ReservationController extends Controller
         return redirect()
             ->route('admin.reservations.index');
     }
+
+    public function destroy(Reservation $reservation)
+    {
+        $reservation->delete();
+
+        return redirect()
+            ->route('admin.reservations.index')
+            ->with('success', 'Reservering is verwijderd.');
+    }
 }
