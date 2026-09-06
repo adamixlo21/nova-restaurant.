@@ -32,29 +32,27 @@ export default function Show({ actualiteit }: Props) {
             <Navbar />
 
             <main className="bg-[#f7f4ee] text-[#20231f]">
-
                 {/* HERO */}
-                <section className="relative overflow-hidden px-6 pb-16 pt-28 sm:px-10 sm:pt-32 lg:px-16 lg:pb-20">
+                <section className="relative overflow-hidden px-6 pt-28 pb-16 sm:px-10 sm:pt-32 lg:px-16 lg:pb-20">
                     <div className="mx-auto max-w-7xl">
                         <div className="max-w-5xl">
                             <Link
                                 href="/actualiteiten"
-                                className="group inline-flex items-center gap-3 text-[10px] uppercase tracking-[0.22em] text-[#5d6948]"
+                                className="group inline-flex items-center gap-3 text-[10px] tracking-[0.22em] text-[#5d6948] uppercase"
                             >
                                 <span className="transition-transform duration-300 group-hover:-translate-x-1">
                                     ←
                                 </span>
-
                                 Terug naar actualiteiten
                             </Link>
 
                             <div className="mt-10">
-                                <p className="text-[10px] uppercase tracking-[0.32em] text-[#5d6948]">
+                                <p className="text-[10px] tracking-[0.32em] text-[#5d6948] uppercase">
                                     Nieuws uit De Bank
                                 </p>
 
                                 {actualiteit.published_at && (
-                                    <p className="mt-4 text-[10px] uppercase tracking-[0.2em] text-[#20231f]/35">
+                                    <p className="mt-4 text-[10px] tracking-[0.2em] text-[#20231f]/35 uppercase">
                                         {formatDate(actualiteit.published_at)}
                                     </p>
                                 )}
@@ -72,7 +70,7 @@ export default function Show({ actualiteit }: Props) {
                         </div>
                     </div>
 
-                    <span className="pointer-events-none absolute -bottom-24 right-0 hidden font-serif text-[260px] leading-none text-[#5d6948]/[0.035] lg:block">
+                    <span className="pointer-events-none absolute right-0 -bottom-24 hidden font-serif text-[260px] leading-none text-[#5d6948]/[0.035] lg:block">
                         B
                     </span>
                 </section>
@@ -90,7 +88,7 @@ export default function Show({ actualiteit }: Props) {
 
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent" />
 
-                                <div className="absolute bottom-5 left-5 bg-[#20231f]/85 px-4 py-2 text-[9px] uppercase tracking-[0.22em] text-white backdrop-blur-sm sm:bottom-7 sm:left-7">
+                                <div className="absolute bottom-5 left-5 bg-[#20231f]/85 px-4 py-2 text-[9px] tracking-[0.22em] text-white uppercase backdrop-blur-sm sm:bottom-7 sm:left-7">
                                     Brasserie De Bank
                                 </div>
                             </div>
@@ -101,34 +99,33 @@ export default function Show({ actualiteit }: Props) {
                 {/* ARTICLE */}
                 <section className="px-6 py-16 sm:px-10 lg:px-16 lg:py-24">
                     <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[220px_1fr]">
-
                         {/* Sidebar */}
                         <aside className="hidden lg:block">
                             <div className="sticky top-28 border-t border-black/10 pt-5">
-                                <p className="text-[9px] uppercase tracking-[0.25em] text-[#20231f]/35">
+                                <p className="text-[9px] tracking-[0.25em] text-[#20231f]/35 uppercase">
                                     Artikel
                                 </p>
 
                                 {actualiteit.published_at && (
                                     <div className="mt-5">
-                                        <p className="text-[9px] uppercase tracking-[0.2em] text-[#5d6948]">
+                                        <p className="text-[9px] tracking-[0.2em] text-[#5d6948] uppercase">
                                             Gepubliceerd
                                         </p>
 
                                         <p className="mt-2 text-sm text-[#20231f]/60">
-                                            {formatDate(actualiteit.published_at)}
+                                            {formatDate(
+                                                actualiteit.published_at,
+                                            )}
                                         </p>
                                     </div>
                                 )}
 
                                 <div className="mt-7 border-t border-black/10 pt-5">
-                                    <p className="text-[9px] uppercase tracking-[0.2em] text-[#20231f]/35">
+                                    <p className="text-[9px] tracking-[0.2em] text-[#20231f]/35 uppercase">
                                         Brasserie
                                     </p>
 
-                                    <p className="mt-2 text-sm">
-                                        De Bank
-                                    </p>
+                                    <p className="mt-2 text-sm">De Bank</p>
 
                                     <p className="mt-1 text-xs text-[#20231f]/40">
                                         Harderwijk
@@ -137,10 +134,9 @@ export default function Show({ actualiteit }: Props) {
 
                                 <Link
                                     href="/actualiteiten"
-                                    className="group mt-8 inline-flex items-center gap-2 text-[9px] uppercase tracking-[0.2em] text-[#5d6948]"
+                                    className="group mt-8 inline-flex items-center gap-2 text-[9px] tracking-[0.2em] text-[#5d6948] uppercase"
                                 >
                                     Alle actualiteiten
-
                                     <span className="transition-transform duration-300 group-hover:translate-x-1">
                                         →
                                     </span>
@@ -151,7 +147,7 @@ export default function Show({ actualiteit }: Props) {
                         {/* Content */}
                         <article className="max-w-3xl">
                             {actualiteit.content ? (
-                                <div className="whitespace-pre-line font-sans text-[16px] leading-8 text-[#20231f]/70 sm:text-[17px] sm:leading-9">
+                                <div className="font-sans text-[16px] leading-8 whitespace-pre-line text-[#20231f]/70 sm:text-[17px] sm:leading-9">
                                     {actualiteit.content}
                                 </div>
                             ) : (
@@ -166,7 +162,7 @@ export default function Show({ actualiteit }: Props) {
                             <div className="mt-16 border-t border-black/10 pt-8">
                                 <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
                                     <div>
-                                        <p className="text-[9px] uppercase tracking-[0.25em] text-[#20231f]/35">
+                                        <p className="text-[9px] tracking-[0.25em] text-[#20231f]/35 uppercase">
                                             Meer ontdekken
                                         </p>
 
@@ -177,10 +173,9 @@ export default function Show({ actualiteit }: Props) {
 
                                     <Link
                                         href="/actualiteiten"
-                                        className="group inline-flex w-fit items-center gap-3 border border-[#20231f]/20 px-6 py-4 text-[10px] uppercase tracking-[0.22em] transition hover:border-[#20231f] hover:bg-[#20231f] hover:text-[#f7f4ee]"
+                                        className="group inline-flex w-fit items-center gap-3 border border-[#20231f]/20 px-6 py-4 text-[10px] tracking-[0.22em] uppercase transition hover:border-[#20231f] hover:bg-[#20231f] hover:text-[#f7f4ee]"
                                     >
                                         Alle actualiteiten
-
                                         <span className="transition-transform duration-300 group-hover:translate-x-1">
                                             →
                                         </span>
@@ -195,7 +190,7 @@ export default function Show({ actualiteit }: Props) {
                 <section className="bg-[#5d6948] px-6 py-20 text-[#f7f4ee] sm:px-10 lg:px-16 lg:py-24">
                     <div className="mx-auto flex max-w-7xl flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
                         <div>
-                            <p className="text-[10px] uppercase tracking-[0.3em] text-[#f7f4ee]/55">
+                            <p className="text-[10px] tracking-[0.3em] text-[#f7f4ee]/55 uppercase">
                                 Brasserie De Bank
                             </p>
 
@@ -211,14 +206,14 @@ export default function Show({ actualiteit }: Props) {
                         <div className="flex flex-wrap gap-4">
                             <Link
                                 href="/menus"
-                                className="border border-[#f7f4ee]/60 px-7 py-4 text-[10px] uppercase tracking-[0.22em] transition hover:bg-[#f7f4ee] hover:text-[#5d6948]"
+                                className="border border-[#f7f4ee]/60 px-7 py-4 text-[10px] tracking-[0.22em] uppercase transition hover:bg-[#f7f4ee] hover:text-[#5d6948]"
                             >
                                 Bekijk de kaart
                             </Link>
 
                             <Link
                                 href="/reservation"
-                                className="bg-[#20231f] px-7 py-4 text-[10px] uppercase tracking-[0.22em] text-[#f7f4ee] transition hover:bg-[#f7f4ee] hover:text-[#20231f]"
+                                className="bg-[#20231f] px-7 py-4 text-[10px] tracking-[0.22em] text-[#f7f4ee] uppercase transition hover:bg-[#f7f4ee] hover:text-[#20231f]"
                             >
                                 Reserveren
                             </Link>

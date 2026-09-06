@@ -9,18 +9,21 @@ export default function AdminSidebar() {
         { name: 'De kaart', href: '/menus' },
         { name: 'Mogelijkheden', href: '/mogelijkheden' },
         { name: 'Actualiteiten', href: '/actualiteiten' },
+        { name: 'Vacatures', href: '/vacatures' },
         { name: 'Locatie', href: '/locatie' },
         { name: 'Contact', href: '/contacts' },
+        { name: 'Reservation', href: '/reservation' },
     ];
 
     const managementLinks = [
         { name: 'Dashboard', href: '/dashboard' },
-        { name: 'Menu\'s', href: '/admin/menus' },
+        { name: "Menu's", href: '/admin/menus' },
         { name: 'Categorieën', href: '/admin/categories' },
         { name: 'Gerechten', href: '/admin/menu-items' },
         { name: 'Reserveringen', href: '/admin/reservations' },
         { name: 'Berichten', href: '/admin/contacts' },
         { name: 'Actualiteiten', href: '/admin/actualiteiten' },
+        { name: 'Vacatures', href: '/admin/vacancies' },
     ];
 
     function isActive(href: string) {
@@ -38,31 +41,26 @@ export default function AdminSidebar() {
     return (
         <aside className="hidden min-h-screen w-72 shrink-0 border-r border-black/5 bg-[#ebe7dc] lg:block">
             <div className="sticky top-0 flex min-h-screen flex-col">
-
                 {/* Brand */}
                 <div className="border-b border-black/5 px-8 py-7">
-                    <Link
-                        href="/"
-                        className="inline-block"
-                    >
+                    <Link href="/" className="inline-block">
                         <p className="font-serif text-2xl tracking-[0.16em] text-[#20231f]">
                             DE BANK
                         </p>
 
-                        <p className="mt-1 text-[8px] uppercase tracking-[0.3em] text-[#5d6948]">
+                        <p className="mt-1 text-[8px] tracking-[0.3em] text-[#5d6948] uppercase">
                             Brasserie Harderwijk
                         </p>
                     </Link>
 
-                    <div className="mt-5 inline-flex bg-[#20231f] px-3 py-1.5 text-[9px] uppercase tracking-[0.2em] text-[#f7f4ee]">
+                    <div className="mt-5 inline-flex bg-[#20231f] px-3 py-1.5 text-[9px] tracking-[0.2em] text-[#f7f4ee] uppercase">
                         Beheeromgeving
                     </div>
                 </div>
 
                 <nav className="flex-1 overflow-y-auto px-4 py-6">
-
                     {/* Website */}
-                    <p className="px-4 pb-3 text-[9px] uppercase tracking-[0.28em] text-[#20231f]/35">
+                    <p className="px-4 pb-3 text-[9px] tracking-[0.28em] text-[#20231f]/35 uppercase">
                         Website
                     </p>
 
@@ -97,7 +95,7 @@ export default function AdminSidebar() {
                     </div>
 
                     {/* Management */}
-                    <p className="mt-9 px-4 pb-3 text-[9px] uppercase tracking-[0.28em] text-[#20231f]/35">
+                    <p className="mt-9 px-4 pb-3 text-[9px] tracking-[0.28em] text-[#20231f]/35 uppercase">
                         Beheer
                     </p>
 

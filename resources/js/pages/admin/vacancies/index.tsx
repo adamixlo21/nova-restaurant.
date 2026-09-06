@@ -2,43 +2,32 @@ import { Head, Link, router } from '@inertiajs/react';
 import { useMemo, useState } from 'react';
 import AdminSidebar from '@/components/AdminSidebar';
 
-interface Actualiteit {
+interface Vacancy {
     id: number;
     title: string;
     slug: string;
     excerpt: string | null;
+    contract_type: string | null;
+    hours: string | null;
+    location: string | null;
     image: string | null;
     is_published: boolean;
     published_at: string | null;
 }
 
 interface Props {
-    actualiteiten: Actualiteit[];
+    vacancies: Vacancy[];
 }
 
 type StatusFilter = 'all' | 'published' | 'draft';
 
-export default function Index({ actualiteiten }: Props) {
+export default function Index({ vacancies }: Props) {
     const [search, setSearch] = useState('');
     const [statusFilter, setStatusFilter] = useState<StatusFilter>('all');
 
-    function destroy(id: number) {
-        if (
-            !confirm(
-                'Weet je zeker dat je dit actualiteitsbericht wilt verwijderen?',
-            )
-        ) {
-            return;
-        }
-
-        router.delete(`/admin/actualiteiten/${id}`, {
-            preserveScroll: true,
-        });
-    }
-
     function formatDate(date: string | null) {
         if (!date) {
-            return 'Nog niet gepubliceerd';
+            return 'Geen datum';
         }
 
         return new Date(date).toLocaleDateString('nl-NL', {
@@ -48,32 +37,47 @@ export default function Index({ actualiteiten }: Props) {
         });
     }
 
-    const filteredActualiteiten = useMemo(() => {
+    function destroyVacancy(vacancy: Vacancy) {
+        if (
+            !confirm(
+                `Weet je zeker dat je "${vacancy.title}" wilt verwijderen?`,
+            )
+        ) {
+            return;
+        }
+
+        router.delete(`/admin/vacancies/${vacancy.id}`, {
+            preserveScroll: true,
+        });
+    }
+
+    const filteredVacancies = useMemo(() => {
         const query = search.toLowerCase().trim();
 
-        return actualiteiten.filter((item) => {
+        return vacancies.filter((vacancy) => {
             const matchesSearch =
                 !query ||
-                item.title.toLowerCase().includes(query) ||
-                item.excerpt?.toLowerCase().includes(query) ||
-                item.slug.toLowerCase().includes(query);
+                vacancy.title.toLowerCase().includes(query) ||
+                vacancy.slug.toLowerCase().includes(query) ||
+                vacancy.excerpt?.toLowerCase().includes(query) ||
+                vacancy.contract_type?.toLowerCase().includes(query) ||
+                vacancy.hours?.toLowerCase().includes(query) ||
+                vacancy.location?.toLowerCase().includes(query);
 
             const matchesStatus =
                 statusFilter === 'all' ||
-                (statusFilter === 'published' && item.is_published) ||
-                (statusFilter === 'draft' && !item.is_published);
+                (statusFilter === 'published' && vacancy.is_published) ||
+                (statusFilter === 'draft' && !vacancy.is_published);
 
             return matchesSearch && matchesStatus;
         });
-    }, [actualiteiten, search, statusFilter]);
+    }, [vacancies, search, statusFilter]);
 
-    const publishedCount = actualiteiten.filter(
-        (item) => item.is_published,
+    const publishedCount = vacancies.filter(
+        (vacancy) => vacancy.is_published,
     ).length;
 
-    const draftCount = actualiteiten.filter(
-        (item) => !item.is_published,
-    ).length;
+    const draftCount = vacancies.length - publishedCount;
 
     function resetFilters() {
         setSearch('');
@@ -82,7 +86,7 @@ export default function Index({ actualiteiten }: Props) {
 
     return (
         <>
-            <Head title="Actualiteiten beheren" />
+            <Head title="Vacatures beheren" />
 
             <div className="flex min-h-screen bg-[#f7f4ee] text-[#20231f]">
                 <AdminSidebar />
@@ -94,24 +98,25 @@ export default function Index({ actualiteiten }: Props) {
                             <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
                                 <div>
                                     <p className="text-[10px] tracking-[0.35em] text-[#5d6948] uppercase">
-                                        Admin · Actualiteiten
+                                        Admin · Vacatures
                                     </p>
 
                                     <h1 className="mt-3 font-serif text-4xl sm:text-5xl">
-                                        Actualiteiten
+                                        Vacatures
                                     </h1>
 
                                     <p className="mt-3 max-w-2xl text-sm leading-7 text-[#20231f]/50">
-                                        Beheer nieuwsberichten, aankondigingen
-                                        en updates van De Bank.
+                                        Beheer openstaande functies en publiceer
+                                        vacatures op de website van Brasserie De
+                                        Bank.
                                     </p>
                                 </div>
 
                                 <Link
-                                    href="/admin/actualiteiten/create"
-                                    className="inline-flex items-center justify-center bg-[#20231f] px-6 py-4 text-[10px] tracking-[0.2em] text-[#f7f4ee] uppercase transition hover:bg-[#5d6948]"
+                                    href="/admin/vacancies/create"
+                                    className="inline-flex items-center justify-center bg-[#20231f] px-6 py-4 text-[10px] tracking-[0.2em] text-white uppercase transition hover:bg-[#5d6948]"
                                 >
-                                    + Nieuw bericht
+                                    + Nieuwe vacature
                                 </Link>
                             </div>
                         </div>
@@ -128,7 +133,7 @@ export default function Index({ actualiteiten }: Props) {
                                 </p>
 
                                 <p className="mt-2 font-serif text-3xl">
-                                    {actualiteiten.length}
+                                    {vacancies.length}
                                 </p>
                             </button>
 
@@ -162,7 +167,7 @@ export default function Index({ actualiteiten }: Props) {
                         </div>
 
                         {/* Filters */}
-                        {actualiteiten.length > 0 && (
+                        {vacancies.length > 0 && (
                             <div className="mb-6 border border-black/10 bg-white p-4 sm:p-5">
                                 <div className="flex flex-col gap-4 md:flex-row">
                                     <div className="relative flex-1">
@@ -172,7 +177,7 @@ export default function Index({ actualiteiten }: Props) {
                                             onChange={(e) =>
                                                 setSearch(e.target.value)
                                             }
-                                            placeholder="Zoek op titel, slug of tekst..."
+                                            placeholder="Zoek op functie, locatie, uren of dienstverband..."
                                             className="w-full border border-black/10 bg-[#f7f4ee] px-4 py-3.5 pr-10 text-sm transition outline-none placeholder:text-[#20231f]/30 focus:border-[#5d6948]"
                                         />
 
@@ -212,10 +217,10 @@ export default function Index({ actualiteiten }: Props) {
                                 {(search || statusFilter !== 'all') && (
                                     <div className="mt-4 flex items-center justify-between border-t border-black/10 pt-4">
                                         <p className="text-[9px] tracking-[0.18em] text-[#20231f]/40 uppercase">
-                                            {filteredActualiteiten.length}{' '}
-                                            {filteredActualiteiten.length === 1
-                                                ? 'bericht'
-                                                : 'berichten'}
+                                            {filteredVacancies.length}{' '}
+                                            {filteredVacancies.length === 1
+                                                ? 'vacature'
+                                                : 'vacatures'}
                                         </p>
 
                                         <button
@@ -231,31 +236,32 @@ export default function Index({ actualiteiten }: Props) {
                         )}
 
                         {/* Empty */}
-                        {actualiteiten.length === 0 ? (
+                        {vacancies.length === 0 ? (
                             <div className="border border-black/10 bg-white px-6 py-20 text-center">
                                 <p className="text-[10px] tracking-[0.3em] text-[#5d6948] uppercase">
-                                    Actualiteiten
+                                    Vacatures
                                 </p>
 
                                 <h2 className="mt-4 font-serif text-3xl">
-                                    Nog geen actualiteiten
+                                    Nog geen vacatures
                                 </h2>
 
                                 <p className="mx-auto mt-3 max-w-md text-sm leading-7 text-[#20231f]/50">
-                                    Maak je eerste nieuwsbericht of update aan.
+                                    Voeg de eerste vacature toe om deze op de
+                                    website te publiceren.
                                 </p>
 
                                 <Link
-                                    href="/admin/actualiteiten/create"
+                                    href="/admin/vacancies/create"
                                     className="mt-7 inline-flex bg-[#20231f] px-6 py-4 text-[9px] tracking-[0.18em] text-white uppercase transition hover:bg-[#5d6948]"
                                 >
-                                    + Nieuw bericht
+                                    + Eerste vacature toevoegen
                                 </Link>
                             </div>
-                        ) : filteredActualiteiten.length === 0 ? (
+                        ) : filteredVacancies.length === 0 ? (
                             <div className="border border-black/10 bg-white px-6 py-20 text-center">
                                 <h2 className="font-serif text-3xl">
-                                    Geen berichten gevonden
+                                    Geen vacatures gevonden
                                 </h2>
 
                                 <p className="mt-3 text-sm text-[#20231f]/50">
@@ -274,23 +280,27 @@ export default function Index({ actualiteiten }: Props) {
                             <>
                                 {/* Desktop */}
                                 <div className="hidden overflow-hidden border border-black/10 bg-white xl:block">
-                                    <div className="grid grid-cols-[90px_minmax(190px,1.1fr)_minmax(220px,1.5fr)_130px_120px_200px] gap-4 border-b border-black/10 bg-[#ebe7dc] px-5 py-4">
+                                    <div className="grid grid-cols-[90px_minmax(180px,1.1fr)_120px_100px_130px_120px_200px] gap-4 border-b border-black/10 bg-[#ebe7dc] px-5 py-4">
                                         <span />
 
                                         <p className="text-[9px] tracking-[0.18em] text-[#20231f]/40 uppercase">
-                                            Titel
+                                            Functie
                                         </p>
 
                                         <p className="text-[9px] tracking-[0.18em] text-[#20231f]/40 uppercase">
-                                            Omschrijving
+                                            Dienstverband
+                                        </p>
+
+                                        <p className="text-[9px] tracking-[0.18em] text-[#20231f]/40 uppercase">
+                                            Uren
+                                        </p>
+
+                                        <p className="text-[9px] tracking-[0.18em] text-[#20231f]/40 uppercase">
+                                            Locatie
                                         </p>
 
                                         <p className="text-[9px] tracking-[0.18em] text-[#20231f]/40 uppercase">
                                             Status
-                                        </p>
-
-                                        <p className="text-[9px] tracking-[0.18em] text-[#20231f]/40 uppercase">
-                                            Datum
                                         </p>
 
                                         <p className="text-[9px] tracking-[0.18em] text-[#20231f]/40 uppercase">
@@ -299,61 +309,74 @@ export default function Index({ actualiteiten }: Props) {
                                     </div>
 
                                     <div className="divide-y divide-black/10">
-                                        {filteredActualiteiten.map((item) => (
+                                        {filteredVacancies.map((vacancy) => (
                                             <div
-                                                key={item.id}
-                                                className="grid grid-cols-[90px_minmax(190px,1.1fr)_minmax(220px,1.5fr)_130px_120px_200px] items-center gap-4 px-5 py-5 transition hover:bg-[#f7f4ee]"
+                                                key={vacancy.id}
+                                                className="grid grid-cols-[90px_minmax(180px,1.1fr)_120px_100px_130px_120px_200px] items-center gap-4 px-5 py-5 transition hover:bg-[#f7f4ee]"
                                             >
+                                                {/* Image */}
                                                 <div className="h-16 w-20 overflow-hidden bg-[#ebe7dc]">
-                                                    {item.image ? (
+                                                    {vacancy.image ? (
                                                         <img
-                                                            src={`/storage/${item.image}`}
-                                                            alt={item.title}
+                                                            src={`/storage/${vacancy.image}`}
+                                                            alt={vacancy.title}
                                                             className="h-full w-full object-cover"
                                                         />
                                                     ) : (
-                                                        <div className="flex h-full items-center justify-center text-[7px] tracking-[0.1em] text-[#20231f]/25 uppercase">
+                                                        <div className="flex h-full items-center justify-center px-2 text-center text-[7px] tracking-[0.1em] text-[#20231f]/25 uppercase">
                                                             Geen foto
                                                         </div>
                                                     )}
                                                 </div>
 
+                                                {/* Title */}
                                                 <div className="min-w-0">
                                                     <p className="truncate font-medium">
-                                                        {item.title}
+                                                        {vacancy.title}
                                                     </p>
 
                                                     <p className="mt-1 truncate text-[9px] text-[#20231f]/30">
-                                                        /{item.slug}
+                                                        /vacatures/
+                                                        {vacancy.slug}
                                                     </p>
+
+                                                    {vacancy.published_at && (
+                                                        <p className="mt-1 text-[9px] text-[#20231f]/35">
+                                                            {formatDate(
+                                                                vacancy.published_at,
+                                                            )}
+                                                        </p>
+                                                    )}
                                                 </div>
 
-                                                <p className="truncate text-sm text-[#20231f]/50">
-                                                    {item.excerpt ||
-                                                        'Geen korte omschrijving'}
+                                                <p className="truncate text-sm text-[#20231f]/55">
+                                                    {vacancy.contract_type ||
+                                                        '—'}
+                                                </p>
+
+                                                <p className="truncate text-sm text-[#20231f]/55">
+                                                    {vacancy.hours || '—'}
+                                                </p>
+
+                                                <p className="truncate text-sm text-[#20231f]/55">
+                                                    {vacancy.location || '—'}
                                                 </p>
 
                                                 <span
-                                                    className={`inline-flex w-fit border px-3 py-2 text-[8px] tracking-[0.14em] uppercase ${
-                                                        item.is_published
+                                                    className={`inline-flex w-fit border px-3 py-2 text-[8px] tracking-[0.12em] uppercase ${
+                                                        vacancy.is_published
                                                             ? 'border-green-200 bg-green-50 text-green-700'
                                                             : 'border-black/10 bg-[#f7f4ee] text-[#20231f]/45'
                                                     }`}
                                                 >
-                                                    {item.is_published
+                                                    {vacancy.is_published
                                                         ? 'Gepubliceerd'
                                                         : 'Concept'}
                                                 </span>
 
-                                                <p className="text-xs text-[#20231f]/45">
-                                                    {formatDate(
-                                                        item.published_at,
-                                                    )}
-                                                </p>
-
                                                 <div className="flex items-center justify-end gap-2">
                                                     <Link
-                                                        href={`/admin/actualiteiten/${item.id}/edit`}
+                                                        href={`/admin/vacancies/${vacancy.id}/edit`}
                                                         className="inline-flex min-w-[88px] items-center justify-center bg-[#20231f] px-3 py-2.5 text-[8px] tracking-[0.12em] text-white uppercase transition hover:bg-[#5d6948]"
                                                     >
                                                         Bewerken
@@ -362,7 +385,9 @@ export default function Index({ actualiteiten }: Props) {
                                                     <button
                                                         type="button"
                                                         onClick={() =>
-                                                            destroy(item.id)
+                                                            destroyVacancy(
+                                                                vacancy,
+                                                            )
                                                         }
                                                         className="inline-flex min-w-[96px] items-center justify-center border border-red-200 bg-red-50 px-3 py-2.5 text-[8px] tracking-[0.1em] text-red-700 uppercase transition hover:border-red-600 hover:bg-red-600 hover:text-white"
                                                     >
@@ -376,16 +401,16 @@ export default function Index({ actualiteiten }: Props) {
 
                                 {/* Tablet / Mobile */}
                                 <div className="grid gap-5 md:grid-cols-2 xl:hidden">
-                                    {filteredActualiteiten.map((item) => (
+                                    {filteredVacancies.map((vacancy) => (
                                         <article
-                                            key={item.id}
+                                            key={vacancy.id}
                                             className="overflow-hidden border border-black/10 bg-white"
                                         >
-                                            <div className="aspect-[16/9] overflow-hidden bg-[#ebe7dc]">
-                                                {item.image ? (
+                                            <div className="relative aspect-[16/9] overflow-hidden bg-[#ebe7dc]">
+                                                {vacancy.image ? (
                                                     <img
-                                                        src={`/storage/${item.image}`}
-                                                        alt={item.title}
+                                                        src={`/storage/${vacancy.image}`}
+                                                        alt={vacancy.title}
                                                         className="h-full w-full object-cover"
                                                     />
                                                 ) : (
@@ -393,42 +418,75 @@ export default function Index({ actualiteiten }: Props) {
                                                         Geen afbeelding
                                                     </div>
                                                 )}
+
+                                                <span
+                                                    className={`absolute top-4 left-4 border px-3 py-2 text-[8px] tracking-[0.14em] uppercase ${
+                                                        vacancy.is_published
+                                                            ? 'border-green-200 bg-green-50 text-green-700'
+                                                            : 'border-white/10 bg-[#20231f]/90 text-white'
+                                                    }`}
+                                                >
+                                                    {vacancy.is_published
+                                                        ? 'Gepubliceerd'
+                                                        : 'Concept'}
+                                                </span>
                                             </div>
 
                                             <div className="p-5">
-                                                <div className="flex items-center justify-between gap-4">
-                                                    <span
-                                                        className={`border px-3 py-2 text-[8px] tracking-[0.14em] uppercase ${
-                                                            item.is_published
-                                                                ? 'border-green-200 bg-green-50 text-green-700'
-                                                                : 'border-black/10 bg-[#f7f4ee] text-[#20231f]/45'
-                                                        }`}
-                                                    >
-                                                        {item.is_published
-                                                            ? 'Gepubliceerd'
-                                                            : 'Concept'}
-                                                    </span>
+                                                <p className="text-[9px] tracking-[0.2em] text-[#5d6948] uppercase">
+                                                    {formatDate(
+                                                        vacancy.published_at,
+                                                    )}
+                                                </p>
 
-                                                    <p className="text-xs text-[#20231f]/35">
-                                                        {formatDate(
-                                                            item.published_at,
-                                                        )}
-                                                    </p>
-                                                </div>
-
-                                                <h2 className="mt-5 font-serif text-2xl">
-                                                    {item.title}
+                                                <h2 className="mt-3 font-serif text-2xl">
+                                                    {vacancy.title}
                                                 </h2>
 
-                                                {item.excerpt && (
+                                                {vacancy.excerpt && (
                                                     <p className="mt-3 line-clamp-3 text-sm leading-7 text-[#20231f]/55">
-                                                        {item.excerpt}
+                                                        {vacancy.excerpt}
                                                     </p>
                                                 )}
 
+                                                <div className="mt-5 space-y-3 border-t border-black/10 pt-5">
+                                                    <div className="flex items-center justify-between gap-4 text-sm">
+                                                        <span className="text-[#20231f]/35">
+                                                            Dienstverband
+                                                        </span>
+
+                                                        <span className="text-right">
+                                                            {vacancy.contract_type ||
+                                                                '—'}
+                                                        </span>
+                                                    </div>
+
+                                                    <div className="flex items-center justify-between gap-4 text-sm">
+                                                        <span className="text-[#20231f]/35">
+                                                            Uren
+                                                        </span>
+
+                                                        <span className="text-right">
+                                                            {vacancy.hours ||
+                                                                '—'}
+                                                        </span>
+                                                    </div>
+
+                                                    <div className="flex items-center justify-between gap-4 text-sm">
+                                                        <span className="text-[#20231f]/35">
+                                                            Locatie
+                                                        </span>
+
+                                                        <span className="text-right">
+                                                            {vacancy.location ||
+                                                                '—'}
+                                                        </span>
+                                                    </div>
+                                                </div>
+
                                                 <div className="mt-6 grid grid-cols-2 gap-3">
                                                     <Link
-                                                        href={`/admin/actualiteiten/${item.id}/edit`}
+                                                        href={`/admin/vacancies/${vacancy.id}/edit`}
                                                         className="bg-[#20231f] px-4 py-3 text-center text-[9px] tracking-[0.15em] text-white uppercase transition hover:bg-[#5d6948]"
                                                     >
                                                         Bewerken
@@ -437,7 +495,9 @@ export default function Index({ actualiteiten }: Props) {
                                                     <button
                                                         type="button"
                                                         onClick={() =>
-                                                            destroy(item.id)
+                                                            destroyVacancy(
+                                                                vacancy,
+                                                            )
                                                         }
                                                         className="border border-red-200 bg-red-50 px-4 py-3 text-[9px] tracking-[0.12em] text-red-700 uppercase transition hover:border-red-600 hover:bg-red-600 hover:text-white"
                                                     >

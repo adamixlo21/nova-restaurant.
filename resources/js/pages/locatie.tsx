@@ -10,20 +10,19 @@ export default function Locatie() {
             <Navbar />
 
             <main className="bg-[#f7f4ee] text-[#20231f]">
-
                 {/* Hero */}
                 <section className="relative overflow-hidden px-6 py-24 sm:px-10 lg:px-16 lg:py-28">
-                    <div className="pointer-events-none absolute -right-24 top-10 h-72 w-72 rounded-full border border-[#5d6948]/10" />
+                    <div className="pointer-events-none absolute top-10 -right-24 h-72 w-72 rounded-full border border-[#5d6948]/10" />
 
                     <div className="relative mx-auto max-w-5xl text-center">
-                        <p className="text-[10px] uppercase tracking-[0.4em] text-[#5d6948]">
+                        <p className="text-[10px] tracking-[0.4em] text-[#5d6948] uppercase">
                             Brasserie De Bank
                         </p>
 
                         <h1 className="mt-5 font-serif text-5xl leading-tight tracking-tight sm:text-6xl lg:text-7xl">
                             Midden in
                             <br />
-                            <span className="italic text-[#5d6948]">
+                            <span className="text-[#5d6948] italic">
                                 Harderwijk.
                             </span>
                         </h1>
@@ -41,10 +40,9 @@ export default function Locatie() {
                 {/* Info + image */}
                 <section className="border-t border-black/5 bg-[#ebe7dc] px-6 py-20 sm:px-10 lg:px-16 lg:py-24">
                     <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-stretch">
-
                         {/* Info */}
                         <div className="bg-[#20231f] p-8 text-[#f7f4ee] sm:p-10 lg:p-12">
-                            <p className="text-[10px] uppercase tracking-[0.3em] text-[#f7f4ee]/40">
+                            <p className="text-[10px] tracking-[0.3em] text-[#f7f4ee]/40 uppercase">
                                 Contact & locatie
                             </p>
 
@@ -54,7 +52,7 @@ export default function Locatie() {
 
                             <div className="mt-10 space-y-8 border-t border-white/10 pt-8">
                                 <div>
-                                    <p className="text-[10px] uppercase tracking-[0.25em] text-[#f7f4ee]/35">
+                                    <p className="text-[10px] tracking-[0.25em] text-[#f7f4ee]/35 uppercase">
                                         Adres
                                     </p>
 
@@ -71,7 +69,7 @@ export default function Locatie() {
                                 </div>
 
                                 <div>
-                                    <p className="text-[10px] uppercase tracking-[0.25em] text-[#f7f4ee]/35">
+                                    <p className="text-[10px] tracking-[0.25em] text-[#f7f4ee]/35 uppercase">
                                         Telefoon
                                     </p>
 
@@ -84,7 +82,7 @@ export default function Locatie() {
                                 </div>
 
                                 <div>
-                                    <p className="text-[10px] uppercase tracking-[0.25em] text-[#f7f4ee]/35">
+                                    <p className="text-[10px] tracking-[0.25em] text-[#f7f4ee]/35 uppercase">
                                         E-mail
                                     </p>
 
@@ -97,7 +95,7 @@ export default function Locatie() {
                                 </div>
 
                                 <div>
-                                    <p className="text-[10px] uppercase tracking-[0.25em] text-[#f7f4ee]/35">
+                                    <p className="text-[10px] tracking-[0.25em] text-[#f7f4ee]/35 uppercase">
                                         Openingstijden
                                     </p>
 
@@ -128,14 +126,14 @@ export default function Locatie() {
                                     href="https://www.google.com/maps/place/Smeepoortstraat+1,+3841+EG+Harderwijk"
                                     target="_blank"
                                     rel="noreferrer"
-                                    className="bg-[#f7f4ee] px-6 py-4 text-[10px] uppercase tracking-[0.22em] text-[#20231f] transition hover:bg-white"
+                                    className="bg-[#f7f4ee] px-6 py-4 text-[10px] tracking-[0.22em] text-[#20231f] uppercase transition hover:bg-white"
                                 >
                                     Plan je route
                                 </a>
 
                                 <Link
                                     href="/reservation"
-                                    className="border border-white/30 px-6 py-4 text-[10px] uppercase tracking-[0.22em] text-[#f7f4ee] transition hover:border-white"
+                                    className="border border-white/30 px-6 py-4 text-[10px] tracking-[0.22em] text-[#f7f4ee] uppercase transition hover:border-white"
                                 >
                                     Reserveren
                                 </Link>
@@ -158,7 +156,7 @@ export default function Locatie() {
                     <div className="mx-auto max-w-7xl">
                         <div className="mb-10 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
                             <div>
-                                <p className="text-[10px] uppercase tracking-[0.35em] text-[#5d6948]">
+                                <p className="text-[10px] tracking-[0.35em] text-[#5d6948] uppercase">
                                     Route
                                 </p>
 
@@ -167,8 +165,8 @@ export default function Locatie() {
                                 </h2>
 
                                 <p className="mt-4 max-w-xl text-sm leading-7 text-[#20231f]/55">
-                                    Brasserie De Bank ligt aan de Smeepoortstraat 1
-                                    in Harderwijk.
+                                    Brasserie De Bank ligt aan de
+                                    Smeepoortstraat 1 in Harderwijk.
                                 </p>
                             </div>
 
@@ -176,7 +174,7 @@ export default function Locatie() {
                                 href="https://www.google.com/maps/place/Smeepoortstraat+1,+3841+EG+Harderwijk"
                                 target="_blank"
                                 rel="noreferrer"
-                                className="inline-flex items-center gap-3 text-[10px] uppercase tracking-[0.25em] text-[#5d6948]"
+                                className="inline-flex items-center gap-3 text-[10px] tracking-[0.25em] text-[#5d6948] uppercase"
                             >
                                 Open in Google Maps
                                 <span>→</span>
@@ -199,7 +197,7 @@ export default function Locatie() {
                 <section className="bg-[#ebe7dc] px-6 py-20 sm:px-10 lg:px-16">
                     <div className="mx-auto max-w-7xl">
                         <div className="mb-10 text-center">
-                            <p className="text-[10px] uppercase tracking-[0.35em] text-[#5d6948]">
+                            <p className="text-[10px] tracking-[0.35em] text-[#5d6948] uppercase">
                                 Proef de sfeer
                             </p>
 
@@ -239,7 +237,7 @@ export default function Locatie() {
                 {/* CTA */}
                 <section className="bg-[#5d6948] px-6 py-24 text-[#f7f4ee] sm:px-10 lg:px-16">
                     <div className="mx-auto max-w-4xl text-center">
-                        <p className="text-[10px] uppercase tracking-[0.35em] text-[#f7f4ee]/60">
+                        <p className="text-[10px] tracking-[0.35em] text-[#f7f4ee]/60 uppercase">
                             Kom langs
                         </p>
 
@@ -254,14 +252,13 @@ export default function Locatie() {
 
                         <Link
                             href="/reservation"
-                            className="mt-9 inline-flex items-center gap-3 border border-[#f7f4ee] px-8 py-4 text-[10px] uppercase tracking-[0.25em] transition hover:bg-[#f7f4ee] hover:text-[#5d6948]"
+                            className="mt-9 inline-flex items-center gap-3 border border-[#f7f4ee] px-8 py-4 text-[10px] tracking-[0.25em] uppercase transition hover:bg-[#f7f4ee] hover:text-[#5d6948]"
                         >
                             Reserveer een tafel
                             <span>→</span>
                         </Link>
                     </div>
                 </section>
-
             </main>
 
             <Footer />

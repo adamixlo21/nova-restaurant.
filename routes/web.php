@@ -4,6 +4,8 @@ use App\Http\Controllers\ActualiteitController;
 use App\Http\Controllers\Admin\ContactController as AdminContactController;
 use App\Http\Controllers\Admin\ReservationController as AdminReservationController;
 use App\Http\Controllers\Admin\ActualiteitController as AdminActualiteitController;
+use App\Http\Controllers\VacancyController;
+use App\Http\Controllers\Admin\VacancyController as AdminVacancyController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
@@ -47,6 +49,12 @@ Route::get('/actualiteiten', [ActualiteitController::class, 'index'])
 Route::get('/actualiteiten/{actualiteit:slug}', [ActualiteitController::class, 'show'])
     ->name('actualiteiten.show');
 
+Route::get('/vacatures', [VacancyController::class, 'index'])
+    ->name('vacancies.index');
+
+Route::get('/vacatures/{vacancy:slug}', [VacancyController::class, 'show'])
+    ->name('vacancies.show');
+
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::inertia('dashboard', 'dashboard')->name('dashboard');
 
@@ -80,5 +88,8 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
             'actualiteiten' => 'actualiteit',
         ])
         ->except(['show']);;
+
+    Route::resource('vacancies', AdminVacancyController::class)
+        ->except(['show']);
 });
 require __DIR__.'/settings.php';

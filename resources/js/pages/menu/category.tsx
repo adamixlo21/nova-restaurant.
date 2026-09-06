@@ -1,7 +1,6 @@
 import { Head, Link } from '@inertiajs/react';
 import Navbar from '@/components/Navbar';
-import Footer from "@/components/Footer";
-
+import Footer from '@/components/Footer';
 
 interface MenuItem {
     id: number;
@@ -32,19 +31,17 @@ export default function CategoryMenu({ category }: Props) {
             <Navbar />
 
             <main className="bg-[#f7f4ee] text-[#20231f]">
-
                 {/* Hero */}
                 <section className="px-6 py-24 sm:px-10 lg:px-16">
                     <div className="mx-auto max-w-4xl text-center">
-
                         <Link
                             href="/menus"
-                            className="mb-8 inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-[#5d6948] transition hover:text-[#20231f]"
+                            className="mb-8 inline-flex items-center gap-2 text-xs tracking-[0.2em] text-[#5d6948] uppercase transition hover:text-[#20231f]"
                         >
                             ← Back to Menu
                         </Link>
 
-                        <p className="mb-4 text-xs uppercase tracking-[0.3em] text-[#5d6948]">
+                        <p className="mb-4 text-xs tracking-[0.3em] text-[#5d6948] uppercase">
                             Our Menu
                         </p>
 
@@ -57,14 +54,12 @@ export default function CategoryMenu({ category }: Props) {
                                 {category.description}
                             </p>
                         )}
-
                     </div>
                 </section>
 
                 {/* Menu items */}
                 <section className="border-t border-black/5 bg-[#ebe7dc] px-6 py-20 sm:px-10 lg:px-16">
                     <div className="mx-auto max-w-6xl">
-
                         {category.menu_items.length === 0 ? (
                             <div className="border border-[#5d6948]/20 bg-[#f7f4ee] px-6 py-16 text-center">
                                 <h2 className="font-serif text-2xl">
@@ -78,44 +73,42 @@ export default function CategoryMenu({ category }: Props) {
                             </div>
                         ) : (
                             <div className="grid gap-x-12 gap-y-10 md:grid-cols-2">
-
                                 {category.menu_items.map((item) => (
                                     <article
                                         key={item.id}
                                         className="group border-b border-black/10 pb-8"
                                     >
                                         <div className="flex gap-6">
-
                                             {/* Image */}
-                                                {item.image && (
-                                                    <div
-                                                        className="shrink-0 overflow-hidden bg-[#f7f4ee]"
-                                                        style={{
-                                                            width: '160px',
-                                                            height: '160px',
-                                                        }}
-                                                    >
-                                                        <img
-                                                            src={`/storage/${item.image}`}
-                                                            alt={item.name}
-                                                            className="block h-full w-full object-contain"
-                                                        />
-                                                    </div>
-                                                )}
+                                            {item.image && (
+                                                <div
+                                                    className="shrink-0 overflow-hidden bg-[#f7f4ee]"
+                                                    style={{
+                                                        width: '160px',
+                                                        height: '160px',
+                                                    }}
+                                                >
+                                                    <img
+                                                        src={`/storage/${item.image}`}
+                                                        alt={item.name}
+                                                        className="block h-full w-full object-contain"
+                                                    />
+                                                </div>
+                                            )}
                                             {}
-
-
 
                                             {/* Content */}
                                             <div className="min-w-0 flex-1">
-
                                                 <div className="flex items-start justify-between gap-4">
                                                     <h2 className="font-serif text-2xl text-[#20231f]">
                                                         {item.name}
                                                     </h2>
 
                                                     <span className="shrink-0 text-sm text-[#5d6948]">
-                                                        €{Number(item.price).toFixed(2)}
+                                                        €
+                                                        {Number(
+                                                            item.price,
+                                                        ).toFixed(2)}
                                                     </span>
                                                 </div>
 
@@ -126,20 +119,16 @@ export default function CategoryMenu({ category }: Props) {
                                                 )}
 
                                                 {item.is_featured && (
-                                                    <span className="mt-4 inline-block text-[10px] uppercase tracking-[0.2em] text-[#5d6948]">
+                                                    <span className="mt-4 inline-block text-[10px] tracking-[0.2em] text-[#5d6948] uppercase">
                                                         Chef's choice
                                                     </span>
                                                 )}
-
                                             </div>
-
                                         </div>
                                     </article>
                                 ))}
-
                             </div>
                         )}
-
                     </div>
                 </section>
 
@@ -147,15 +136,14 @@ export default function CategoryMenu({ category }: Props) {
                 <section className="px-6 py-16 text-center sm:px-10">
                     <Link
                         href="/menu"
-                        className="inline-flex items-center gap-3 bg-[#20231f] px-8 py-4 text-xs uppercase tracking-[0.2em] text-[#f7f4ee] transition hover:bg-[#5d6948]"
+                        className="inline-flex items-center gap-3 bg-[#20231f] px-8 py-4 text-xs tracking-[0.2em] text-[#f7f4ee] uppercase transition hover:bg-[#5d6948]"
                     >
                         ← View all categories
                     </Link>
                 </section>
-
             </main>
 
-            <Footer/>
+            <Footer />
         </>
     );
 }

@@ -2,32 +2,38 @@ import { Head, Link, useForm } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
 import AdminSidebar from '@/components/AdminSidebar';
 
-interface Actualiteit {
+interface Vacancy {
     id: number;
     title: string;
     slug: string;
     excerpt: string | null;
     content: string | null;
+    contract_type: string | null;
+    hours: string | null;
+    location: string | null;
     image: string | null;
     is_published: boolean;
     published_at: string | null;
 }
 
 interface Props {
-    actualiteit: Actualiteit;
+    vacancy: Vacancy;
 }
 
-export default function Edit({ actualiteit }: Props) {
+export default function Edit({ vacancy }: Props) {
     const { data, setData, post, processing, errors } = useForm({
-        title: actualiteit.title,
-        slug: actualiteit.slug,
-        excerpt: actualiteit.excerpt ?? '',
-        content: actualiteit.content ?? '',
+        title: vacancy.title,
+        slug: vacancy.slug,
+        excerpt: vacancy.excerpt ?? '',
+        content: vacancy.content ?? '',
+        contract_type: vacancy.contract_type ?? '',
+        hours: vacancy.hours ?? '',
+        location: vacancy.location ?? '',
         image: null as File | null,
         remove_image: false,
-        is_published: actualiteit.is_published,
-        published_at: actualiteit.published_at
-            ? actualiteit.published_at.slice(0, 16)
+        is_published: vacancy.is_published,
+        published_at: vacancy.published_at
+            ? vacancy.published_at.slice(0, 16)
             : '',
         _method: 'put',
     });
@@ -49,14 +55,6 @@ export default function Edit({ actualiteit }: Props) {
         };
     }, [data.image]);
 
-    function submit(e: React.FormEvent) {
-        e.preventDefault();
-
-        post(`/admin/actualiteiten/${actualiteit.id}`, {
-            forceFormData: true,
-        });
-    }
-
     function generateSlug(value: string) {
         return value
             .toLowerCase()
@@ -64,6 +62,14 @@ export default function Edit({ actualiteit }: Props) {
             .replace(/[^\w\s-]/g, '')
             .replace(/\s+/g, '-')
             .replace(/-+/g, '-');
+    }
+
+    function submit(e: React.FormEvent) {
+        e.preventDefault();
+
+        post(`/admin/vacancies/${vacancy.id}`, {
+            forceFormData: true,
+        });
     }
 
     function selectNewImage(file: File | null) {
@@ -87,8 +93,8 @@ export default function Edit({ actualiteit }: Props) {
     const previewImage =
         data.image && newImagePreview
             ? newImagePreview
-            : !data.remove_image && actualiteit.image
-              ? `/storage/${actualiteit.image}`
+            : !data.remove_image && vacancy.image
+              ? `/storage/${vacancy.image}`
               : null;
 
     const inputClass =
@@ -111,7 +117,7 @@ export default function Edit({ actualiteit }: Props) {
 
     return (
         <>
-            <Head title={`Bewerken - ${actualiteit.title}`} />
+            <Head title={`Vacature bewerken - ${vacancy.title}`} />
 
             <div className="flex min-h-screen bg-[#f7f4ee] text-[#20231f]">
                 <AdminSidebar />
@@ -122,26 +128,26 @@ export default function Edit({ actualiteit }: Props) {
                         <div className="mb-10 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
                             <div>
                                 <Link
-                                    href="/admin/actualiteiten"
+                                    href="/admin/vacancies"
                                     className="group inline-flex items-center gap-2 text-[10px] tracking-[0.22em] text-[#5d6948] uppercase"
                                 >
                                     <span className="transition-transform duration-300 group-hover:-translate-x-1">
                                         ←
                                     </span>
-                                    Terug naar actualiteiten
+                                    Terug naar vacatures
                                 </Link>
 
                                 <p className="mt-7 text-[10px] tracking-[0.35em] text-[#5d6948] uppercase">
-                                    Admin · Actualiteiten
+                                    Admin · Vacatures
                                 </p>
 
                                 <h1 className="mt-3 font-serif text-4xl leading-tight sm:text-5xl">
-                                    Bericht bewerken
+                                    Vacature bewerken
                                 </h1>
 
                                 <p className="mt-3 max-w-xl text-sm leading-7 text-[#20231f]/50">
-                                    Pas de inhoud, afbeelding en
-                                    publicatie-instellingen van dit bericht aan.
+                                    Pas de functie, vacaturetekst, praktische
+                                    informatie en publicatie-instellingen aan.
                                 </p>
                             </div>
 
@@ -170,141 +176,240 @@ export default function Edit({ actualiteit }: Props) {
                                         </p>
 
                                         <h2 className="mt-2 font-serif text-2xl">
-                                            Berichtgegevens
+                                            Vacaturegegevens
                                         </h2>
                                     </div>
 
-                                    {/* Title */}
-                                    <div className="mb-7">
-                                        <label className={labelClass}>
-                                            Titel
-                                        </label>
-
-                                        <input
-                                            type="text"
-                                            value={data.title}
-                                            onChange={(e) => {
-                                                const value = e.target.value;
-
-                                                setData('title', value);
-
-                                                setData(
-                                                    'slug',
-                                                    generateSlug(value),
-                                                );
-                                            }}
-                                            className={inputClass}
-                                            placeholder="Titel van het bericht"
-                                        />
-
-                                        {errors.title && (
-                                            <p className="mt-2 text-sm text-red-600">
-                                                {errors.title}
-                                            </p>
-                                        )}
-                                    </div>
-
-                                    {/* Slug */}
-                                    <div className="mb-7">
-                                        <label className={labelClass}>
-                                            URL-slug
-                                        </label>
-
-                                        <div className="flex overflow-hidden border border-black/10 bg-[#f7f4ee] focus-within:border-[#5d6948] focus-within:ring-2 focus-within:ring-[#5d6948]/10">
-                                            <span className="hidden items-center border-r border-black/10 px-4 text-xs text-[#20231f]/35 sm:flex">
-                                                /actualiteiten/
-                                            </span>
+                                    <div className="space-y-7">
+                                        {/* Title */}
+                                        <div>
+                                            <label className={labelClass}>
+                                                Titel
+                                            </label>
 
                                             <input
                                                 type="text"
-                                                value={data.slug}
-                                                onChange={(e) =>
+                                                value={data.title}
+                                                onChange={(e) => {
+                                                    const value =
+                                                        e.target.value;
+
+                                                    setData('title', value);
+
                                                     setData(
                                                         'slug',
+                                                        generateSlug(value),
+                                                    );
+                                                }}
+                                                className={inputClass}
+                                                placeholder="Bijvoorbeeld: Medewerker bediening"
+                                            />
+
+                                            {errors.title && (
+                                                <p className="mt-2 text-sm text-red-600">
+                                                    {errors.title}
+                                                </p>
+                                            )}
+                                        </div>
+
+                                        {/* Slug */}
+                                        <div>
+                                            <label className={labelClass}>
+                                                URL-slug
+                                            </label>
+
+                                            <div className="flex overflow-hidden border border-black/10 bg-[#f7f4ee] focus-within:border-[#5d6948] focus-within:ring-2 focus-within:ring-[#5d6948]/10">
+                                                <span className="hidden items-center border-r border-black/10 px-4 text-xs text-[#20231f]/35 sm:flex">
+                                                    /vacatures/
+                                                </span>
+
+                                                <input
+                                                    type="text"
+                                                    value={data.slug}
+                                                    onChange={(e) =>
+                                                        setData(
+                                                            'slug',
+                                                            e.target.value,
+                                                        )
+                                                    }
+                                                    className="min-w-0 flex-1 bg-transparent px-4 py-3.5 text-sm outline-none"
+                                                />
+                                            </div>
+
+                                            <p className="mt-2 text-xs text-[#20231f]/35">
+                                                Wordt gebruikt in de URL van de
+                                                vacature.
+                                            </p>
+
+                                            {errors.slug && (
+                                                <p className="mt-2 text-sm text-red-600">
+                                                    {errors.slug}
+                                                </p>
+                                            )}
+                                        </div>
+
+                                        {/* Excerpt */}
+                                        <div>
+                                            <div className="mb-2 flex items-center justify-between gap-4">
+                                                <label className="text-[10px] tracking-[0.22em] text-[#20231f]/50 uppercase">
+                                                    Korte omschrijving
+                                                </label>
+
+                                                <span className="text-xs text-[#20231f]/30">
+                                                    {data.excerpt.length} tekens
+                                                </span>
+                                            </div>
+
+                                            <textarea
+                                                rows={4}
+                                                value={data.excerpt}
+                                                onChange={(e) =>
+                                                    setData(
+                                                        'excerpt',
                                                         e.target.value,
                                                     )
                                                 }
-                                                className="min-w-0 flex-1 bg-transparent px-4 py-3.5 text-sm outline-none"
+                                                className={`${inputClass} resize-none leading-7`}
+                                                placeholder="Korte introductie die op de vacature-overzichtspagina wordt getoond..."
                                             />
+
+                                            <p className="mt-2 text-xs text-[#20231f]/35">
+                                                Deze tekst wordt gebruikt op de
+                                                overzichtspagina.
+                                            </p>
+
+                                            {errors.excerpt && (
+                                                <p className="mt-2 text-sm text-red-600">
+                                                    {errors.excerpt}
+                                                </p>
+                                            )}
                                         </div>
 
-                                        <p className="mt-2 text-xs text-[#20231f]/35">
-                                            Wordt gebruikt in de URL van het
-                                            nieuwsbericht.
-                                        </p>
-
-                                        {errors.slug && (
-                                            <p className="mt-2 text-sm text-red-600">
-                                                {errors.slug}
-                                            </p>
-                                        )}
-                                    </div>
-
-                                    {/* Excerpt */}
-                                    <div className="mb-7">
-                                        <div className="mb-2 flex items-center justify-between gap-4">
-                                            <label className="text-[10px] tracking-[0.22em] text-[#20231f]/50 uppercase">
-                                                Korte omschrijving
+                                        {/* Content */}
+                                        <div>
+                                            <label className={labelClass}>
+                                                Volledige vacaturetekst
                                             </label>
 
-                                            <span className="text-xs text-[#20231f]/30">
-                                                {data.excerpt.length} tekens
-                                            </span>
+                                            <textarea
+                                                rows={15}
+                                                value={data.content}
+                                                onChange={(e) =>
+                                                    setData(
+                                                        'content',
+                                                        e.target.value,
+                                                    )
+                                                }
+                                                className={`${inputClass} resize-y leading-7`}
+                                                placeholder="Beschrijf de functie, werkzaamheden, wat je zoekt en wat je biedt..."
+                                            />
+
+                                            {errors.content && (
+                                                <p className="mt-2 text-sm text-red-600">
+                                                    {errors.content}
+                                                </p>
+                                            )}
                                         </div>
-
-                                        <textarea
-                                            rows={4}
-                                            value={data.excerpt}
-                                            onChange={(e) =>
-                                                setData(
-                                                    'excerpt',
-                                                    e.target.value,
-                                                )
-                                            }
-                                            className={`${inputClass} resize-none leading-7`}
-                                            placeholder="Korte introductie voor de overzichtspagina..."
-                                        />
-
-                                        <p className="mt-2 text-xs text-[#20231f]/35">
-                                            Deze tekst wordt gebruikt op de
-                                            overzichtspagina.
-                                        </p>
-
-                                        {errors.excerpt && (
-                                            <p className="mt-2 text-sm text-red-600">
-                                                {errors.excerpt}
-                                            </p>
-                                        )}
-                                    </div>
-
-                                    {/* Content */}
-                                    <div>
-                                        <label className={labelClass}>
-                                            Volledige inhoud
-                                        </label>
-
-                                        <textarea
-                                            rows={15}
-                                            value={data.content}
-                                            onChange={(e) =>
-                                                setData(
-                                                    'content',
-                                                    e.target.value,
-                                                )
-                                            }
-                                            className={`${inputClass} resize-y leading-7`}
-                                            placeholder="Schrijf hier het volledige bericht..."
-                                        />
-
-                                        {errors.content && (
-                                            <p className="mt-2 text-sm text-red-600">
-                                                {errors.content}
-                                            </p>
-                                        )}
                                     </div>
                                 </section>
 
-                                {/* Image */}
+                                {/* Practical info */}
+                                <section className="border border-black/10 bg-white p-6 shadow-[0_20px_60px_rgba(32,35,31,0.04)] sm:p-8">
+                                    <div className="mb-8">
+                                        <p className="text-[9px] tracking-[0.28em] text-[#5d6948] uppercase">
+                                            Functie
+                                        </p>
+
+                                        <h2 className="mt-2 font-serif text-2xl">
+                                            Praktische informatie
+                                        </h2>
+
+                                        <p className="mt-2 text-sm leading-6 text-[#20231f]/45">
+                                            Voeg de belangrijkste details toe
+                                            die direct bij de vacature worden
+                                            getoond.
+                                        </p>
+                                    </div>
+
+                                    <div className="grid gap-6 sm:grid-cols-2">
+                                        <div>
+                                            <label className={labelClass}>
+                                                Dienstverband
+                                            </label>
+
+                                            <input
+                                                type="text"
+                                                value={data.contract_type}
+                                                onChange={(e) =>
+                                                    setData(
+                                                        'contract_type',
+                                                        e.target.value,
+                                                    )
+                                                }
+                                                className={inputClass}
+                                                placeholder="Bijvoorbeeld: Parttime"
+                                            />
+
+                                            {errors.contract_type && (
+                                                <p className="mt-2 text-sm text-red-600">
+                                                    {errors.contract_type}
+                                                </p>
+                                            )}
+                                        </div>
+
+                                        <div>
+                                            <label className={labelClass}>
+                                                Uren
+                                            </label>
+
+                                            <input
+                                                type="text"
+                                                value={data.hours}
+                                                onChange={(e) =>
+                                                    setData(
+                                                        'hours',
+                                                        e.target.value,
+                                                    )
+                                                }
+                                                className={inputClass}
+                                                placeholder="Bijvoorbeeld: 24–32 uur"
+                                            />
+
+                                            {errors.hours && (
+                                                <p className="mt-2 text-sm text-red-600">
+                                                    {errors.hours}
+                                                </p>
+                                            )}
+                                        </div>
+
+                                        <div className="sm:col-span-2">
+                                            <label className={labelClass}>
+                                                Locatie
+                                            </label>
+
+                                            <input
+                                                type="text"
+                                                value={data.location}
+                                                onChange={(e) =>
+                                                    setData(
+                                                        'location',
+                                                        e.target.value,
+                                                    )
+                                                }
+                                                className={inputClass}
+                                                placeholder="Bijvoorbeeld: Harderwijk"
+                                            />
+
+                                            {errors.location && (
+                                                <p className="mt-2 text-sm text-red-600">
+                                                    {errors.location}
+                                                </p>
+                                            )}
+                                        </div>
+                                    </div>
+                                </section>
+
+                                {/* Media */}
                                 <section className="border border-black/10 bg-white p-6 shadow-[0_20px_60px_rgba(32,35,31,0.04)] sm:p-8">
                                     <div className="mb-7">
                                         <p className="text-[9px] tracking-[0.28em] text-[#5d6948] uppercase">
@@ -321,15 +426,15 @@ export default function Edit({ actualiteit }: Props) {
                                         </p>
                                     </div>
 
-                                    {/* Current image */}
-                                    {actualiteit.image &&
+                                    {/* Existing image */}
+                                    {vacancy.image &&
                                         !data.remove_image &&
                                         !data.image && (
                                             <div className="mb-7">
                                                 <div className="relative overflow-hidden border border-black/10 bg-[#ebe7dc]">
                                                     <img
-                                                        src={`/storage/${actualiteit.image}`}
-                                                        alt={actualiteit.title}
+                                                        src={`/storage/${vacancy.image}`}
+                                                        alt={vacancy.title}
                                                         className="aspect-[16/9] w-full object-cover"
                                                     />
 
@@ -349,10 +454,10 @@ export default function Edit({ actualiteit }: Props) {
                                         )}
 
                                     {/* Remove notice */}
-                                    {data.remove_image && actualiteit.image && (
+                                    {data.remove_image && vacancy.image && (
                                         <div className="mb-7 border border-red-200 bg-red-50 p-5">
                                             <div className="flex items-start gap-4">
-                                                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-red-100 text-sm text-red-600">
+                                                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-red-100 text-red-600">
                                                     ×
                                                 </div>
 
@@ -397,20 +502,26 @@ export default function Edit({ actualiteit }: Props) {
                                                 </div>
                                             </div>
 
-                                            <button
-                                                type="button"
-                                                onClick={() =>
-                                                    selectNewImage(null)
-                                                }
-                                                className="mt-4 border border-black/10 px-4 py-3 text-[9px] tracking-[0.15em] text-[#20231f]/60 uppercase transition hover:border-[#20231f]"
-                                            >
-                                                Selectie verwijderen
-                                            </button>
+                                            <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                                                <p className="truncate text-xs text-[#20231f]/45">
+                                                    {data.image.name}
+                                                </p>
+
+                                                <button
+                                                    type="button"
+                                                    onClick={() =>
+                                                        selectNewImage(null)
+                                                    }
+                                                    className="w-fit border border-black/10 px-4 py-2.5 text-[9px] tracking-[0.15em] text-[#20231f]/60 uppercase transition hover:border-[#20231f]"
+                                                >
+                                                    Selectie verwijderen
+                                                </button>
+                                            </div>
                                         </div>
                                     )}
 
                                     <label className={labelClass}>
-                                        {actualiteit.image
+                                        {vacancy.image
                                             ? 'Nieuwe afbeelding kiezen'
                                             : 'Afbeelding kiezen'}
                                     </label>
@@ -424,7 +535,7 @@ export default function Edit({ actualiteit }: Props) {
                                                     e.target.files?.[0] ?? null,
                                                 )
                                             }
-                                            className="block w-full text-sm text-[#20231f]/60 file:mr-4 file:border-0 file:bg-[#20231f] file:px-5 file:py-3 file:text-[9px] file:tracking-[0.18em] file:text-[#f7f4ee] file:uppercase file:transition hover:file:bg-[#5d6948]"
+                                            className="block w-full text-sm text-[#20231f]/60 file:mr-4 file:border-0 file:bg-[#20231f] file:px-5 file:py-3 file:text-[9px] file:tracking-[0.18em] file:text-white file:uppercase file:transition hover:file:bg-[#5d6948]"
                                         />
 
                                         <p className="mt-3 text-xs leading-5 text-[#20231f]/35">
@@ -471,7 +582,7 @@ export default function Edit({ actualiteit }: Props) {
                                             </p>
 
                                             <p className="mt-1 text-xs leading-5 text-white/40">
-                                                Het bericht is zichtbaar op de
+                                                De vacature is zichtbaar op de
                                                 website.
                                             </p>
                                         </div>
@@ -498,8 +609,8 @@ export default function Edit({ actualiteit }: Props) {
                                         />
 
                                         <p className="mt-2 text-xs leading-5 text-white/35">
-                                            Bepaalt welke datum bij het bericht
-                                            wordt getoond.
+                                            Bepaalt welke datum bij deze
+                                            vacature wordt getoond.
                                         </p>
 
                                         {errors.published_at && (
@@ -540,7 +651,7 @@ export default function Edit({ actualiteit }: Props) {
                                         )}
 
                                         <div className="absolute top-4 left-4 bg-[#f7f4ee]/95 px-3 py-2 text-[8px] tracking-[0.18em] text-[#5d6948] uppercase backdrop-blur-sm">
-                                            Actualiteit
+                                            Vacature
                                         </div>
                                     </div>
 
@@ -551,16 +662,36 @@ export default function Edit({ actualiteit }: Props) {
 
                                         <h3 className="mt-3 font-serif text-2xl leading-tight">
                                             {data.title ||
-                                                'Titel van het bericht'}
+                                                'Titel van de vacature'}
                                         </h3>
 
                                         <p className="mt-3 line-clamp-3 text-sm leading-6 text-[#20231f]/50">
                                             {data.excerpt ||
-                                                'Hier verschijnt de korte omschrijving van het bericht.'}
+                                                'Hier verschijnt de korte omschrijving van de vacature.'}
                                         </p>
 
+                                        <div className="mt-5 flex flex-wrap gap-2">
+                                            {data.contract_type && (
+                                                <span className="bg-[#f7f4ee] px-3 py-2 text-[8px] tracking-[0.18em] uppercase">
+                                                    {data.contract_type}
+                                                </span>
+                                            )}
+
+                                            {data.hours && (
+                                                <span className="bg-[#f7f4ee] px-3 py-2 text-[8px] tracking-[0.18em] uppercase">
+                                                    {data.hours}
+                                                </span>
+                                            )}
+
+                                            {data.location && (
+                                                <span className="bg-[#f7f4ee] px-3 py-2 text-[8px] tracking-[0.18em] uppercase">
+                                                    {data.location}
+                                                </span>
+                                            )}
+                                        </div>
+
                                         <div className="mt-6 flex items-center gap-2 border-t border-black/10 pt-4 text-[9px] tracking-[0.2em] text-[#5d6948] uppercase">
-                                            Lees verder
+                                            Bekijk vacature
                                             <span>→</span>
                                         </div>
                                     </div>
@@ -579,7 +710,7 @@ export default function Edit({ actualiteit }: Props) {
                                     </button>
 
                                     <Link
-                                        href="/admin/actualiteiten"
+                                        href="/admin/vacancies"
                                         className="mt-3 block w-full border border-black/10 px-6 py-4 text-center text-[10px] tracking-[0.2em] text-[#20231f]/60 uppercase transition hover:border-[#20231f] hover:text-[#20231f]"
                                     >
                                         Annuleren

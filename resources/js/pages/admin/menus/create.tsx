@@ -9,129 +9,156 @@ export default function Create() {
         sort_order: 0,
     });
 
+    function generateSlug(value: string) {
+        return value
+            .toLowerCase()
+            .trim()
+            .replace(/[^\w\s-]/g, '')
+            .replace(/\s+/g, '-')
+            .replace(/-+/g, '-');
+    }
+
     function submit(e: React.FormEvent) {
         e.preventDefault();
 
         post('/admin/menus');
     }
 
+    const inputClass =
+        'w-full border border-black/10 bg-[#f7f4ee] px-4 py-3.5 text-sm text-[#20231f] outline-none transition placeholder:text-[#20231f]/30 focus:border-[#5d6948] focus:ring-2 focus:ring-[#5d6948]/10';
+
+    const labelClass =
+        'mb-2 block text-[10px] uppercase tracking-[0.22em] text-[#20231f]/50';
+
     return (
         <>
-            <Head title="Add Menu" />
+            <Head title="Nieuw menu" />
 
-            <div className="flex min-h-screen bg-[#f7f4ee]">
+            <div className="flex min-h-screen bg-[#f7f4ee] text-[#20231f]">
                 <AdminSidebar />
 
                 <main className="min-w-0 flex-1 px-4 py-8 sm:px-6 lg:px-10 lg:py-10">
-                    <div className="mx-auto max-w-3xl">
-
+                    <div className="mx-auto max-w-4xl">
+                        {/* Header */}
                         <div className="mb-10">
                             <Link
                                 href="/admin/menus"
-                                className="text-xs uppercase tracking-[0.2em] text-[#5d6948] transition hover:text-[#20231f]"
+                                className="group inline-flex items-center gap-2 text-[10px] tracking-[0.22em] text-[#5d6948] uppercase"
                             >
-                                ← Back to Menus
+                                <span className="transition-transform duration-300 group-hover:-translate-x-1">
+                                    ←
+                                </span>
+                                Terug naar menu's
                             </Link>
 
-                            <p className="mt-8 text-xs uppercase tracking-[0.3em] text-[#5d6948]">
-                                Management
+                            <p className="mt-7 text-[10px] tracking-[0.35em] text-[#5d6948] uppercase">
+                                Admin · Menu's
                             </p>
 
-                            <h1 className="mt-3 font-serif text-4xl text-[#20231f] sm:text-5xl">
-                                Add Menu
+                            <h1 className="mt-3 font-serif text-4xl sm:text-5xl">
+                                Nieuw menu
                             </h1>
+
+                            <p className="mt-3 max-w-xl text-sm leading-6 text-[#20231f]/50">
+                                Voeg een nieuwe kaart toe, zoals lunch, diner,
+                                drank, wijn of een speciale tafelkaart.
+                            </p>
                         </div>
 
                         <form
                             onSubmit={submit}
-                            className="border border-black/5 bg-white p-6 sm:p-8"
+                            className="border border-black/10 bg-white p-6 shadow-[0_20px_60px_rgba(32,35,31,0.04)] sm:p-8"
                         >
                             <div className="space-y-7">
-
+                                {/* Name */}
                                 <div>
-                                    <label className="mb-2 block text-xs uppercase tracking-[0.15em] text-[#20231f]/60">
-                                        Name
-                                    </label>
+                                    <label className={labelClass}>Naam</label>
 
                                     <input
                                         type="text"
                                         value={data.name}
                                         onChange={(e) => {
-                                            const name = e.target.value;
+                                            const value = e.target.value;
 
-                                            setData((current) => ({
-                                                ...current,
-                                                name,
-                                                slug: name
-                                                    .toLowerCase()
-                                                    .trim()
-                                                    .replace(/[^a-z0-9]+/g, '-')
-                                                    .replace(/^-+|-+$/g, ''),
-                                            }));
+                                            setData('name', value);
+                                            setData(
+                                                'slug',
+                                                generateSlug(value),
+                                            );
                                         }}
-                                        className="w-full border border-black/10 bg-[#f7f4ee] px-4 py-3 outline-none transition focus:border-[#5d6948] text-black"
-                                        placeholder="Lunch"
+                                        className={inputClass}
+                                        placeholder="Bijv. Lunch"
                                     />
 
                                     {errors.name && (
-                                        <p className="mt-2 text-sm text-red-500">
+                                        <p className="mt-2 text-sm text-red-600">
                                             {errors.name}
                                         </p>
                                     )}
                                 </div>
 
+                                {/* Slug */}
                                 <div>
-                                    <label className="mb-2 block text-xs uppercase tracking-[0.15em] text-[#20231f]/60 text-black">
-                                        Slug
-                                    </label>
+                                    <label className={labelClass}>Slug</label>
 
-                                    <input
-                                        type="text"
-                                        value={data.slug}
-                                        onChange={(e) =>
-                                            setData('slug', e.target.value)
-                                        }
-                                        className="w-full border border-black/10 bg-[#f7f4ee] px-4 py-3 outline-none transition focus:border-[#5d6948] text-black"
-                                        placeholder="lunch"
-                                    />
+                                    <div className="flex overflow-hidden border border-black/10 bg-[#f7f4ee] focus-within:border-[#5d6948]">
+                                        <span className="hidden items-center border-r border-black/10 px-4 text-xs text-[#20231f]/35 sm:flex">
+                                            /menus/
+                                        </span>
 
-                                    <p className="mt-2 text-xs text-[#20231f]/40 text-black" >
-                                        Used in the URL, for example /menu/lunch
+                                        <input
+                                            type="text"
+                                            value={data.slug}
+                                            onChange={(e) =>
+                                                setData('slug', e.target.value)
+                                            }
+                                            className="min-w-0 flex-1 bg-transparent px-4 py-3.5 text-sm outline-none"
+                                            placeholder="lunch"
+                                        />
+                                    </div>
+
+                                    <p className="mt-2 text-xs text-[#20231f]/35">
+                                        Wordt gebruikt in de URL, bijvoorbeeld
+                                        /menus/lunch.
                                     </p>
-                                    <br/>
 
                                     {errors.slug && (
-                                        <p className="mt-2 text-sm text-red-500 ">
+                                        <p className="mt-2 text-sm text-red-600">
                                             {errors.slug}
                                         </p>
                                     )}
                                 </div>
 
+                                {/* Description */}
                                 <div>
-                                    <label className="mb-2 block text-xs uppercase tracking-[0.15em] text-[#20231f]/60 text-black">
-                                        Description
+                                    <label className={labelClass}>
+                                        Omschrijving
                                     </label>
 
                                     <textarea
                                         value={data.description}
                                         onChange={(e) =>
-                                            setData('description', e.target.value)
+                                            setData(
+                                                'description',
+                                                e.target.value,
+                                            )
                                         }
-                                        rows={4}
-                                        className="w-full resize-none border border-black/10 bg-[#f7f4ee] px-4 py-3 outline-none transition focus:border-[#5d6948] text-black"
-                                        placeholder="Bekijk onze lunchkaart."
+                                        rows={5}
+                                        className={`${inputClass} resize-none leading-7`}
+                                        placeholder="Bijv. Bekijk onze lunchkaart met verse gerechten en klassiekers."
                                     />
 
                                     {errors.description && (
-                                        <p className="mt-2 text-sm text-red-500">
+                                        <p className="mt-2 text-sm text-red-600">
                                             {errors.description}
                                         </p>
                                     )}
                                 </div>
 
+                                {/* Sort order */}
                                 <div>
-                                    <label className="mb-2 block text-xs uppercase tracking-[0.15em] text-[#20231f]/60 text-black">
-                                        Sort Order
+                                    <label className={labelClass}>
+                                        Volgorde
                                     </label>
 
                                     <input
@@ -144,35 +171,42 @@ export default function Create() {
                                                 Number(e.target.value),
                                             )
                                         }
-                                        className="w-full border border-black/10 bg-[#f7f4ee] px-4 py-3 outline-none transition focus:border-[#5d6948] text-black"
+                                        className={inputClass}
                                     />
 
+                                    <p className="mt-2 text-xs leading-5 text-[#20231f]/35">
+                                        Een lager nummer verschijnt eerder op de
+                                        website.
+                                    </p>
+
                                     {errors.sort_order && (
-                                        <p className="mt-2 text-sm text-red-500">
+                                        <p className="mt-2 text-sm text-red-600">
                                             {errors.sort_order}
                                         </p>
                                     )}
                                 </div>
 
-                                <div className="flex justify-end gap-4 border-t border-black/5 pt-6 ">
+                                {/* Actions */}
+                                <div className="flex flex-col-reverse gap-3 border-t border-black/10 pt-6 sm:flex-row sm:justify-end">
                                     <Link
                                         href="/admin/menus"
-                                        className="px-6 py-3 text-xs uppercase tracking-[0.2em] text-[#20231f]/60 transition hover:text-[#20231f]"
+                                        className="border border-[#20231f]/15 px-6 py-3.5 text-center text-[10px] tracking-[0.2em] text-[#20231f]/60 uppercase transition hover:border-[#20231f]"
                                     >
-                                        Cancel
+                                        Annuleren
                                     </Link>
 
                                     <button
                                         type="submit"
                                         disabled={processing}
-                                        className="bg-[#20231f] px-7 py-3 text-xs uppercase tracking-[0.2em] text-[#f7f4ee] transition hover:bg-[#5d6948] disabled:opacity-50"
+                                        className="bg-[#20231f] px-7 py-3.5 text-[10px] tracking-[0.22em] text-[#f7f4ee] uppercase transition hover:bg-[#5d6948] disabled:cursor-not-allowed disabled:opacity-50"
                                     >
-                                        {processing ? 'Saving...' : 'Create Menu'}
+                                        {processing
+                                            ? 'Opslaan...'
+                                            : 'Menu aanmaken'}
                                     </button>
                                 </div>
                             </div>
                         </form>
-
                     </div>
                 </main>
             </div>

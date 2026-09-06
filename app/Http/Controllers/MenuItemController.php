@@ -13,7 +13,7 @@ class MenuItemController extends Controller
     public function index()
     {
         $menuItems = MenuItem::with([
-            'category',
+            'category.menu',
             'prices',
         ])
             ->orderBy('sort_order')
@@ -87,57 +87,84 @@ class MenuItemController extends Controller
         $validated = $request->validate([
             'category_id' => ['required', 'exists:categories,id'],
             'name' => ['required', 'string', 'max:255'],
-            'slug' => ['required', 'string', 'max:255', 'unique:menu_items,slug,' . $menuItem->id],
+            'slug' => [
+                'required',
+                'string',
+                'max:255',
+                'unique:menu_items,slug,' . $menuItem->id,
+            ],
             'description' => ['nullable', 'string'],
             'price' => ['nullable', 'numeric', 'min:0'],
             'price_text' => ['nullable', 'string', 'max:255'],
             'prices' => ['nullable', 'array'],
-            'prices.*.label' => ['required_with:prices.*.price', 'nullable', 'string', 'max:255'],
-            'prices.*.price' => ['required_with:prices.*.label', 'nullable', 'numeric', 'min:0'],
-            'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
-            'remove_image' => ['boolean'],
-            'is_available' => ['boolean'],
-            'is_featured' => ['boolean'],
-            'sort_order' => ['required', 'integer'],
+            'prices.*.label' => ['required_with:prices', 'string', 'max:255'],
+            'prices.*.price' => ['required_with:prices', 'numeric', 'min:0'],
+            'image' => ['nullable', 'image', 'max:4096'],
+            'remove_image' => ['nullable', 'boolean'],
+            'is_available' => ['required', 'boolean'],
+            'is_featured' => ['required', 'boolean'],
+            'sort_order' => ['required', 'integer', 'min:0'],
         ]);
 
-        // Remove the current image
-        if ($request->boolean('remove_image') && $menuItem->image) {
-            Storage::disk('public')->delete($menuItem->image);
+        /*
+        |--------------------------------------------------------------------------
+        | Important
+        |--------------------------------------------------------------------------
+        | Do not let image => null overwrite the existing image automatically.
+        */
+        unset($validated['image']);
 
-            $validated['image'] = null;
-        }
-
-        // Replace with a new image
-        if ($request->hasFile('image')) {
-            // Delete the old image first
+        /*
+        |--------------------------------------------------------------------------
+        | Remove existing image only when remove_image is actually TRUE
+        |--------------------------------------------------------------------------
+        */
+        if ($request->boolean('remove_image')) {
             if ($menuItem->image) {
                 Storage::disk('public')->delete($menuItem->image);
             }
 
-            $validated['image'] = $request->file('image')
+            $validated['image'] = null;
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | New uploaded image
+        |--------------------------------------------------------------------------
+        */
+        if ($request->hasFile('image')) {
+            if ($menuItem->image) {
+                Storage::disk('public')->delete($menuItem->image);
+            }
+
+            $validated['image'] = $request
+                ->file('image')
                 ->store('menu-items', 'public');
         }
 
-        $prices = $validated['prices'] ?? [];
-
-        unset($validated['prices']);
         unset($validated['remove_image']);
+        unset($validated['prices']);
 
         $menuItem->update($validated);
 
+        /*
+        |--------------------------------------------------------------------------
+        | Update extra prices
+        |--------------------------------------------------------------------------
+        */
         $menuItem->prices()->delete();
 
-        foreach ($prices as $index => $price) {
+        foreach ($request->input('prices', []) as $index => $price) {
             $menuItem->prices()->create([
                 'label' => $price['label'],
                 'price' => $price['price'],
-                'sort_order' => $index + 1,
+                'sort_order' => $index,
             ]);
         }
 
         return redirect()
-            ->route('admin.menu-items.index');
+            ->route('admin.menu-items.index')
+            ->with('success', 'Gerecht bijgewerkt.');
     }
 
     public function destroy(MenuItem $menuItem)

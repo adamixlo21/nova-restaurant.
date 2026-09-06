@@ -48,18 +48,17 @@ export default function Show({ menu }: Props) {
             <Navbar />
 
             <main className="bg-[#f7f4ee] text-[#20231f]">
-
                 {/* Hero */}
                 <section className="px-6 py-20 sm:px-10 lg:px-16 lg:py-24">
                     <div className="mx-auto max-w-4xl text-center">
                         <Link
                             href="/menus"
-                            className="mb-8 inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-[#5d6948] transition hover:text-[#20231f]"
+                            className="mb-8 inline-flex items-center gap-2 text-xs tracking-[0.2em] text-[#5d6948] uppercase transition hover:text-[#20231f]"
                         >
                             ← Terug naar menu
                         </Link>
 
-                        <p className="mb-4 text-xs uppercase tracking-[0.3em] text-[#5d6948]">
+                        <p className="mb-4 text-xs tracking-[0.3em] text-[#5d6948] uppercase">
                             Brasserie De Bank
                         </p>
 
@@ -78,7 +77,6 @@ export default function Show({ menu }: Props) {
                 {/* Menu */}
                 <section className="border-t border-black/5 bg-[#ebe7dc] px-6 py-16 sm:px-10 lg:px-16 lg:py-20">
                     <div className="mx-auto max-w-5xl space-y-20">
-
                         {menu.categories.length === 0 ? (
                             <div className="border border-[#5d6948]/20 bg-[#f7f4ee] px-6 py-16 text-center">
                                 <h2 className="font-serif text-2xl">
@@ -92,10 +90,9 @@ export default function Show({ menu }: Props) {
                         ) : (
                             menu.categories.map((category) => (
                                 <section key={category.id}>
-
                                     {/* Category heading */}
                                     <div className="mb-10 border-b border-[#5d6948]/20 pb-5">
-                                        <p className="mb-2 text-[10px] uppercase tracking-[0.3em] text-[#5d6948]">
+                                        <p className="mb-2 text-[10px] tracking-[0.3em] text-[#5d6948] uppercase">
                                             {menu.name}
                                         </p>
 
@@ -123,7 +120,6 @@ export default function Show({ menu }: Props) {
                                                     className="border-b border-black/10 pb-8"
                                                 >
                                                     <div className="flex flex-col gap-5 sm:flex-row sm:gap-6">
-
                                                         {/* Image */}
                                                         {item.image && (
                                                             <div
@@ -135,7 +131,9 @@ export default function Show({ menu }: Props) {
                                                             >
                                                                 <img
                                                                     src={`/storage/${item.image}`}
-                                                                    alt={item.name}
+                                                                    alt={
+                                                                        item.name
+                                                                    }
                                                                     className="block h-full w-full object-contain"
                                                                 />
                                                             </div>
@@ -144,50 +142,68 @@ export default function Show({ menu }: Props) {
                                                         {/* Content */}
                                                         <div className="min-w-0 flex-1">
                                                             <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-
                                                                 <div className="min-w-0">
                                                                     <h3 className="font-serif text-2xl leading-tight text-[#20231f]">
-                                                                        {item.name}
+                                                                        {
+                                                                            item.name
+                                                                        }
                                                                     </h3>
 
                                                                     {item.description && (
                                                                         <p className="mt-3 max-w-2xl text-sm leading-6 text-[#20231f]/55">
-                                                                            {item.description}
+                                                                            {
+                                                                                item.description
+                                                                            }
                                                                         </p>
                                                                     )}
 
                                                                     {item.is_featured && (
-                                                                        <span className="mt-4 inline-block border border-[#5d6948]/30 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-[#5d6948]">
-                                                                            Chef's choice
+                                                                        <span className="mt-4 inline-block border border-[#5d6948]/30 px-3 py-1 text-[10px] tracking-[0.2em] text-[#5d6948] uppercase">
+                                                                            Chef's
+                                                                            choice
                                                                         </span>
                                                                     )}
                                                                 </div>
 
                                                                 {/* Prices */}
                                                                 <div className="shrink-0 text-left text-sm text-[#5d6948] sm:min-w-32 sm:text-right">
-                                                                    {item.price !== null && (
+                                                                    {item.price !==
+                                                                        null && (
                                                                         <div className="font-medium">
                                                                             €
-                                                                            {Number(item.price)
-                                                                                .toFixed(2)
-                                                                                .replace('.', ',')}
-
+                                                                            {Number(
+                                                                                item.price,
+                                                                            )
+                                                                                .toFixed(
+                                                                                    2,
+                                                                                )
+                                                                                .replace(
+                                                                                    '.',
+                                                                                    ',',
+                                                                                )}
                                                                             {item.price_text &&
                                                                                 ` ${item.price_text}`}
                                                                         </div>
                                                                     )}
 
-                                                                    {item.price === null &&
+                                                                    {item.price ===
+                                                                        null &&
                                                                         item.price_text && (
                                                                             <div className="font-medium">
-                                                                                {item.price_text}
+                                                                                {
+                                                                                    item.price_text
+                                                                                }
                                                                             </div>
                                                                         )}
 
-                                                                    {item.prices?.length > 0 && (
+                                                                    {item.prices
+                                                                        ?.length >
+                                                                        0 && (
                                                                         <div className="mt-2 space-y-1.5">
                                                                             {item.prices.map(
-                                                                                (price) => (
+                                                                                (
+                                                                                    price,
+                                                                                ) => (
                                                                                     <div
                                                                                         key={
                                                                                             price.id
@@ -236,7 +252,7 @@ export default function Show({ menu }: Props) {
                 <section className="px-6 py-14 text-center sm:px-10">
                     <Link
                         href="/menus"
-                        className="inline-flex items-center gap-3 bg-[#20231f] px-8 py-4 text-xs uppercase tracking-[0.2em] text-[#f7f4ee] transition hover:bg-[#5d6948]"
+                        className="inline-flex items-center gap-3 bg-[#20231f] px-8 py-4 text-xs tracking-[0.2em] text-[#f7f4ee] uppercase transition hover:bg-[#5d6948]"
                     >
                         ← Alle kaarten
                     </Link>

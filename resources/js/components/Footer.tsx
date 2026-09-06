@@ -6,6 +6,7 @@ export default function Footer() {
         { label: 'Over ons', href: '/about' },
         { label: 'Mogelijkheden', href: '/mogelijkheden' },
         { label: 'Actualiteiten', href: '/actualiteiten' },
+        { label: 'Vacatures', href: '/vacatures' },
         { label: 'Locatie', href: '/locatie' },
         { label: 'Contact', href: '/contacts' },
     ];
@@ -20,42 +21,17 @@ export default function Footer() {
 
     return (
         <footer className="bg-[#20231f] text-[#f7f4ee]">
-            {/*/!* Top CTA *!/*/}
-            {/*<div className="border-b border-white/10">*/}
-            {/*    <div className="mx-auto flex max-w-7xl flex-col gap-6 px-6 py-10 sm:px-10 md:flex-row md:items-center md:justify-between lg:px-12">*/}
-            {/*        <div>*/}
-            {/*            <p className="text-[10px] uppercase tracking-[0.3em] text-[#f7f4ee]/40">*/}
-            {/*                Brasserie De Bank*/}
-            {/*            </p>*/}
-
-            {/*            <h2 className="mt-2 font-serif text-2xl sm:text-3xl">*/}
-            {/*                Zin om bij ons aan tafel te schuiven?*/}
-            {/*            </h2>*/}
-            {/*        </div>*/}
-
-            {/*        <Link*/}
-            {/*            href="/reservation"*/}
-            {/*            className="inline-flex w-fit items-center justify-center border border-[#f7f4ee]/30 px-6 py-4 text-[10px] uppercase tracking-[0.22em] transition hover:bg-[#f7f4ee] hover:text-[#20231f]"*/}
-            {/*        >*/}
-            {/*            Reserveer een tafel*/}
-            {/*        </Link>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
-
             {/* Main footer */}
             <div className="mx-auto max-w-7xl px-6 py-14 sm:px-10 lg:px-12">
                 <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-12">
                     {/* Brand */}
                     <div className="lg:col-span-4">
-                        <Link
-                            href="/"
-                            className="inline-block"
-                        >
+                        <Link href="/" className="inline-block">
                             <p className="font-serif text-3xl tracking-[0.16em]">
                                 DE BANK
                             </p>
 
-                            <p className="mt-1 text-[9px] uppercase tracking-[0.32em] text-[#f7f4ee]/40">
+                            <p className="mt-1 text-[9px] tracking-[0.32em] text-[#f7f4ee]/40 uppercase">
                                 Brasserie Harderwijk
                             </p>
                         </Link>
@@ -70,7 +46,7 @@ export default function Footer() {
                                 href="https://www.instagram.com/brasserie_de_bank/"
                                 target="_blank"
                                 rel="noreferrer"
-                                className="border-b border-white/20 pb-1 text-[10px] uppercase tracking-[0.2em] text-[#f7f4ee]/60 transition hover:border-white hover:text-white"
+                                className="border-b border-white/20 pb-1 text-[10px] tracking-[0.2em] text-[#f7f4ee]/60 uppercase transition hover:border-white hover:text-white"
                             >
                                 Instagram
                             </a>
@@ -79,7 +55,7 @@ export default function Footer() {
                                 href="https://www.facebook.com/profile.php?id=61577661434489"
                                 target="_blank"
                                 rel="noreferrer"
-                                className="border-b border-white/20 pb-1 text-[10px] uppercase tracking-[0.2em] text-[#f7f4ee]/60 transition hover:border-white hover:text-white"
+                                className="border-b border-white/20 pb-1 text-[10px] tracking-[0.2em] text-[#f7f4ee]/60 uppercase transition hover:border-white hover:text-white"
                             >
                                 Facebook
                             </a>
@@ -88,7 +64,7 @@ export default function Footer() {
 
                     {/* Navigation */}
                     <div className="lg:col-span-2">
-                        <p className="text-[10px] uppercase tracking-[0.25em] text-[#f7f4ee]/35">
+                        <p className="text-[10px] tracking-[0.25em] text-[#f7f4ee]/35 uppercase">
                             Navigatie
                         </p>
 
@@ -107,7 +83,7 @@ export default function Footer() {
 
                     {/* Menu */}
                     <div className="lg:col-span-2">
-                        <p className="text-[10px] uppercase tracking-[0.25em] text-[#f7f4ee]/35">
+                        <p className="text-[10px] tracking-[0.25em] text-[#f7f4ee]/35 uppercase">
                             Onze kaarten
                         </p>
 
@@ -129,7 +105,7 @@ export default function Footer() {
                         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
                             {/* Opening hours */}
                             <div>
-                                <p className="text-[10px] uppercase tracking-[0.25em] text-[#f7f4ee]/35">
+                                <p className="text-[10px] tracking-[0.25em] text-[#f7f4ee]/35 uppercase">
                                     Openingstijden
                                 </p>
 
@@ -148,7 +124,7 @@ export default function Footer() {
 
                             {/* Contact */}
                             <div>
-                                <p className="text-[10px] uppercase tracking-[0.25em] text-[#f7f4ee]/35">
+                                <p className="text-[10px] tracking-[0.25em] text-[#f7f4ee]/35 uppercase">
                                     Contact
                                 </p>
 
@@ -185,9 +161,7 @@ export default function Footer() {
 
                 {/* Bottom */}
                 <div className="mt-14 flex flex-col gap-4 border-t border-white/10 pt-6 text-[11px] text-[#f7f4ee]/35 sm:flex-row sm:items-center sm:justify-between">
-                    <p>
-                        © {new Date().getFullYear()} Brasserie De Bank
-                    </p>
+                    <p>© {new Date().getFullYear()} Brasserie De Bank</p>
 
                     <div className="flex items-center gap-4">
                         <span>Harderwijk</span>

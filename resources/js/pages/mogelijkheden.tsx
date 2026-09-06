@@ -7,48 +7,40 @@ const possibilities = [
         number: '01',
         title: 'Private dining',
         subtitle: 'Besloten genieten',
-        image:
-            'https://cdn.prod.website-files.com/684804488b7b526aefb97b88/688362c6e6e698960f367cc8_DSC09155.avif',
+        image: 'https://cdn.prod.website-files.com/684804488b7b526aefb97b88/688362c6e6e698960f367cc8_DSC09155.avif',
         description:
             'Onze sfeervolle zaaltjes zijn te reserveren voor groepen vanaf 8 tot maximaal 20 personen. Ideaal voor een intiem diner met familie, vrienden of collega’s.',
-        extra:
-            'We stellen graag een diner op maat samen, eventueel met bijpassende wijnen.',
+        extra: 'We stellen graag een diner op maat samen, eventueel met bijpassende wijnen.',
         detail: '8 – 20 personen',
     },
     {
         number: '02',
         title: 'Vergaderen',
         subtitle: 'Zakelijk in een warme sfeer',
-        image:
-            'https://cdn.prod.website-files.com/684804488b7b526aefb97b88/688362cd6f6a2dce4ffe568e_DSC08793.avif',
+        image: 'https://cdn.prod.website-files.com/684804488b7b526aefb97b88/688362cd6f6a2dce4ffe568e_DSC08793.avif',
         description:
             'De Bank beschikt over twee sfeervolle zaaltjes voor vergaderingen en zakelijke bijeenkomsten. Een rustige omgeving, maar wel met de gastvrijheid van onze brasserie.',
-        extra:
-            'Combineer je bijeenkomst bijvoorbeeld met koffie, lunch, high tea, een snack of diner.',
+        extra: 'Combineer je bijeenkomst bijvoorbeeld met koffie, lunch, high tea, een snack of diner.',
         detail: 'Tot 20 personen per zaal',
     },
     {
         number: '03',
         title: 'Feestelijke gelegenheden',
         subtitle: 'Samen iets bijzonders vieren',
-        image:
-            'https://cdn.prod.website-files.com/684804488b7b526aefb97b88/68629b8a3fc5128c20bf8ac2_Mask%20group-1.avif',
+        image: 'https://cdn.prod.website-files.com/684804488b7b526aefb97b88/68629b8a3fc5128c20bf8ac2_Mask%20group-1.avif',
         description:
             'Van een verjaardag of babyshower tot een bedrijfsborrel: onze ruimtes kunnen ook worden gebruikt voor feestelijke gelegenheden.',
-        extra:
-            'Het borrelarrangement stemmen we volledig af op jouw wensen en gezelschap.',
+        extra: 'Het borrelarrangement stemmen we volledig af op jouw wensen en gezelschap.',
         detail: 'Tot 50 personen per zaal',
     },
     {
         number: '04',
         title: 'Wijnproeverij',
         subtitle: 'Ontdek, proef & geniet',
-        image:
-            'https://cdn.prod.website-files.com/684804488b7b526aefb97b88/6883754f448fcace0165e09f_food.avif',
+        image: 'https://cdn.prod.website-files.com/684804488b7b526aefb97b88/6883754f448fcace0165e09f_food.avif',
         description:
             'Voor groepen organiseren we wijnproeverijen onder begeleiding van een professionele sommelier.',
-        extra:
-            'Proef zorgvuldig geselecteerde wijnen met bijpassende hapjes in een ontspannen sfeer.',
+        extra: 'Proef zorgvuldig geselecteerde wijnen met bijpassende hapjes in een ontspannen sfeer.',
         detail: '8 – 25 personen',
     },
 ];
@@ -61,20 +53,19 @@ export default function Mogelijkheden() {
             <Navbar />
 
             <main className="bg-[#f7f4ee] text-[#20231f]">
-
                 {/* Hero */}
                 <section className="relative overflow-hidden px-6 py-24 sm:px-10 lg:px-16 lg:py-32">
-                    <div className="pointer-events-none absolute -right-20 top-0 h-72 w-72 rounded-full border border-[#5d6948]/10" />
+                    <div className="pointer-events-none absolute top-0 -right-20 h-72 w-72 rounded-full border border-[#5d6948]/10" />
 
                     <div className="mx-auto max-w-5xl text-center">
-                        <p className="text-[10px] uppercase tracking-[0.4em] text-[#5d6948]">
+                        <p className="text-[10px] tracking-[0.4em] text-[#5d6948] uppercase">
                             Brasserie De Bank
                         </p>
 
                         <h1 className="mt-5 font-serif text-5xl leading-none tracking-tight sm:text-6xl lg:text-7xl">
                             De mogelijkheden
                             <br />
-                            <span className="italic text-[#5d6948]">
+                            <span className="text-[#5d6948] italic">
                                 bij De Bank.
                             </span>
                         </h1>
@@ -101,9 +92,7 @@ export default function Mogelijkheden() {
                                 {/* Image */}
                                 <div
                                     className={`relative ${
-                                        index % 2 === 1
-                                            ? 'lg:order-2'
-                                            : ''
+                                        index % 2 === 1 ? 'lg:order-2' : ''
                                     }`}
                                 >
                                     <div className="aspect-[4/3] overflow-hidden bg-[#d8d3c6]">
@@ -114,8 +103,8 @@ export default function Mogelijkheden() {
                                         />
                                     </div>
 
-                                    <div className="absolute bottom-0 right-0 bg-[#20231f] px-5 py-4 text-[#f7f4ee] sm:px-6">
-                                        <p className="text-[9px] uppercase tracking-[0.25em] text-[#f7f4ee]/50">
+                                    <div className="absolute right-0 bottom-0 bg-[#20231f] px-5 py-4 text-[#f7f4ee] sm:px-6">
+                                        <p className="text-[9px] tracking-[0.25em] text-[#f7f4ee]/50 uppercase">
                                             Geschikt voor
                                         </p>
 
@@ -141,7 +130,7 @@ export default function Mogelijkheden() {
                                         <div className="h-px w-12 bg-[#5d6948]/30" />
                                     </div>
 
-                                    <p className="mt-5 text-[10px] uppercase tracking-[0.3em] text-[#5d6948]">
+                                    <p className="mt-5 text-[10px] tracking-[0.3em] text-[#5d6948] uppercase">
                                         {item.subtitle}
                                     </p>
 
@@ -159,10 +148,9 @@ export default function Mogelijkheden() {
 
                                     <Link
                                         href="/contacts"
-                                        className="group mt-8 inline-flex items-center gap-3 border-b border-[#5d6948]/40 pb-2 text-[10px] uppercase tracking-[0.25em] text-[#5d6948]"
+                                        className="group mt-8 inline-flex items-center gap-3 border-b border-[#5d6948]/40 pb-2 text-[10px] tracking-[0.25em] text-[#5d6948] uppercase"
                                     >
                                         Vraag naar de mogelijkheden
-
                                         <span className="transition-transform duration-300 group-hover:translate-x-1">
                                             →
                                         </span>
@@ -182,27 +170,23 @@ export default function Mogelijkheden() {
                                     Persoonlijk
                                 </p>
 
-                                <p className="mt-2 text-xs uppercase tracking-[0.2em] text-[#20231f]/40">
+                                <p className="mt-2 text-xs tracking-[0.2em] text-[#20231f]/40 uppercase">
                                     Arrangement op maat
                                 </p>
                             </div>
 
                             <div className="sm:border-x sm:border-[#5d6948]/15">
-                                <p className="font-serif text-3xl">
-                                    Sfeervol
-                                </p>
+                                <p className="font-serif text-3xl">Sfeervol</p>
 
-                                <p className="mt-2 text-xs uppercase tracking-[0.2em] text-[#20231f]/40">
+                                <p className="mt-2 text-xs tracking-[0.2em] text-[#20231f]/40 uppercase">
                                     Midden in Harderwijk
                                 </p>
                             </div>
 
                             <div>
-                                <p className="font-serif text-3xl">
-                                    Gastvrij
-                                </p>
+                                <p className="font-serif text-3xl">Gastvrij</p>
 
-                                <p className="mt-2 text-xs uppercase tracking-[0.2em] text-[#20231f]/40">
+                                <p className="mt-2 text-xs tracking-[0.2em] text-[#20231f]/40 uppercase">
                                     De Bank denkt mee
                                 </p>
                             </div>
@@ -213,7 +197,7 @@ export default function Mogelijkheden() {
                 {/* CTA */}
                 <section className="bg-[#5d6948] px-6 py-24 text-[#f7f4ee] sm:px-10 lg:px-16 lg:py-28">
                     <div className="mx-auto max-w-4xl text-center">
-                        <p className="text-[10px] uppercase tracking-[0.35em] text-[#f7f4ee]/60">
+                        <p className="text-[10px] tracking-[0.35em] text-[#f7f4ee]/60 uppercase">
                             Interesse?
                         </p>
 
@@ -231,21 +215,20 @@ export default function Mogelijkheden() {
                         <div className="mt-9 flex flex-wrap justify-center gap-4">
                             <Link
                                 href="/contacts"
-                                className="bg-[#f7f4ee] px-8 py-4 text-[10px] uppercase tracking-[0.25em] text-[#20231f] transition hover:bg-white"
+                                className="bg-[#f7f4ee] px-8 py-4 text-[10px] tracking-[0.25em] text-[#20231f] uppercase transition hover:bg-white"
                             >
                                 Neem contact op
                             </Link>
 
                             <a
                                 href="tel:0341472582"
-                                className="border border-[#f7f4ee]/50 px-8 py-4 text-[10px] uppercase tracking-[0.25em] text-[#f7f4ee] transition hover:border-white"
+                                className="border border-[#f7f4ee]/50 px-8 py-4 text-[10px] tracking-[0.25em] text-[#f7f4ee] uppercase transition hover:border-white"
                             >
                                 Bel 0341 - 472 582
                             </a>
                         </div>
                     </div>
                 </section>
-
             </main>
 
             <Footer />

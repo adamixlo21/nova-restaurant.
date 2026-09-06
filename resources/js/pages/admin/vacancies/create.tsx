@@ -8,6 +8,9 @@ export default function Create() {
         slug: '',
         excerpt: '',
         content: '',
+        contract_type: '',
+        hours: '',
+        location: 'Harderwijk',
         image: null as File | null,
         is_published: false,
         published_at: '',
@@ -30,14 +33,6 @@ export default function Create() {
         };
     }, [data.image]);
 
-    function submit(e: React.FormEvent) {
-        e.preventDefault();
-
-        post('/admin/actualiteiten', {
-            forceFormData: true,
-        });
-    }
-
     function generateSlug(value: string) {
         return value
             .toLowerCase()
@@ -47,9 +42,23 @@ export default function Create() {
             .replace(/-+/g, '-');
     }
 
+    function submit(e: React.FormEvent) {
+        e.preventDefault();
+
+        post('/admin/vacancies', {
+            forceFormData: true,
+        });
+    }
+
     function selectImage(file: File | null) {
         setData('image', file);
     }
+
+    const inputClass =
+        'w-full border border-black/10 bg-[#f7f4ee] px-4 py-3.5 text-sm text-[#20231f] outline-none transition placeholder:text-[#20231f]/30 focus:border-[#5d6948] focus:ring-2 focus:ring-[#5d6948]/10';
+
+    const labelClass =
+        'mb-2 block text-[10px] uppercase tracking-[0.22em] text-[#20231f]/50';
 
     function formatPreviewDate() {
         if (!data.published_at) {
@@ -63,15 +72,9 @@ export default function Create() {
         });
     }
 
-    const inputClass =
-        'w-full border border-black/10 bg-[#f7f4ee] px-4 py-3.5 text-sm text-[#20231f] outline-none transition placeholder:text-[#20231f]/30 focus:border-[#5d6948] focus:ring-2 focus:ring-[#5d6948]/10';
-
-    const labelClass =
-        'mb-2 block text-[10px] uppercase tracking-[0.22em] text-[#20231f]/50';
-
     return (
         <>
-            <Head title="Actualiteit toevoegen" />
+            <Head title="Nieuwe vacature" />
 
             <div className="flex min-h-screen bg-[#f7f4ee] text-[#20231f]">
                 <AdminSidebar />
@@ -82,26 +85,26 @@ export default function Create() {
                         <div className="mb-10 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
                             <div>
                                 <Link
-                                    href="/admin/actualiteiten"
+                                    href="/admin/vacancies"
                                     className="group inline-flex items-center gap-2 text-[10px] tracking-[0.22em] text-[#5d6948] uppercase"
                                 >
                                     <span className="transition-transform duration-300 group-hover:-translate-x-1">
                                         ←
                                     </span>
-                                    Terug naar actualiteiten
+                                    Terug naar vacatures
                                 </Link>
 
                                 <p className="mt-7 text-[10px] tracking-[0.35em] text-[#5d6948] uppercase">
-                                    Admin · Actualiteiten
+                                    Admin · Vacatures
                                 </p>
 
                                 <h1 className="mt-3 font-serif text-4xl leading-tight sm:text-5xl">
-                                    Nieuw bericht
+                                    Nieuwe vacature
                                 </h1>
 
                                 <p className="mt-3 max-w-xl text-sm leading-7 text-[#20231f]/50">
-                                    Voeg nieuws, evenementen of updates toe aan
-                                    de website van Brasserie De Bank.
+                                    Voeg een nieuwe functie toe aan de website
+                                    van Brasserie De Bank.
                                 </p>
                             </div>
 
@@ -132,137 +135,237 @@ export default function Create() {
                                         </p>
 
                                         <h2 className="mt-2 font-serif text-2xl">
-                                            Berichtgegevens
+                                            Vacaturegegevens
                                         </h2>
                                     </div>
 
-                                    {/* Title */}
-                                    <div className="mb-7">
-                                        <label className={labelClass}>
-                                            Titel
-                                        </label>
-
-                                        <input
-                                            type="text"
-                                            value={data.title}
-                                            onChange={(e) => {
-                                                const value = e.target.value;
-
-                                                setData('title', value);
-                                                setData(
-                                                    'slug',
-                                                    generateSlug(value),
-                                                );
-                                            }}
-                                            className={inputClass}
-                                            placeholder="Bijvoorbeeld: Nieuwe kaart gelanceerd"
-                                        />
-
-                                        {errors.title && (
-                                            <p className="mt-2 text-sm text-red-600">
-                                                {errors.title}
-                                            </p>
-                                        )}
-                                    </div>
-
-                                    {/* Slug */}
-                                    <div className="mb-7">
-                                        <label className={labelClass}>
-                                            URL-slug
-                                        </label>
-
-                                        <div className="flex overflow-hidden border border-black/10 bg-[#f7f4ee] focus-within:border-[#5d6948] focus-within:ring-2 focus-within:ring-[#5d6948]/10">
-                                            <span className="hidden items-center border-r border-black/10 px-4 text-xs text-[#20231f]/35 sm:flex">
-                                                /actualiteiten/
-                                            </span>
+                                    <div className="space-y-7">
+                                        {/* Title */}
+                                        <div>
+                                            <label className={labelClass}>
+                                                Titel
+                                            </label>
 
                                             <input
                                                 type="text"
-                                                value={data.slug}
-                                                onChange={(e) =>
+                                                value={data.title}
+                                                onChange={(e) => {
+                                                    const value =
+                                                        e.target.value;
+
+                                                    setData('title', value);
+
                                                     setData(
                                                         'slug',
+                                                        generateSlug(value),
+                                                    );
+                                                }}
+                                                className={inputClass}
+                                                placeholder="Bijvoorbeeld: Zelfstandig werkend kok"
+                                            />
+
+                                            {errors.title && (
+                                                <p className="mt-2 text-sm text-red-600">
+                                                    {errors.title}
+                                                </p>
+                                            )}
+                                        </div>
+
+                                        {/* Slug */}
+                                        <div>
+                                            <label className={labelClass}>
+                                                URL-slug
+                                            </label>
+
+                                            <div className="flex overflow-hidden border border-black/10 bg-[#f7f4ee] focus-within:border-[#5d6948] focus-within:ring-2 focus-within:ring-[#5d6948]/10">
+                                                <span className="hidden items-center border-r border-black/10 px-4 text-xs text-[#20231f]/35 sm:flex">
+                                                    /vacatures/
+                                                </span>
+
+                                                <input
+                                                    type="text"
+                                                    value={data.slug}
+                                                    onChange={(e) =>
+                                                        setData(
+                                                            'slug',
+                                                            e.target.value,
+                                                        )
+                                                    }
+                                                    className="min-w-0 flex-1 bg-transparent px-4 py-3.5 text-sm outline-none"
+                                                    placeholder="zelfstandig-werkend-kok"
+                                                />
+                                            </div>
+
+                                            <p className="mt-2 text-xs text-[#20231f]/35">
+                                                Wordt automatisch gemaakt op
+                                                basis van de titel.
+                                            </p>
+
+                                            {errors.slug && (
+                                                <p className="mt-2 text-sm text-red-600">
+                                                    {errors.slug}
+                                                </p>
+                                            )}
+                                        </div>
+
+                                        {/* Excerpt */}
+                                        <div>
+                                            <div className="mb-2 flex items-center justify-between gap-4">
+                                                <label className="text-[10px] tracking-[0.22em] text-[#20231f]/50 uppercase">
+                                                    Korte omschrijving
+                                                </label>
+
+                                                <span className="text-xs text-[#20231f]/30">
+                                                    {data.excerpt.length} tekens
+                                                </span>
+                                            </div>
+
+                                            <textarea
+                                                rows={4}
+                                                value={data.excerpt}
+                                                onChange={(e) =>
+                                                    setData(
+                                                        'excerpt',
                                                         e.target.value,
                                                     )
                                                 }
-                                                className="min-w-0 flex-1 bg-transparent px-4 py-3.5 text-sm outline-none"
-                                                placeholder="nieuwe-kaart-gelanceerd"
+                                                className={`${inputClass} resize-none leading-7`}
+                                                placeholder="Korte introductie van de vacature..."
                                             />
+
+                                            <p className="mt-2 text-xs text-[#20231f]/35">
+                                                Deze tekst wordt gebruikt op de
+                                                vacature-overzichtspagina.
+                                            </p>
+
+                                            {errors.excerpt && (
+                                                <p className="mt-2 text-sm text-red-600">
+                                                    {errors.excerpt}
+                                                </p>
+                                            )}
                                         </div>
 
-                                        <p className="mt-2 text-xs text-[#20231f]/35">
-                                            Wordt automatisch gemaakt op basis
-                                            van de titel.
-                                        </p>
-
-                                        {errors.slug && (
-                                            <p className="mt-2 text-sm text-red-600">
-                                                {errors.slug}
-                                            </p>
-                                        )}
-                                    </div>
-
-                                    {/* Excerpt */}
-                                    <div className="mb-7">
-                                        <div className="mb-2 flex items-center justify-between gap-4">
-                                            <label className="text-[10px] tracking-[0.22em] text-[#20231f]/50 uppercase">
-                                                Korte omschrijving
+                                        {/* Content */}
+                                        <div>
+                                            <label className={labelClass}>
+                                                Volledige vacaturetekst
                                             </label>
 
-                                            <span className="text-xs text-[#20231f]/30">
-                                                {data.excerpt.length} tekens
-                                            </span>
+                                            <textarea
+                                                rows={15}
+                                                value={data.content}
+                                                onChange={(e) =>
+                                                    setData(
+                                                        'content',
+                                                        e.target.value,
+                                                    )
+                                                }
+                                                className={`${inputClass} resize-y leading-7`}
+                                                placeholder="Beschrijf de functie, werkzaamheden, wat je zoekt en wat De Bank biedt..."
+                                            />
+
+                                            {errors.content && (
+                                                <p className="mt-2 text-sm text-red-600">
+                                                    {errors.content}
+                                                </p>
+                                            )}
                                         </div>
+                                    </div>
+                                </section>
 
-                                        <textarea
-                                            rows={4}
-                                            value={data.excerpt}
-                                            onChange={(e) =>
-                                                setData(
-                                                    'excerpt',
-                                                    e.target.value,
-                                                )
-                                            }
-                                            className={`${inputClass} resize-none leading-7`}
-                                            placeholder="Korte introductie die op de overzichtspagina wordt getoond..."
-                                        />
-
-                                        <p className="mt-2 text-xs text-[#20231f]/35">
-                                            Deze tekst wordt gebruikt op de
-                                            overzichtspagina.
+                                {/* Practical information */}
+                                <section className="border border-black/10 bg-white p-6 shadow-[0_20px_60px_rgba(32,35,31,0.04)] sm:p-8">
+                                    <div className="mb-8">
+                                        <p className="text-[9px] tracking-[0.28em] text-[#5d6948] uppercase">
+                                            Functie
                                         </p>
 
-                                        {errors.excerpt && (
-                                            <p className="mt-2 text-sm text-red-600">
-                                                {errors.excerpt}
-                                            </p>
-                                        )}
+                                        <h2 className="mt-2 font-serif text-2xl">
+                                            Praktische informatie
+                                        </h2>
+
+                                        <p className="mt-2 text-sm leading-6 text-[#20231f]/45">
+                                            Voeg de belangrijkste details toe
+                                            die direct bij de vacature worden
+                                            getoond.
+                                        </p>
                                     </div>
 
-                                    {/* Content */}
-                                    <div>
-                                        <label className={labelClass}>
-                                            Volledige inhoud
-                                        </label>
+                                    <div className="grid gap-6 sm:grid-cols-2">
+                                        <div>
+                                            <label className={labelClass}>
+                                                Dienstverband
+                                            </label>
 
-                                        <textarea
-                                            rows={15}
-                                            value={data.content}
-                                            onChange={(e) =>
-                                                setData(
-                                                    'content',
-                                                    e.target.value,
-                                                )
-                                            }
-                                            className={`${inputClass} resize-y leading-7`}
-                                            placeholder="Schrijf hier het volledige nieuwsbericht..."
-                                        />
+                                            <input
+                                                type="text"
+                                                value={data.contract_type}
+                                                onChange={(e) =>
+                                                    setData(
+                                                        'contract_type',
+                                                        e.target.value,
+                                                    )
+                                                }
+                                                className={inputClass}
+                                                placeholder="Bijvoorbeeld: Fulltime"
+                                            />
 
-                                        {errors.content && (
-                                            <p className="mt-2 text-sm text-red-600">
-                                                {errors.content}
-                                            </p>
-                                        )}
+                                            {errors.contract_type && (
+                                                <p className="mt-2 text-sm text-red-600">
+                                                    {errors.contract_type}
+                                                </p>
+                                            )}
+                                        </div>
+
+                                        <div>
+                                            <label className={labelClass}>
+                                                Uren
+                                            </label>
+
+                                            <input
+                                                type="text"
+                                                value={data.hours}
+                                                onChange={(e) =>
+                                                    setData(
+                                                        'hours',
+                                                        e.target.value,
+                                                    )
+                                                }
+                                                className={inputClass}
+                                                placeholder="Bijvoorbeeld: 32 - 38 uur"
+                                            />
+
+                                            {errors.hours && (
+                                                <p className="mt-2 text-sm text-red-600">
+                                                    {errors.hours}
+                                                </p>
+                                            )}
+                                        </div>
+
+                                        <div className="sm:col-span-2">
+                                            <label className={labelClass}>
+                                                Locatie
+                                            </label>
+
+                                            <input
+                                                type="text"
+                                                value={data.location}
+                                                onChange={(e) =>
+                                                    setData(
+                                                        'location',
+                                                        e.target.value,
+                                                    )
+                                                }
+                                                className={inputClass}
+                                                placeholder="Harderwijk"
+                                            />
+
+                                            {errors.location && (
+                                                <p className="mt-2 text-sm text-red-600">
+                                                    {errors.location}
+                                                </p>
+                                            )}
+                                        </div>
                                     </div>
                                 </section>
 
@@ -283,7 +386,6 @@ export default function Create() {
                                         </p>
                                     </div>
 
-                                    {/* Image preview */}
                                     {data.image && imagePreview && (
                                         <div className="mb-7">
                                             <div className="relative overflow-hidden border border-black/10 bg-[#ebe7dc]">
@@ -329,7 +431,7 @@ export default function Create() {
                                                     e.target.files?.[0] ?? null,
                                                 )
                                             }
-                                            className="block w-full text-sm text-[#20231f]/60 file:mr-4 file:border-0 file:bg-[#20231f] file:px-5 file:py-3 file:text-[9px] file:tracking-[0.18em] file:text-[#f7f4ee] file:uppercase file:transition hover:file:bg-[#5d6948]"
+                                            className="block w-full text-sm text-[#20231f]/60 file:mr-4 file:border-0 file:bg-[#20231f] file:px-5 file:py-3 file:text-[9px] file:tracking-[0.18em] file:text-white file:uppercase file:transition hover:file:bg-[#5d6948]"
                                         />
 
                                         <p className="mt-3 text-xs leading-5 text-[#20231f]/35">
@@ -376,7 +478,7 @@ export default function Create() {
                                             </p>
 
                                             <p className="mt-1 text-xs leading-5 text-white/40">
-                                                Het bericht wordt zichtbaar op
+                                                De vacature wordt zichtbaar op
                                                 de website.
                                             </p>
                                         </div>
@@ -403,8 +505,8 @@ export default function Create() {
                                         />
 
                                         <p className="mt-2 text-xs leading-5 text-white/35">
-                                            Kies de datum en tijd die bij dit
-                                            bericht worden opgeslagen.
+                                            Kies de datum en tijd die bij deze
+                                            vacature worden opgeslagen.
                                         </p>
 
                                         {errors.published_at && (
@@ -445,7 +547,7 @@ export default function Create() {
                                         )}
 
                                         <div className="absolute top-4 left-4 bg-[#f7f4ee]/95 px-3 py-2 text-[8px] tracking-[0.18em] text-[#5d6948] uppercase backdrop-blur-sm">
-                                            Actualiteit
+                                            Vacature
                                         </div>
                                     </div>
 
@@ -456,16 +558,36 @@ export default function Create() {
 
                                         <h3 className="mt-3 font-serif text-2xl leading-tight">
                                             {data.title ||
-                                                'Titel van het bericht'}
+                                                'Titel van de vacature'}
                                         </h3>
 
                                         <p className="mt-3 line-clamp-3 text-sm leading-6 text-[#20231f]/50">
                                             {data.excerpt ||
-                                                'Hier verschijnt de korte omschrijving van het bericht.'}
+                                                'Hier verschijnt de korte omschrijving van de vacature.'}
                                         </p>
 
+                                        <div className="mt-5 flex flex-wrap gap-2">
+                                            {data.contract_type && (
+                                                <span className="bg-[#f7f4ee] px-3 py-2 text-[8px] tracking-[0.18em] uppercase">
+                                                    {data.contract_type}
+                                                </span>
+                                            )}
+
+                                            {data.hours && (
+                                                <span className="bg-[#f7f4ee] px-3 py-2 text-[8px] tracking-[0.18em] uppercase">
+                                                    {data.hours}
+                                                </span>
+                                            )}
+
+                                            {data.location && (
+                                                <span className="bg-[#f7f4ee] px-3 py-2 text-[8px] tracking-[0.18em] uppercase">
+                                                    {data.location}
+                                                </span>
+                                            )}
+                                        </div>
+
                                         <div className="mt-6 flex items-center gap-2 border-t border-black/10 pt-4 text-[9px] tracking-[0.2em] text-[#5d6948] uppercase">
-                                            Lees verder
+                                            Bekijk vacature
                                             <span>→</span>
                                         </div>
                                     </div>
@@ -480,11 +602,11 @@ export default function Create() {
                                     >
                                         {processing
                                             ? 'Opslaan...'
-                                            : 'Bericht opslaan'}
+                                            : 'Vacature opslaan'}
                                     </button>
 
                                     <Link
-                                        href="/admin/actualiteiten"
+                                        href="/admin/vacancies"
                                         className="mt-3 block w-full border border-black/10 px-6 py-4 text-center text-[10px] tracking-[0.2em] text-[#20231f]/60 uppercase transition hover:border-[#20231f] hover:text-[#20231f]"
                                     >
                                         Annuleren

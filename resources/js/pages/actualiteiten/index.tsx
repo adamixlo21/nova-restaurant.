@@ -31,19 +31,18 @@ export default function Index({ actualiteiten }: Props) {
             <Navbar />
 
             <main className="bg-[#f7f4ee] text-[#20231f]">
-
                 {/* HERO */}
-                <section className="relative overflow-hidden px-6 pb-20 pt-28 sm:px-10 sm:pt-32 lg:px-16 lg:pb-28">
+                <section className="relative overflow-hidden px-6 pt-28 pb-20 sm:px-10 sm:pt-32 lg:px-16 lg:pb-28">
                     <div className="mx-auto max-w-7xl">
                         <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
                             <div>
-                                <p className="text-[10px] uppercase tracking-[0.35em] text-[#5d6948]">
+                                <p className="text-[10px] tracking-[0.35em] text-[#5d6948] uppercase">
                                     Nieuws uit De Bank
                                 </p>
 
                                 <h1 className="mt-5 max-w-4xl font-serif text-5xl leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl xl:text-8xl">
                                     Actualiteiten
-                                    <span className="italic text-[#5d6948]">
+                                    <span className="text-[#5d6948] italic">
                                         .
                                     </span>
                                 </h1>
@@ -58,7 +57,7 @@ export default function Index({ actualiteiten }: Props) {
 
                                 <div className="mt-7 flex flex-wrap gap-8 border-t border-black/10 pt-5">
                                     <div>
-                                        <p className="text-[9px] uppercase tracking-[0.25em] text-[#20231f]/35">
+                                        <p className="text-[9px] tracking-[0.25em] text-[#20231f]/35 uppercase">
                                             Locatie
                                         </p>
 
@@ -68,7 +67,7 @@ export default function Index({ actualiteiten }: Props) {
                                     </div>
 
                                     <div>
-                                        <p className="text-[9px] uppercase tracking-[0.25em] text-[#20231f]/35">
+                                        <p className="text-[9px] tracking-[0.25em] text-[#20231f]/35 uppercase">
                                             Updates
                                         </p>
 
@@ -81,7 +80,7 @@ export default function Index({ actualiteiten }: Props) {
                         </div>
                     </div>
 
-                    <span className="pointer-events-none absolute -bottom-20 right-0 hidden font-serif text-[260px] leading-none text-[#5d6948]/[0.035] lg:block">
+                    <span className="pointer-events-none absolute right-0 -bottom-20 hidden font-serif text-[260px] leading-none text-[#5d6948]/[0.035] lg:block">
                         B
                     </span>
                 </section>
@@ -89,10 +88,9 @@ export default function Index({ actualiteiten }: Props) {
                 {/* CONTENT */}
                 <section className="border-t border-black/5 bg-white px-6 py-20 sm:px-10 lg:px-16 lg:py-28">
                     <div className="mx-auto max-w-7xl">
-
                         {actualiteiten.length === 0 ? (
                             <div className="border border-black/10 bg-[#f7f4ee] px-6 py-20 text-center">
-                                <p className="text-[10px] uppercase tracking-[0.3em] text-[#5d6948]">
+                                <p className="text-[10px] tracking-[0.3em] text-[#5d6948] uppercase">
                                     Binnenkort
                                 </p>
 
@@ -102,12 +100,12 @@ export default function Index({ actualiteiten }: Props) {
 
                                 <p className="mx-auto mt-4 max-w-lg text-sm leading-7 text-[#20231f]/50">
                                     Houd deze pagina in de gaten voor nieuws,
-                                    evenementen en updates van Brasserie De Bank.
+                                    evenementen en updates van Brasserie De
+                                    Bank.
                                 </p>
                             </div>
                         ) : (
                             <div className="space-y-16">
-
                                 {/* Featured */}
                                 {actualiteiten[0] && (
                                     <Link
@@ -123,7 +121,7 @@ export default function Index({ actualiteiten }: Props) {
                                                 />
                                             ) : (
                                                 <div className="absolute inset-0 flex items-center justify-center bg-[#5d6948]">
-                                                    <span className="text-[10px] uppercase tracking-[0.3em] text-white/50">
+                                                    <span className="text-[10px] tracking-[0.3em] text-white/50 uppercase">
                                                         Brasserie De Bank
                                                     </span>
                                                 </div>
@@ -134,14 +132,16 @@ export default function Index({ actualiteiten }: Props) {
 
                                         <div className="flex flex-col justify-between p-8 sm:p-10 lg:p-12">
                                             <div>
-                                                <p className="text-[9px] uppercase tracking-[0.28em] text-[#aeb69b]">
+                                                <p className="text-[9px] tracking-[0.28em] text-[#aeb69b] uppercase">
                                                     Uitgelicht
                                                 </p>
 
-                                                {actualiteiten[0].published_at && (
-                                                    <p className="mt-5 text-[10px] uppercase tracking-[0.22em] text-white/45">
+                                                {actualiteiten[0]
+                                                    .published_at && (
+                                                    <p className="mt-5 text-[10px] tracking-[0.22em] text-white/45 uppercase">
                                                         {formatDate(
-                                                            actualiteiten[0].published_at,
+                                                            actualiteiten[0]
+                                                                .published_at,
                                                         )}
                                                     </p>
                                                 )}
@@ -152,14 +152,16 @@ export default function Index({ actualiteiten }: Props) {
 
                                                 {actualiteiten[0].excerpt && (
                                                     <p className="mt-6 text-sm leading-7 text-white/60 sm:text-base sm:leading-8">
-                                                        {actualiteiten[0].excerpt}
+                                                        {
+                                                            actualiteiten[0]
+                                                                .excerpt
+                                                        }
                                                     </p>
                                                 )}
                                             </div>
 
-                                            <div className="mt-10 inline-flex items-center gap-3 text-[10px] uppercase tracking-[0.22em] text-white">
+                                            <div className="mt-10 inline-flex items-center gap-3 text-[10px] tracking-[0.22em] text-white uppercase">
                                                 Lees het artikel
-
                                                 <span className="transition-transform duration-300 group-hover:translate-x-1">
                                                     →
                                                 </span>
@@ -173,7 +175,7 @@ export default function Index({ actualiteiten }: Props) {
                                     <div>
                                         <div className="mb-10 flex items-end justify-between gap-6">
                                             <div>
-                                                <p className="text-[10px] uppercase tracking-[0.3em] text-[#5d6948]">
+                                                <p className="text-[10px] tracking-[0.3em] text-[#5d6948] uppercase">
                                                     Meer nieuws
                                                 </p>
 
@@ -184,65 +186,73 @@ export default function Index({ actualiteiten }: Props) {
                                         </div>
 
                                         <div className="grid gap-x-7 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
-                                            {actualiteiten.slice(1).map((item) => (
-                                                <article
-                                                    key={item.id}
-                                                    className="group"
-                                                >
-                                                    <Link
-                                                        href={`/actualiteiten/${item.slug}`}
-                                                        className="block"
+                                            {actualiteiten
+                                                .slice(1)
+                                                .map((item) => (
+                                                    <article
+                                                        key={item.id}
+                                                        className="group"
                                                     >
-                                                        <div className="relative aspect-[4/3] overflow-hidden bg-[#ebe7dc]">
-                                                            {item.image ? (
-                                                                <img
-                                                                    src={`/storage/${item.image}`}
-                                                                    alt={item.title}
-                                                                    className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]"
-                                                                />
-                                                            ) : (
-                                                                <div className="flex h-full items-center justify-center">
-                                                                    <span className="text-[9px] uppercase tracking-[0.25em] text-[#20231f]/25">
-                                                                        Brasserie De Bank
-                                                                    </span>
+                                                        <Link
+                                                            href={`/actualiteiten/${item.slug}`}
+                                                            className="block"
+                                                        >
+                                                            <div className="relative aspect-[4/3] overflow-hidden bg-[#ebe7dc]">
+                                                                {item.image ? (
+                                                                    <img
+                                                                        src={`/storage/${item.image}`}
+                                                                        alt={
+                                                                            item.title
+                                                                        }
+                                                                        className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]"
+                                                                    />
+                                                                ) : (
+                                                                    <div className="flex h-full items-center justify-center">
+                                                                        <span className="text-[9px] tracking-[0.25em] text-[#20231f]/25 uppercase">
+                                                                            Brasserie
+                                                                            De
+                                                                            Bank
+                                                                        </span>
+                                                                    </div>
+                                                                )}
+
+                                                                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 transition duration-500 group-hover:opacity-100" />
+
+                                                                <div className="absolute top-4 right-4 flex h-10 w-10 items-center justify-center bg-[#f7f4ee] text-[#5d6948] transition duration-300 group-hover:bg-[#20231f] group-hover:text-white">
+                                                                    →
                                                                 </div>
-                                                            )}
-
-                                                            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 transition duration-500 group-hover:opacity-100" />
-
-                                                            <div className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center bg-[#f7f4ee] text-[#5d6948] transition duration-300 group-hover:bg-[#20231f] group-hover:text-white">
-                                                                →
                                                             </div>
-                                                        </div>
 
-                                                        <div className="pt-5">
-                                                            {item.published_at && (
-                                                                <p className="text-[9px] uppercase tracking-[0.22em] text-[#5d6948]">
-                                                                    {formatDate(
-                                                                        item.published_at,
-                                                                    )}
-                                                                </p>
-                                                            )}
+                                                            <div className="pt-5">
+                                                                {item.published_at && (
+                                                                    <p className="text-[9px] tracking-[0.22em] text-[#5d6948] uppercase">
+                                                                        {formatDate(
+                                                                            item.published_at,
+                                                                        )}
+                                                                    </p>
+                                                                )}
 
-                                                            <h3 className="mt-3 font-serif text-3xl leading-tight">
-                                                                {item.title}
-                                                            </h3>
+                                                                <h3 className="mt-3 font-serif text-3xl leading-tight">
+                                                                    {item.title}
+                                                                </h3>
 
-                                                            {item.excerpt && (
-                                                                <p className="mt-4 line-clamp-3 text-sm leading-7 text-[#20231f]/50">
-                                                                    {item.excerpt}
-                                                                </p>
-                                                            )}
+                                                                {item.excerpt && (
+                                                                    <p className="mt-4 line-clamp-3 text-sm leading-7 text-[#20231f]/50">
+                                                                        {
+                                                                            item.excerpt
+                                                                        }
+                                                                    </p>
+                                                                )}
 
-                                                            <div className="mt-5 h-px bg-black/10" />
+                                                                <div className="mt-5 h-px bg-black/10" />
 
-                                                            <div className="mt-4 inline-flex items-center gap-3 text-[9px] uppercase tracking-[0.22em] text-[#5d6948]">
-                                                                Lees verder
+                                                                <div className="mt-4 inline-flex items-center gap-3 text-[9px] tracking-[0.22em] text-[#5d6948] uppercase">
+                                                                    Lees verder
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </Link>
-                                                </article>
-                                            ))}
+                                                        </Link>
+                                                    </article>
+                                                ))}
                                         </div>
                                     </div>
                                 )}
@@ -255,7 +265,7 @@ export default function Index({ actualiteiten }: Props) {
                 <section className="bg-[#5d6948] px-6 py-20 text-[#f7f4ee] sm:px-10 lg:px-16 lg:py-24">
                     <div className="mx-auto flex max-w-7xl flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
                         <div>
-                            <p className="text-[10px] uppercase tracking-[0.3em] text-[#f7f4ee]/55">
+                            <p className="text-[10px] tracking-[0.3em] text-[#f7f4ee]/55 uppercase">
                                 Brasserie De Bank
                             </p>
 
@@ -264,21 +274,22 @@ export default function Index({ actualiteiten }: Props) {
                             </h2>
 
                             <p className="mt-5 max-w-xl text-sm leading-7 text-[#f7f4ee]/65">
-                                Bekijk onze kaarten of reserveer direct een tafel.
+                                Bekijk onze kaarten of reserveer direct een
+                                tafel.
                             </p>
                         </div>
 
                         <div className="flex flex-wrap gap-4">
                             <Link
                                 href="/menus"
-                                className="border border-[#f7f4ee]/60 px-7 py-4 text-[10px] uppercase tracking-[0.22em] transition hover:bg-[#f7f4ee] hover:text-[#5d6948]"
+                                className="border border-[#f7f4ee]/60 px-7 py-4 text-[10px] tracking-[0.22em] uppercase transition hover:bg-[#f7f4ee] hover:text-[#5d6948]"
                             >
                                 Bekijk de kaart
                             </Link>
 
                             <Link
                                 href="/reservation"
-                                className="bg-[#20231f] px-7 py-4 text-[10px] uppercase tracking-[0.22em] text-[#f7f4ee] transition hover:bg-[#f7f4ee] hover:text-[#20231f]"
+                                className="bg-[#20231f] px-7 py-4 text-[10px] tracking-[0.22em] text-[#f7f4ee] uppercase transition hover:bg-[#f7f4ee] hover:text-[#20231f]"
                             >
                                 Reserveren
                             </Link>

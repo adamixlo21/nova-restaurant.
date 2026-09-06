@@ -37,10 +37,7 @@ interface Props {
     actualiteiten: Actualiteit[];
 }
 
-export default function Home({
-                                 featuredDishes,
-                                 actualiteiten,
-                             }: Props) {
+export default function Home({ featuredDishes, actualiteiten }: Props) {
     const { flash } = usePage<{
         flash: {
             success?: string;
@@ -68,24 +65,19 @@ export default function Home({
                             ✓
                         </span>
 
-                        <p className="text-sm">
-                            {flash.success}
-                        </p>
+                        <p className="text-sm">{flash.success}</p>
                     </div>
                 </div>
             )}
 
             <main className="bg-[#f7f4ee] text-[#20231f]">
-
                 {/* HERO */}
                 <section className="relative overflow-hidden">
                     <div className="mx-auto grid min-h-[calc(100vh-4.75rem)] max-w-[1600px] lg:grid-cols-2">
-
                         {/* Left */}
                         <div className="relative flex items-center px-6 py-24 sm:px-10 lg:px-16 lg:py-28 xl:px-24">
                             <div className="relative z-10 max-w-xl">
-
-                                <p className="mb-6 text-[10px] uppercase tracking-[0.35em] text-[#5d6948]">
+                                <p className="mb-6 text-[10px] tracking-[0.35em] text-[#5d6948] uppercase">
                                     Brasserie De Bank · Harderwijk
                                 </p>
 
@@ -93,7 +85,7 @@ export default function Home({
                                     Genieten
                                     <br />
                                     bij{' '}
-                                    <span className="italic text-[#5d6948]">
+                                    <span className="text-[#5d6948] italic">
                                         De Bank.
                                     </span>
                                 </h1>
@@ -107,10 +99,9 @@ export default function Home({
                                 <div className="mt-10 flex flex-wrap gap-4">
                                     <Link
                                         href="/menus"
-                                        className="group inline-flex items-center gap-3 bg-[#20231f] px-7 py-4 text-[10px] uppercase tracking-[0.23em] text-[#f7f4ee] transition duration-300 hover:bg-[#5d6948]"
+                                        className="group inline-flex items-center gap-3 bg-[#20231f] px-7 py-4 text-[10px] tracking-[0.23em] text-[#f7f4ee] uppercase transition duration-300 hover:bg-[#5d6948]"
                                     >
                                         Bekijk onze kaarten
-
                                         <span className="transition-transform duration-300 group-hover:translate-x-1">
                                             →
                                         </span>
@@ -118,7 +109,7 @@ export default function Home({
 
                                     <Link
                                         href="/reservation"
-                                        className="inline-flex items-center border border-[#20231f]/20 px-7 py-4 text-[10px] uppercase tracking-[0.23em] transition duration-300 hover:border-[#20231f] hover:bg-[#20231f] hover:text-[#f7f4ee]"
+                                        className="inline-flex items-center border border-[#20231f]/20 px-7 py-4 text-[10px] tracking-[0.23em] uppercase transition duration-300 hover:border-[#20231f] hover:bg-[#20231f] hover:text-[#f7f4ee]"
                                     >
                                         Reserveer een tafel
                                     </Link>
@@ -126,7 +117,7 @@ export default function Home({
 
                                 <div className="mt-14 flex flex-wrap gap-x-12 gap-y-5 border-t border-black/10 pt-6">
                                     <div>
-                                        <p className="text-[9px] uppercase tracking-[0.25em] text-[#20231f]/35">
+                                        <p className="text-[9px] tracking-[0.25em] text-[#20231f]/35 uppercase">
                                             Locatie
                                         </p>
 
@@ -136,7 +127,7 @@ export default function Home({
                                     </div>
 
                                     <div>
-                                        <p className="text-[9px] uppercase tracking-[0.25em] text-[#20231f]/35">
+                                        <p className="text-[9px] tracking-[0.25em] text-[#20231f]/35 uppercase">
                                             Keuken
                                         </p>
 
@@ -162,9 +153,9 @@ export default function Home({
 
                             <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/5 to-transparent" />
 
-                            <div className="absolute bottom-8 left-8 right-8 flex items-end justify-between text-white sm:bottom-10 sm:left-10 sm:right-10">
+                            <div className="absolute right-8 bottom-8 left-8 flex items-end justify-between text-white sm:right-10 sm:bottom-10 sm:left-10">
                                 <div>
-                                    <p className="text-[9px] uppercase tracking-[0.3em] text-white/65">
+                                    <p className="text-[9px] tracking-[0.3em] text-white/65 uppercase">
                                         Brasserie De Bank
                                     </p>
 
@@ -189,31 +180,25 @@ export default function Home({
                 <section className="border-y border-black/5 bg-[#ebe7dc] px-6 py-10 sm:px-10 lg:px-16">
                     <div className="mx-auto grid max-w-6xl gap-8 text-center sm:grid-cols-3">
                         <div>
-                            <p className="font-serif text-2xl">
-                                Lunch
-                            </p>
+                            <p className="font-serif text-2xl">Lunch</p>
 
-                            <p className="mt-2 text-[10px] uppercase tracking-[0.22em] text-[#20231f]/40">
+                            <p className="mt-2 text-[10px] tracking-[0.22em] text-[#20231f]/40 uppercase">
                                 Ontspannen middag
                             </p>
                         </div>
 
                         <div className="sm:border-x sm:border-black/10">
-                            <p className="font-serif text-2xl">
-                                Diner
-                            </p>
+                            <p className="font-serif text-2xl">Diner</p>
 
-                            <p className="mt-2 text-[10px] uppercase tracking-[0.22em] text-[#20231f]/40">
+                            <p className="mt-2 text-[10px] tracking-[0.22em] text-[#20231f]/40 uppercase">
                                 Avond bij De Bank
                             </p>
                         </div>
 
                         <div>
-                            <p className="font-serif text-2xl">
-                                Borrel
-                            </p>
+                            <p className="font-serif text-2xl">Borrel</p>
 
-                            <p className="mt-2 text-[10px] uppercase tracking-[0.22em] text-[#20231f]/40">
+                            <p className="mt-2 text-[10px] tracking-[0.22em] text-[#20231f]/40 uppercase">
                                 Hapje & drankje
                             </p>
                         </div>
@@ -223,10 +208,9 @@ export default function Home({
                 {/* FEATURED */}
                 <section className="bg-white px-6 py-20 sm:px-10 lg:px-16 lg:py-28">
                     <div className="mx-auto max-w-7xl">
-
                         <div className="mb-12 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
                             <div>
-                                <p className="text-[10px] uppercase tracking-[0.35em] text-[#5d6948]">
+                                <p className="text-[10px] tracking-[0.35em] text-[#5d6948] uppercase">
                                     Uit onze keuken
                                 </p>
 
@@ -242,10 +226,9 @@ export default function Home({
 
                             <Link
                                 href="/menus"
-                                className="group inline-flex items-center gap-3 text-[10px] uppercase tracking-[0.25em] text-[#5d6948]"
+                                className="group inline-flex items-center gap-3 text-[10px] tracking-[0.25em] text-[#5d6948] uppercase"
                             >
                                 Bekijk alle kaarten
-
                                 <span className="transition-transform duration-300 group-hover:translate-x-1">
                                     →
                                 </span>
@@ -261,10 +244,7 @@ export default function Home({
                         ) : (
                             <div className="grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
                                 {featuredDishes.map((dish) => (
-                                    <article
-                                        key={dish.id}
-                                        className="group"
-                                    >
+                                    <article key={dish.id} className="group">
                                         <div className="relative aspect-[4/5] overflow-hidden bg-[#ebe7dc]">
                                             {dish.image ? (
                                                 <img
@@ -274,7 +254,7 @@ export default function Home({
                                                 />
                                             ) : (
                                                 <div className="flex h-full items-center justify-center">
-                                                    <span className="text-[10px] uppercase tracking-[0.25em] text-[#20231f]/25">
+                                                    <span className="text-[10px] tracking-[0.25em] text-[#20231f]/25 uppercase">
                                                         Brasserie De Bank
                                                     </span>
                                                 </div>
@@ -282,7 +262,7 @@ export default function Home({
 
                                             <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent opacity-0 transition duration-500 group-hover:opacity-100" />
 
-                                            <div className="absolute left-4 top-4 bg-[#f7f4ee]/95 px-3 py-2 text-[9px] uppercase tracking-[0.2em] text-[#5d6948]">
+                                            <div className="absolute top-4 left-4 bg-[#f7f4ee]/95 px-3 py-2 text-[9px] tracking-[0.2em] text-[#5d6948] uppercase">
                                                 {dish.category.name}
                                             </div>
                                         </div>
@@ -303,7 +283,6 @@ export default function Home({
                                                                     '.',
                                                                     ',',
                                                                 )}
-
                                                             {dish.price_text &&
                                                                 ` ${dish.price_text}`}
                                                         </div>
@@ -318,7 +297,8 @@ export default function Home({
                                                             </div>
                                                         )}
 
-                                                    {dish.prices?.length > 0 && (
+                                                    {dish.prices?.length >
+                                                        0 && (
                                                         <div className="mt-1 space-y-1">
                                                             {dish.prices.map(
                                                                 (price) => (
@@ -373,7 +353,6 @@ export default function Home({
                 {/* ABOUT */}
                 <section className="bg-[#f7f4ee] px-6 py-20 sm:px-10 lg:px-16 lg:py-28">
                     <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-[1fr_1.1fr] lg:items-center">
-
                         <div className="relative">
                             <div className="aspect-[4/5] overflow-hidden">
                                 <img
@@ -383,25 +362,23 @@ export default function Home({
                                 />
                             </div>
 
-                            <div className="absolute -bottom-8 -right-4 hidden bg-[#5d6948] px-8 py-7 text-[#f7f4ee] sm:block">
-                                <p className="font-serif text-3xl">
-                                    De Bank
-                                </p>
+                            <div className="absolute -right-4 -bottom-8 hidden bg-[#5d6948] px-8 py-7 text-[#f7f4ee] sm:block">
+                                <p className="font-serif text-3xl">De Bank</p>
 
-                                <p className="mt-2 text-[9px] uppercase tracking-[0.3em] text-[#f7f4ee]/60">
+                                <p className="mt-2 text-[9px] tracking-[0.3em] text-[#f7f4ee]/60 uppercase">
                                     Harderwijk
                                 </p>
                             </div>
                         </div>
 
                         <div className="lg:pl-10">
-                            <p className="text-[10px] uppercase tracking-[0.35em] text-[#5d6948]">
+                            <p className="text-[10px] tracking-[0.35em] text-[#5d6948] uppercase">
                                 Over ons
                             </p>
 
                             <h2 className="mt-5 max-w-xl font-serif text-4xl leading-tight sm:text-5xl lg:text-6xl">
                                 Een plek waar je graag
-                                <span className="italic text-[#5d6948]">
+                                <span className="text-[#5d6948] italic">
                                     {' '}
                                     blijft zitten.
                                 </span>
@@ -409,23 +386,22 @@ export default function Home({
 
                             <p className="mt-7 max-w-xl text-sm leading-7 text-[#20231f]/60 sm:text-base sm:leading-8">
                                 Bij Brasserie De Bank draait het om goed eten,
-                                een ontspannen sfeer en gezellig samen zijn.
-                                Van een kop koffie tot een uitgebreide avond
-                                aan tafel.
+                                een ontspannen sfeer en gezellig samen zijn. Van
+                                een kop koffie tot een uitgebreide avond aan
+                                tafel.
                             </p>
 
                             <p className="mt-4 max-w-xl text-sm leading-7 text-[#20231f]/60 sm:text-base sm:leading-8">
                                 Onze kaarten bieden voor ieder moment iets
-                                lekkers: klassiekers, seizoensgerechten,
-                                mooie wijnen en borrelhapjes om samen te delen.
+                                lekkers: klassiekers, seizoensgerechten, mooie
+                                wijnen en borrelhapjes om samen te delen.
                             </p>
 
                             <Link
                                 href="/about"
-                                className="group mt-9 inline-flex items-center gap-3 border-b border-[#5d6948]/50 pb-2 text-[10px] uppercase tracking-[0.25em] text-[#5d6948]"
+                                className="group mt-9 inline-flex items-center gap-3 border-b border-[#5d6948]/50 pb-2 text-[10px] tracking-[0.25em] text-[#5d6948] uppercase"
                             >
                                 Lees ons verhaal
-
                                 <span className="transition-transform duration-300 group-hover:translate-x-1">
                                     →
                                 </span>
@@ -437,18 +413,16 @@ export default function Home({
                 {/* REVIEWS */}
                 <section className="bg-[#ebe7dc] px-6 py-20 sm:px-10 lg:px-16 lg:py-28">
                     <div className="mx-auto max-w-7xl">
-
                         <div className="mb-12 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
                             <div>
-                                <p className="text-[10px] uppercase tracking-[0.35em] text-[#5d6948]">
+                                <p className="text-[10px] tracking-[0.35em] text-[#5d6948] uppercase">
                                     Dit zeggen onze gasten
                                 </p>
 
                                 <h2 className="mt-4 font-serif text-4xl leading-tight sm:text-5xl lg:text-6xl">
                                     Gasten komen graag
                                     <br />
-
-                                    <span className="italic text-[#5d6948]">
+                                    <span className="text-[#5d6948] italic">
                                         terug naar De Bank.
                                     </span>
                                 </h2>
@@ -468,7 +442,6 @@ export default function Home({
                         </div>
 
                         <div className="grid gap-6 lg:grid-cols-3">
-
                             <article className="flex min-h-[300px] flex-col justify-between border border-[#5d6948]/15 bg-[#f7f4ee] p-8 transition duration-300 hover:-translate-y-1 sm:p-10">
                                 <div>
                                     <div className="text-sm tracking-[0.15em] text-[#5d6948]">
@@ -476,17 +449,15 @@ export default function Home({
                                     </div>
 
                                     <p className="mt-7 font-serif text-2xl leading-relaxed">
-                                        “Het eten was heerlijk en de service
-                                        was top. Volgende keer zeker weer.”
+                                        “Het eten was heerlijk en de service was
+                                        top. Volgende keer zeker weer.”
                                     </p>
                                 </div>
 
                                 <div className="mt-8 border-t border-[#5d6948]/15 pt-5">
-                                    <p className="text-sm font-medium">
-                                        Niels
-                                    </p>
+                                    <p className="text-sm font-medium">Niels</p>
 
-                                    <p className="mt-1 text-[10px] uppercase tracking-[0.2em] text-[#20231f]/35">
+                                    <p className="mt-1 text-[10px] tracking-[0.2em] text-[#20231f]/35 uppercase">
                                         Gast van De Bank
                                     </p>
                                 </div>
@@ -506,11 +477,9 @@ export default function Home({
                                 </div>
 
                                 <div className="mt-8 border-t border-white/10 pt-5">
-                                    <p className="text-sm font-medium">
-                                        Lisa
-                                    </p>
+                                    <p className="text-sm font-medium">Lisa</p>
 
-                                    <p className="mt-1 text-[10px] uppercase tracking-[0.2em] text-[#f7f4ee]/35">
+                                    <p className="mt-1 text-[10px] tracking-[0.2em] text-[#f7f4ee]/35 uppercase">
                                         Gast van De Bank
                                     </p>
                                 </div>
@@ -529,11 +498,9 @@ export default function Home({
                                 </div>
 
                                 <div className="mt-8 border-t border-[#5d6948]/15 pt-5">
-                                    <p className="text-sm font-medium">
-                                        Jort
-                                    </p>
+                                    <p className="text-sm font-medium">Jort</p>
 
-                                    <p className="mt-1 text-[10px] uppercase tracking-[0.2em] text-[#20231f]/35">
+                                    <p className="mt-1 text-[10px] tracking-[0.2em] text-[#20231f]/35 uppercase">
                                         Gast van De Bank
                                     </p>
                                 </div>
@@ -550,10 +517,9 @@ export default function Home({
                                 href="https://www.google.com/search?q=Brasserie+De+Bank+Harderwijk+reviews"
                                 target="_blank"
                                 rel="noreferrer"
-                                className="group inline-flex items-center gap-3 text-[10px] uppercase tracking-[0.25em] text-[#5d6948]"
+                                className="group inline-flex items-center gap-3 text-[10px] tracking-[0.25em] text-[#5d6948] uppercase"
                             >
                                 Bekijk meer reviews
-
                                 <span className="transition-transform duration-300 group-hover:translate-x-1">
                                     →
                                 </span>
@@ -565,16 +531,15 @@ export default function Home({
                 {/* ACTUALITEITEN */}
                 <section className="bg-white px-6 py-20 sm:px-10 lg:px-16 lg:py-28">
                     <div className="mx-auto max-w-7xl">
-
                         <div className="mb-12 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
                             <div>
-                                <p className="text-[10px] uppercase tracking-[0.35em] text-[#5d6948]">
+                                <p className="text-[10px] tracking-[0.35em] text-[#5d6948] uppercase">
                                     Nieuws uit De Bank
                                 </p>
 
                                 <h2 className="mt-4 max-w-3xl font-serif text-4xl leading-tight tracking-tight sm:text-5xl lg:text-6xl">
                                     Altijd iets nieuws
-                                    <span className="italic text-[#5d6948]">
+                                    <span className="text-[#5d6948] italic">
                                         {' '}
                                         aan tafel.
                                     </span>
@@ -588,10 +553,9 @@ export default function Home({
 
                             <Link
                                 href="/actualiteiten"
-                                className="group inline-flex items-center gap-3 text-[10px] uppercase tracking-[0.25em] text-[#5d6948]"
+                                className="group inline-flex items-center gap-3 text-[10px] tracking-[0.25em] text-[#5d6948] uppercase"
                             >
                                 Alle actualiteiten
-
                                 <span className="transition-transform duration-300 group-hover:translate-x-1">
                                     →
                                 </span>
@@ -611,7 +575,6 @@ export default function Home({
                             </div>
                         ) : (
                             <div className="grid gap-7 lg:grid-cols-12">
-
                                 {/* Main story */}
                                 {actualiteiten[0] && (
                                     <Link
@@ -622,9 +585,7 @@ export default function Home({
                                             {actualiteiten[0].image ? (
                                                 <img
                                                     src={`/storage/${actualiteiten[0].image}`}
-                                                    alt={
-                                                        actualiteiten[0].title
-                                                    }
+                                                    alt={actualiteiten[0].title}
                                                     className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.035]"
                                                 />
                                             ) : (
@@ -636,7 +597,7 @@ export default function Home({
                                             <div className="absolute inset-x-0 bottom-0 p-7 text-white sm:p-10">
                                                 {actualiteiten[0]
                                                     .published_at && (
-                                                    <p className="text-[9px] uppercase tracking-[0.25em] text-white/55">
+                                                    <p className="text-[9px] tracking-[0.25em] text-white/55 uppercase">
                                                         {formatDate(
                                                             actualiteiten[0]
                                                                 .published_at,
@@ -657,9 +618,8 @@ export default function Home({
                                                     </p>
                                                 )}
 
-                                                <div className="mt-7 inline-flex items-center gap-3 text-[10px] uppercase tracking-[0.22em]">
+                                                <div className="mt-7 inline-flex items-center gap-3 text-[10px] tracking-[0.22em] uppercase">
                                                     Lees verder
-
                                                     <span className="transition-transform duration-300 group-hover:translate-x-1">
                                                         →
                                                     </span>
@@ -671,68 +631,63 @@ export default function Home({
 
                                 {/* Side stories */}
                                 <div className="flex flex-col gap-7 lg:col-span-5">
-                                    {actualiteiten
-                                        .slice(1, 3)
-                                        .map((item) => (
-                                            <Link
-                                                key={item.id}
-                                                href={`/actualiteiten/${item.slug}`}
-                                                className="group grid flex-1 overflow-hidden border border-black/10 bg-[#f7f4ee] sm:grid-cols-[190px_1fr] lg:grid-cols-[170px_1fr]"
-                                            >
-                                                <div className="relative min-h-[220px] overflow-hidden bg-[#ebe7dc] sm:min-h-full">
-                                                    {item.image ? (
-                                                        <img
-                                                            src={`/storage/${item.image}`}
-                                                            alt={item.title}
-                                                            className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.05]"
-                                                        />
-                                                    ) : (
-                                                        <div className="flex h-full min-h-[220px] items-center justify-center">
-                                                            <span className="text-[9px] uppercase tracking-[0.25em] text-[#20231f]/25">
-                                                                De Bank
-                                                            </span>
-                                                        </div>
+                                    {actualiteiten.slice(1, 3).map((item) => (
+                                        <Link
+                                            key={item.id}
+                                            href={`/actualiteiten/${item.slug}`}
+                                            className="group grid flex-1 overflow-hidden border border-black/10 bg-[#f7f4ee] sm:grid-cols-[190px_1fr] lg:grid-cols-[170px_1fr]"
+                                        >
+                                            <div className="relative min-h-[220px] overflow-hidden bg-[#ebe7dc] sm:min-h-full">
+                                                {item.image ? (
+                                                    <img
+                                                        src={`/storage/${item.image}`}
+                                                        alt={item.title}
+                                                        className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.05]"
+                                                    />
+                                                ) : (
+                                                    <div className="flex h-full min-h-[220px] items-center justify-center">
+                                                        <span className="text-[9px] tracking-[0.25em] text-[#20231f]/25 uppercase">
+                                                            De Bank
+                                                        </span>
+                                                    </div>
+                                                )}
+                                            </div>
+
+                                            <div className="flex flex-col justify-between p-6">
+                                                <div>
+                                                    {item.published_at && (
+                                                        <p className="text-[9px] tracking-[0.22em] text-[#5d6948] uppercase">
+                                                            {formatDate(
+                                                                item.published_at,
+                                                            )}
+                                                        </p>
+                                                    )}
+
+                                                    <h3 className="mt-3 font-serif text-2xl leading-tight">
+                                                        {item.title}
+                                                    </h3>
+
+                                                    {item.excerpt && (
+                                                        <p className="mt-3 line-clamp-2 text-sm leading-6 text-[#20231f]/50">
+                                                            {item.excerpt}
+                                                        </p>
                                                     )}
                                                 </div>
 
-                                                <div className="flex flex-col justify-between p-6">
-                                                    <div>
-                                                        {item.published_at && (
-                                                            <p className="text-[9px] uppercase tracking-[0.22em] text-[#5d6948]">
-                                                                {formatDate(
-                                                                    item.published_at,
-                                                                )}
-                                                            </p>
-                                                        )}
-
-                                                        <h3 className="mt-3 font-serif text-2xl leading-tight">
-                                                            {item.title}
-                                                        </h3>
-
-                                                        {item.excerpt && (
-                                                            <p className="mt-3 line-clamp-2 text-sm leading-6 text-[#20231f]/50">
-                                                                {
-                                                                    item.excerpt
-                                                                }
-                                                            </p>
-                                                        )}
-                                                    </div>
-
-                                                    <div className="mt-5 inline-flex items-center gap-3 text-[9px] uppercase tracking-[0.22em] text-[#5d6948]">
-                                                        Lees verder
-
-                                                        <span className="transition-transform duration-300 group-hover:translate-x-1">
-                                                            →
-                                                        </span>
-                                                    </div>
+                                                <div className="mt-5 inline-flex items-center gap-3 text-[9px] tracking-[0.22em] text-[#5d6948] uppercase">
+                                                    Lees verder
+                                                    <span className="transition-transform duration-300 group-hover:translate-x-1">
+                                                        →
+                                                    </span>
                                                 </div>
-                                            </Link>
-                                        ))}
+                                            </div>
+                                        </Link>
+                                    ))}
 
                                     {actualiteiten.length === 1 && (
                                         <div className="flex flex-1 items-center justify-center border border-black/10 bg-[#f7f4ee] px-8 py-16 text-center">
                                             <div>
-                                                <p className="text-[9px] uppercase tracking-[0.3em] text-[#5d6948]">
+                                                <p className="text-[9px] tracking-[0.3em] text-[#5d6948] uppercase">
                                                     Binnenkort
                                                 </p>
 
@@ -752,7 +707,6 @@ export default function Home({
                 <section className="bg-[#20231f] px-6 py-20 sm:px-10 lg:px-16 lg:py-24">
                     <div className="mx-auto max-w-7xl">
                         <div className="relative min-h-[500px] overflow-hidden sm:min-h-[580px]">
-
                             <img
                                 src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1800&q=90"
                                 alt="Sfeer in het restaurant"
@@ -763,7 +717,7 @@ export default function Home({
 
                             <div className="relative flex min-h-[500px] items-center justify-center px-6 text-center sm:min-h-[580px]">
                                 <div className="max-w-3xl text-white">
-                                    <p className="text-[10px] uppercase tracking-[0.35em] text-white/60">
+                                    <p className="text-[10px] tracking-[0.35em] text-white/60 uppercase">
                                         Brasserie De Bank
                                     </p>
 
@@ -774,17 +728,15 @@ export default function Home({
                                     </h2>
 
                                     <p className="mx-auto mt-6 max-w-xl text-sm leading-7 text-white/70 sm:text-base">
-                                        Voor een gezellige lunch, een
-                                        uitgebreid diner of gewoon een drankje
-                                        aan tafel.
+                                        Voor een gezellige lunch, een uitgebreid
+                                        diner of gewoon een drankje aan tafel.
                                     </p>
 
                                     <Link
                                         href="/locatie"
-                                        className="group mt-8 inline-flex items-center gap-3 border-b border-white/50 pb-2 text-[10px] uppercase tracking-[0.25em]"
+                                        className="group mt-8 inline-flex items-center gap-3 border-b border-white/50 pb-2 text-[10px] tracking-[0.25em] uppercase"
                                     >
                                         Ontdek onze locatie
-
                                         <span className="transition-transform duration-300 group-hover:translate-x-1">
                                             →
                                         </span>
@@ -798,7 +750,7 @@ export default function Home({
                 {/* RESERVATION CTA */}
                 <section className="bg-[#5d6948] px-6 py-20 text-[#f7f4ee] sm:px-10 lg:px-16 lg:py-28">
                     <div className="mx-auto max-w-4xl text-center">
-                        <p className="text-[10px] uppercase tracking-[0.35em] text-[#f7f4ee]/60">
+                        <p className="text-[10px] tracking-[0.35em] text-[#f7f4ee]/60 uppercase">
                             Reserveer
                         </p>
 
@@ -807,23 +759,21 @@ export default function Home({
                         </h2>
 
                         <p className="mx-auto mt-6 max-w-lg text-sm leading-7 text-[#f7f4ee]/70 sm:text-base">
-                            Reserveer eenvoudig online en wij zorgen dat er
-                            een tafel voor je klaarstaat.
+                            Reserveer eenvoudig online en wij zorgen dat er een
+                            tafel voor je klaarstaat.
                         </p>
 
                         <Link
                             href="/reservation"
-                            className="group mt-9 inline-flex items-center gap-3 border border-[#f7f4ee]/70 px-8 py-4 text-[10px] uppercase tracking-[0.25em] transition duration-300 hover:bg-[#f7f4ee] hover:text-[#5d6948]"
+                            className="group mt-9 inline-flex items-center gap-3 border border-[#f7f4ee]/70 px-8 py-4 text-[10px] tracking-[0.25em] uppercase transition duration-300 hover:bg-[#f7f4ee] hover:text-[#5d6948]"
                         >
                             Reserveer een tafel
-
                             <span className="transition-transform duration-300 group-hover:translate-x-1">
                                 →
                             </span>
                         </Link>
                     </div>
                 </section>
-
             </main>
 
             <Footer />

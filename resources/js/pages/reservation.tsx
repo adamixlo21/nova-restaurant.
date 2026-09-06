@@ -29,11 +29,10 @@ export default function Reservation() {
             <Navbar />
 
             <main className="bg-[#f7f4ee] text-[#20231f]">
-
                 {/* Hero */}
                 <section className="px-6 py-20 sm:px-10 lg:px-16 lg:py-24">
                     <div className="mx-auto max-w-5xl text-center">
-                        <p className="mb-4 text-[11px] uppercase tracking-[0.35em] text-[#5d6948]">
+                        <p className="mb-4 text-[11px] tracking-[0.35em] text-[#5d6948] uppercase">
                             Brasserie De Bank
                         </p>
 
@@ -44,8 +43,8 @@ export default function Reservation() {
                         <div className="mx-auto mt-6 h-px w-14 bg-[#5d6948]/40" />
 
                         <p className="mx-auto mt-6 max-w-xl text-sm leading-7 text-[#20231f]/55 sm:text-base sm:leading-8">
-                            Kies een datum, tijd en het aantal gasten.
-                            Wij zorgen dat er een tafel voor je klaarstaat.
+                            Kies een datum, tijd en het aantal gasten. Wij
+                            zorgen dat er een tafel voor je klaarstaat.
                         </p>
                     </div>
                 </section>
@@ -53,11 +52,10 @@ export default function Reservation() {
                 {/* Reservation section */}
                 <section className="border-t border-black/5 bg-[#ebe7dc] px-6 py-16 sm:px-10 lg:px-16 lg:py-20">
                     <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.8fr_1.2fr]">
-
                         {/* Left information */}
                         <div className="flex flex-col justify-between bg-[#20231f] p-8 text-[#f7f4ee] sm:p-10">
                             <div>
-                                <p className="text-[10px] uppercase tracking-[0.3em] text-[#f7f4ee]/45">
+                                <p className="text-[10px] tracking-[0.3em] text-[#f7f4ee]/45 uppercase">
                                     Reserveren
                                 </p>
 
@@ -67,14 +65,14 @@ export default function Reservation() {
 
                                 <p className="mt-5 max-w-md text-sm leading-7 text-[#f7f4ee]/60">
                                     Of je nu komt lunchen, dineren of gezellig
-                                    borrelen, reserveer eenvoudig jouw tafel
-                                    via het formulier.
+                                    borrelen, reserveer eenvoudig jouw tafel via
+                                    het formulier.
                                 </p>
                             </div>
 
                             <div className="mt-12 space-y-7 border-t border-white/10 pt-8">
                                 <div>
-                                    <p className="text-[10px] uppercase tracking-[0.25em] text-[#f7f4ee]/35">
+                                    <p className="text-[10px] tracking-[0.25em] text-[#f7f4ee]/35 uppercase">
                                         Locatie
                                     </p>
 
@@ -86,7 +84,7 @@ export default function Reservation() {
                                 </div>
 
                                 <div>
-                                    <p className="text-[10px] uppercase tracking-[0.25em] text-[#f7f4ee]/35">
+                                    <p className="text-[10px] tracking-[0.25em] text-[#f7f4ee]/35 uppercase">
                                         Contact
                                     </p>
 
@@ -98,7 +96,7 @@ export default function Reservation() {
                                 </div>
 
                                 <div>
-                                    <p className="text-[10px] uppercase tracking-[0.25em] text-[#f7f4ee]/35">
+                                    <p className="text-[10px] tracking-[0.25em] text-[#f7f4ee]/35 uppercase">
                                         Grote groep?
                                     </p>
 
@@ -116,7 +114,7 @@ export default function Reservation() {
                             className="border border-[#5d6948]/15 bg-white p-7 shadow-[0_20px_50px_rgba(32,35,31,0.06)] sm:p-10"
                         >
                             <div className="mb-9">
-                                <p className="text-[10px] uppercase tracking-[0.3em] text-[#5d6948]">
+                                <p className="text-[10px] tracking-[0.3em] text-[#5d6948] uppercase">
                                     Jouw gegevens
                                 </p>
 
@@ -125,13 +123,14 @@ export default function Reservation() {
                                 </h2>
 
                                 <p className="mt-3 text-sm leading-6 text-[#20231f]/50">
-                                    Vul je gegevens in en verstuur je reserveringsaanvraag.
+                                    Vul je gegevens in en verstuur je
+                                    reserveringsaanvraag.
                                 </p>
                             </div>
 
                             {/* Name */}
                             <div className="mb-6">
-                                <label className="mb-2 block text-[11px] uppercase tracking-[0.18em] text-[#20231f]/65">
+                                <label className="mb-2 block text-[11px] tracking-[0.18em] text-[#20231f]/65 uppercase">
                                     Naam
                                 </label>
 
@@ -155,7 +154,7 @@ export default function Reservation() {
                             {/* Email + Phone */}
                             <div className="mb-6 grid gap-6 sm:grid-cols-2">
                                 <div>
-                                    <label className="mb-2 block text-[11px] uppercase tracking-[0.18em] text-[#20231f]/65">
+                                    <label className="mb-2 block text-[11px] tracking-[0.18em] text-[#20231f]/65 uppercase">
                                         E-mail
                                     </label>
 
@@ -177,7 +176,7 @@ export default function Reservation() {
                                 </div>
 
                                 <div>
-                                    <label className="mb-2 block text-[11px] uppercase tracking-[0.18em] text-[#20231f]/65">
+                                    <label className="mb-2 block text-[11px] tracking-[0.18em] text-[#20231f]/65 uppercase">
                                         Telefoon
                                     </label>
 
@@ -202,7 +201,7 @@ export default function Reservation() {
                             {/* Date + Time */}
                             <div className="mb-6 grid gap-6 sm:grid-cols-2">
                                 <div>
-                                    <label className="mb-2 block text-[11px] uppercase tracking-[0.18em] text-[#20231f]/65">
+                                    <label className="mb-2 block text-[11px] tracking-[0.18em] text-[#20231f]/65 uppercase">
                                         Datum
                                     </label>
 
@@ -224,7 +223,7 @@ export default function Reservation() {
                                 </div>
 
                                 <div>
-                                    <label className="mb-2 block text-[11px] uppercase tracking-[0.18em] text-[#20231f]/65">
+                                    <label className="mb-2 block text-[11px] tracking-[0.18em] text-[#20231f]/65 uppercase">
                                         Tijd
                                     </label>
 
@@ -236,8 +235,6 @@ export default function Reservation() {
                                         }
                                         className={inputClass}
                                         style={{ colorScheme: 'light' }}
-
-
                                     />
 
                                     {errors.time && (
@@ -250,7 +247,7 @@ export default function Reservation() {
 
                             {/* Guests */}
                             <div className="mb-6">
-                                <label className="mb-2 block text-[11px] uppercase tracking-[0.18em] text-[#20231f]/65">
+                                <label className="mb-2 block text-[11px] tracking-[0.18em] text-[#20231f]/65 uppercase">
                                     Aantal gasten
                                 </label>
 
@@ -277,7 +274,7 @@ export default function Reservation() {
 
                             {/* Message */}
                             <div className="mb-8">
-                                <label className="mb-2 block text-[11px] uppercase tracking-[0.18em] text-[#20231f]/65">
+                                <label className="mb-2 block text-[11px] tracking-[0.18em] text-[#20231f]/65 uppercase">
                                     Opmerking
                                 </label>
 
@@ -301,7 +298,7 @@ export default function Reservation() {
                             <button
                                 type="submit"
                                 disabled={processing}
-                                className="group flex w-full items-center justify-center gap-3 bg-[#20231f] px-6 py-4 text-[11px] uppercase tracking-[0.22em] text-[#f7f4ee] transition hover:bg-[#5d6948] disabled:cursor-not-allowed disabled:opacity-50"
+                                className="group flex w-full items-center justify-center gap-3 bg-[#20231f] px-6 py-4 text-[11px] tracking-[0.22em] text-[#f7f4ee] uppercase transition hover:bg-[#5d6948] disabled:cursor-not-allowed disabled:opacity-50"
                             >
                                 {processing
                                     ? 'Bezig met versturen...'

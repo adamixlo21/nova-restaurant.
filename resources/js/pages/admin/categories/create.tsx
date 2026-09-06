@@ -1,5 +1,6 @@
 import { Head, Link, useForm } from '@inertiajs/react';
-import AdminSidebar from "@/components/AdminSidebar";
+import AdminSidebar from '@/components/AdminSidebar';
+
 interface Menu {
     id: number;
     name: string;
@@ -17,97 +18,134 @@ export default function Create({ menus }: Props) {
         sort_order: 0,
     });
 
+    function generateSlug(value: string) {
+        return value
+            .toLowerCase()
+            .trim()
+            .replace(/[^\w\s-]/g, '')
+            .replace(/\s+/g, '-')
+            .replace(/-+/g, '-');
+    }
+
     function submit(e: React.FormEvent) {
         e.preventDefault();
 
         post('/admin/categories');
     }
 
+    const inputClass =
+        'w-full border border-black/10 bg-[#f7f4ee] px-4 py-3.5 text-sm text-[#20231f] outline-none transition placeholder:text-[#20231f]/30 focus:border-[#5d6948] focus:ring-2 focus:ring-[#5d6948]/10';
+
+    const labelClass =
+        'mb-2 block text-[10px] uppercase tracking-[0.22em] text-[#20231f]/50';
+
     return (
         <>
-            <Head title="Create Category" />
-            <div className="flex min-h-screen bg-[#f7f4ee]">
+            <Head title="Nieuwe categorie" />
+
+            <div className="flex min-h-screen bg-[#f7f4ee] text-[#20231f]">
                 <AdminSidebar />
 
-                <main className="min-w-0 flex-1 px-4 py-10 sm:px-6 lg:px-10">
-                    <div className="mx-auto max-w-7xl">
+                <main className="min-w-0 flex-1 px-4 py-8 sm:px-6 lg:px-10 lg:py-10">
+                    <div className="mx-auto max-w-4xl">
+                        {/* Header */}
+                        <div className="mb-10">
+                            <Link
+                                href="/admin/categories"
+                                className="group inline-flex items-center gap-2 text-[10px] tracking-[0.22em] text-[#5d6948] uppercase"
+                            >
+                                <span className="transition-transform duration-300 group-hover:-translate-x-1">
+                                    ←
+                                </span>
+                                Terug naar categorieën
+                            </Link>
 
+                            <p className="mt-7 text-[10px] tracking-[0.35em] text-[#5d6948] uppercase">
+                                Admin · Categorieën
+                            </p>
 
-                        <div className="min-h-screen bg-[#f7f4ee] px-6 py-10 text-[#20231f]">
-                            <div className="mx-auto max-w-2xl">
+                            <h1 className="mt-3 font-serif text-4xl sm:text-5xl">
+                                Nieuwe categorie
+                            </h1>
 
-                                <div className="mb-10">
-                                    <Link
-                                        href="/admin/categories"
-                                        className="text-xs uppercase tracking-[0.15em] text-[#5d6948]"
+                            <p className="mt-3 max-w-xl text-sm leading-6 text-[#20231f]/50">
+                                Voeg een nieuwe categorie toe aan één van de
+                                menukaarten van Brasserie De Bank.
+                            </p>
+                        </div>
+
+                        <form
+                            onSubmit={submit}
+                            className="border border-black/10 bg-white p-6 shadow-[0_20px_60px_rgba(32,35,31,0.04)] sm:p-8"
+                        >
+                            <div className="space-y-7">
+                                {/* Menu */}
+                                <div>
+                                    <label className={labelClass}>Menu</label>
+
+                                    <select
+                                        value={data.menu_id}
+                                        onChange={(e) =>
+                                            setData('menu_id', e.target.value)
+                                        }
+                                        className={inputClass}
                                     >
-                                        ← Back to Categories
-                                    </Link>
+                                        <option value="">
+                                            Selecteer een menu
+                                        </option>
 
-                                    <p className="mt-8 text-xs uppercase tracking-[0.3em] text-[#5d6948]">
-                                        Admin
-                                    </p>
+                                        {menus.map((menu) => (
+                                            <option
+                                                key={menu.id}
+                                                value={menu.id}
+                                            >
+                                                {menu.name}
+                                            </option>
+                                        ))}
+                                    </select>
 
-                                    <h1 className="mt-2 font-serif text-4xl">
-                                        Create Category
-                                    </h1>
+                                    {errors.menu_id && (
+                                        <p className="mt-2 text-sm text-red-600">
+                                            {errors.menu_id}
+                                        </p>
+                                    )}
                                 </div>
 
-                                <form
-                                    onSubmit={submit}
-                                    className="border border-black/10 bg-white p-8"
-                                >
-                                    <div className="mb-6">
-                                        <div>
-                                            <label className="mb-2 block text-xs uppercase tracking-[0.15em] text-[#20231f]/60">
-                                                Menu
-                                            </label>
+                                {/* Name */}
+                                <div>
+                                    <label className={labelClass}>Naam</label>
 
-                                            <select
-                                                value={data.menu_id}
-                                                onChange={(e) => setData('menu_id', e.target.value)}
-                                                className="w-full border border-black/10 bg-[#f7f4ee] px-4 py-3 outline-none transition focus:border-[#5d6948]"
-                                            >
-                                                <option value="">Select a menu</option>
+                                    <input
+                                        type="text"
+                                        value={data.name}
+                                        onChange={(e) => {
+                                            const value = e.target.value;
 
-                                                {menus.map((menu) => (
-                                                    <option key={menu.id} value={menu.id}>
-                                                        {menu.name}
-                                                    </option>
-                                                ))}
-                                            </select>
+                                            setData('name', value);
+                                            setData(
+                                                'slug',
+                                                generateSlug(value),
+                                            );
+                                        }}
+                                        className={inputClass}
+                                        placeholder="Bijv. Voorgerechten"
+                                    />
 
-                                            {errors.menu_id && (
-                                                <p className="mt-2 text-sm text-red-500">
-                                                    {errors.menu_id}
-                                                </p>
-                                            )}
-                                        </div>
-                                        <label className="mb-2 block text-xs uppercase tracking-[0.15em]">
-                                            Name
-                                        </label>
+                                    {errors.name && (
+                                        <p className="mt-2 text-sm text-red-600">
+                                            {errors.name}
+                                        </p>
+                                    )}
+                                </div>
 
-                                        <input
-                                            type="text"
-                                            value={data.name}
-                                            onChange={(e) =>
-                                                setData('name', e.target.value)
-                                            }
-                                            className="w-full border border-black/10 px-4 py-3 outline-none focus:border-[#5d6948]"
-                                            placeholder="e.g. Burgers"
-                                        />
+                                {/* Slug */}
+                                <div>
+                                    <label className={labelClass}>Slug</label>
 
-                                        {errors.name && (
-                                            <p className="mt-2 text-sm text-red-600">
-                                                {errors.name}
-                                            </p>
-                                        )}
-                                    </div>
-
-                                    <div className="mb-6">
-                                        <label className="mb-2 block text-xs uppercase tracking-[0.15em]">
-                                            Slug
-                                        </label>
+                                    <div className="flex overflow-hidden border border-black/10 bg-[#f7f4ee] focus-within:border-[#5d6948]">
+                                        <span className="hidden items-center border-r border-black/10 px-4 text-xs text-[#20231f]/35 sm:flex">
+                                            /categorie/
+                                        </span>
 
                                         <input
                                             type="text"
@@ -115,66 +153,78 @@ export default function Create({ menus }: Props) {
                                             onChange={(e) =>
                                                 setData('slug', e.target.value)
                                             }
-                                            className="w-full border border-black/10 px-4 py-3 outline-none focus:border-[#5d6948]"
-                                            placeholder="e.g. burgers"
+                                            className="min-w-0 flex-1 bg-transparent px-4 py-3.5 text-sm outline-none"
+                                            placeholder="voorgerechten"
                                         />
-
-                                        {errors.slug && (
-                                            <p className="mt-2 text-sm text-red-600">
-                                                {errors.slug}
-                                            </p>
-                                        )}
                                     </div>
 
-                                    <div className="mb-8">
-                                        <label className="mb-2 block text-xs uppercase tracking-[0.15em]">
-                                            Sort Order
-                                        </label>
+                                    <p className="mt-2 text-xs text-[#20231f]/35">
+                                        Wordt automatisch gemaakt op basis van
+                                        de naam.
+                                    </p>
 
-                                        <input
-                                            type="number"
-                                            value={data.sort_order}
-                                            onChange={(e) =>
-                                                setData(
-                                                    'sort_order',
-                                                    Number(e.target.value)
-                                                )
-                                            }
-                                            className="w-full border border-black/10 px-4 py-3 outline-none focus:border-[#5d6948]"
-                                        />
+                                    {errors.slug && (
+                                        <p className="mt-2 text-sm text-red-600">
+                                            {errors.slug}
+                                        </p>
+                                    )}
+                                </div>
 
-                                        {errors.sort_order && (
-                                            <p className="mt-2 text-sm text-red-600">
-                                                {errors.sort_order}
-                                            </p>
-                                        )}
-                                    </div>
+                                {/* Sort order */}
+                                <div>
+                                    <label className={labelClass}>
+                                        Volgorde
+                                    </label>
 
-                                    <div className="flex items-center justify-end gap-4">
-                                        <Link
-                                            href="/admin/categories"
-                                            className="px-5 py-3 text-xs uppercase tracking-[0.15em] text-[#20231f]/60"
-                                        >
-                                            Cancel
-                                        </Link>
+                                    <input
+                                        type="number"
+                                        min="0"
+                                        value={data.sort_order}
+                                        onChange={(e) =>
+                                            setData(
+                                                'sort_order',
+                                                Number(e.target.value),
+                                            )
+                                        }
+                                        className={inputClass}
+                                    />
 
-                                        <button
-                                            type="submit"
-                                            disabled={processing}
-                                            className="bg-[#20231f] px-6 py-3 text-xs uppercase tracking-[0.18em] text-[#f7f4ee] transition hover:bg-[#5d6948] disabled:opacity-50"
-                                        >
-                                            {processing ? 'Saving...' : 'Create Category'}
-                                        </button>
-                                    </div>
-                                </form>
+                                    <p className="mt-2 text-xs leading-5 text-[#20231f]/35">
+                                        Een lager nummer verschijnt eerder
+                                        binnen het menu.
+                                    </p>
 
+                                    {errors.sort_order && (
+                                        <p className="mt-2 text-sm text-red-600">
+                                            {errors.sort_order}
+                                        </p>
+                                    )}
+                                </div>
+
+                                {/* Actions */}
+                                <div className="flex flex-col-reverse gap-3 border-t border-black/10 pt-6 sm:flex-row sm:justify-end">
+                                    <Link
+                                        href="/admin/categories"
+                                        className="border border-[#20231f]/15 px-6 py-3.5 text-center text-[10px] tracking-[0.2em] text-[#20231f]/60 uppercase transition hover:border-[#20231f]"
+                                    >
+                                        Annuleren
+                                    </Link>
+
+                                    <button
+                                        type="submit"
+                                        disabled={processing}
+                                        className="bg-[#20231f] px-7 py-3.5 text-[10px] tracking-[0.22em] text-[#f7f4ee] uppercase transition hover:bg-[#5d6948] disabled:cursor-not-allowed disabled:opacity-50"
+                                    >
+                                        {processing
+                                            ? 'Opslaan...'
+                                            : 'Categorie aanmaken'}
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-
+                        </form>
                     </div>
                 </main>
             </div>
-
         </>
     );
 }
