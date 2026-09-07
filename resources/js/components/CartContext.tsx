@@ -85,7 +85,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
         setCart([]);
     };
 
-
     const updateItemNote = (id: number, note: string) => {
         setCart((currentCart) =>
             currentCart.map((item) =>

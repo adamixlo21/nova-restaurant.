@@ -12,7 +12,6 @@ interface Order {
 }
 
 export default function CheckoutSuccess({ order }: { order: Order }) {
-
     // const { clearCart } = useCart();
     //
     // useEffect(() => {

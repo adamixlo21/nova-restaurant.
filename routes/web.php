@@ -18,6 +18,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\MollieWebhookController;
 
 
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/menus', [MenuController::class, 'publicIndex'])
@@ -121,5 +122,14 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
 
     Route::resource('vacancies', AdminVacancyController::class)
         ->except(['show']);
+
+    Route::get('/orders', [OrderController::class, 'index'])
+        ->name('orders.index');
+
+    Route::get('/orders/{order}', [OrderController::class, 'show'])
+        ->name('orders.show');
+
+    Route::patch('/orders/{order}/status', [OrderController::class, 'updateStatus'])
+        ->name('orders.status');
 });
 require __DIR__.'/settings.php';

@@ -111,5 +111,50 @@ class OrderController extends Controller
         ]);
 
         return Inertia::location($payment->getCheckoutUrl());
+
+
+    }
+    public function index()
+    {
+        $orders = Order::query()
+            ->latest()
+            ->get([
+                'id',
+                'order_number',
+                'first_name',
+                'last_name',
+                'total',
+                'status',
+                'payment_status',
+                'time_slot',
+                'created_at',
+            ]);
+
+        return Inertia::render('admin/orders/index', [
+            'orders' => $orders,
+        ]);
+    }
+    public function show(Order $order)
+    {
+        $order->load('items');
+
+        return Inertia::render('admin/orders/show', [
+            'order' => $order,
+        ]);
+    }
+    public function updateStatus(Request $request, Order $order)
+    {
+        $validated = $request->validate([
+            'status' => [
+                'required',
+                'in:pending,confirmed,preparing,ready,completed,cancelled',
+            ],
+        ]);
+
+        $order->update([
+            'status' => $validated['status'],
+        ]);
+
+        return back();
     }
 }
