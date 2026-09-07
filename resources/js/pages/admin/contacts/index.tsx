@@ -1,4 +1,4 @@
-import {Head, Link, router} from '@inertiajs/react';
+import { Head, Link, router } from '@inertiajs/react';
 import { useMemo, useState } from 'react';
 import AdminSidebar from '@/components/AdminSidebar';
 
@@ -79,9 +79,9 @@ export default function Index({ contacts }: Props) {
                                 href="/dashboard"
                                 className="group inline-flex items-center gap-2 text-[10px] tracking-[0.22em] text-[#5d6948] uppercase"
                             >
-                                    <span className="transition-transform duration-300 group-hover:-translate-x-1">
-                                        ←
-                                    </span>
+                                <span className="transition-transform duration-300 group-hover:-translate-x-1">
+                                    ←
+                                </span>
                                 Terug naar dashboard
                             </Link>
                             <p className="text-[10px] tracking-[0.35em] text-[#5d6948] uppercase">

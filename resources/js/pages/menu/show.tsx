@@ -1,7 +1,8 @@
 import { Head, Link } from '@inertiajs/react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { useCart } from '@/components/CartContext';
 
 interface MenuItemPrice {
     id: number;
@@ -42,6 +43,8 @@ interface Props {
 }
 
 export default function Show({ menu }: Props) {
+    const { addToCart } = useCart();
+
     useEffect(() => {
         const elements =
             document.querySelectorAll<HTMLElement>('[data-reveal]');
@@ -212,81 +215,126 @@ export default function Show({ menu }: Props) {
                                         </p>
                                     ) : (
                                         <div className="grid gap-5">
-                                            {category.menu_items.map((item, index) => (
-                                                <article
-                                                    key={item.id}
-                                                    data-reveal
-                                                    style={{
-                                                        transitionDelay: `${index * 75}ms`,
-                                                    }}
-                                                    className="menu-detail-item group relative overflow-hidden border border-black/10 bg-[#f7f4ee] transition duration-500 hover:-translate-y-1 hover:bg-white hover:shadow-[0_18px_45px_rgba(32,35,31,0.06)]"
-                                                >
-                                                    <div className="p-6 sm:p-8">
-                                                        <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
-                                                            {/* DISH INFO */}
-                                                            <div className="min-w-0 flex-1">
-                                                                <p className="text-[9px] uppercase tracking-[0.2em] text-[#5d6948]/60">
-                                                                    {String(index + 1).padStart(2, '0')}
-                                                                </p>
-
-                                                                <h3 className="mt-3 font-serif text-2xl leading-tight sm:text-3xl">
-                                                                    {item.name}
-                                                                </h3>
-
-                                                                {item.description && (
-                                                                    <p className="mt-4 max-w-2xl text-sm leading-6 text-[#20231f]/55">
-                                                                        {item.description}
+                                            {category.menu_items.map(
+                                                (item, index) => (
+                                                    <article
+                                                        key={item.id}
+                                                        data-reveal
+                                                        style={{
+                                                            transitionDelay: `${index * 75}ms`,
+                                                        }}
+                                                        className="menu-detail-item group relative overflow-hidden border border-black/10 bg-[#f7f4ee] transition duration-500 hover:-translate-y-1 hover:bg-white hover:shadow-[0_18px_45px_rgba(32,35,31,0.06)]"
+                                                    >
+                                                        <div className="p-6 sm:p-8">
+                                                            <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
+                                                                {/* DISH INFO */}
+                                                                <div className="min-w-0 flex-1">
+                                                                    <p className="text-[9px] tracking-[0.2em] text-[#5d6948]/60 uppercase">
+                                                                        {String(
+                                                                            index +
+                                                                                1,
+                                                                        ).padStart(
+                                                                            2,
+                                                                            '0',
+                                                                        )}
                                                                     </p>
-                                                                )}
-                                                            </div>
 
-                                                            {/* PRICES */}
-                                                            <div className="shrink-0 sm:min-w-[150px] sm:text-right">
-                                                                {item.price !== null && (
-                                                                    <p className="text-base font-medium text-[#5d6948]">
-                                                                        €{formatPrice(item.price)}
-                                                                        {item.price_text &&
-                                                                            ` ${item.price_text}`}
-                                                                    </p>
-                                                                )}
+                                                                    <h3 className="mt-3 font-serif text-2xl leading-tight sm:text-3xl">
+                                                                        {
+                                                                            item.name
+                                                                        }
+                                                                    </h3>
 
-                                                                {item.price === null &&
-                                                                    item.price_text && (
-                                                                        <p className="text-sm font-medium text-[#5d6948]">
-                                                                            {item.price_text}
+                                                                    {item.description && (
+                                                                        <p className="mt-4 max-w-2xl text-sm leading-6 text-[#20231f]/55">
+                                                                            {
+                                                                                item.description
+                                                                            }
+                                                                        </p>
+                                                                    )}
+                                                                </div>
+
+                                                                {/* PRICES */}
+                                                                <div className="shrink-0 sm:min-w-[150px] sm:text-right">
+                                                                    {item.price !==
+                                                                        null && (
+                                                                        <p className="text-base font-medium text-[#5d6948]">
+                                                                            €
+                                                                            {formatPrice(
+                                                                                item.price,
+                                                                            )}
+                                                                            {item.price_text &&
+                                                                                ` ${item.price_text}`}
                                                                         </p>
                                                                     )}
 
-                                                                {item.prices?.length > 0 && (
-                                                                    <div className="mt-2 space-y-2">
-                                                                        {item.prices.map((price) => (
-                                                                            <div
-                                                                                key={price.id}
-                                                                                className="flex items-center justify-between gap-5 text-sm sm:justify-end"
-                                                                            >
-                                            <span className="text-xs text-[#20231f]/40">
-                                                {price.label}
-                                            </span>
+                                                                    {item.price ===
+                                                                        null &&
+                                                                        item.price_text && (
+                                                                            <p className="text-sm font-medium text-[#5d6948]">
+                                                                                {
+                                                                                    item.price_text
+                                                                                }
+                                                                            </p>
+                                                                        )}
 
-                                                                                <span className="font-medium text-[#5d6948]">
-                                                €
-                                                                                    {formatPrice(
-                                                                                        price.price,
-                                                                                    )}
-                                            </span>
-                                                                            </div>
-                                                                        ))}
-                                                                    </div>
-                                                                )}
+                                                                    {item.prices
+                                                                        ?.length >
+                                                                        0 && (
+                                                                        <div className="mt-2 space-y-2">
+                                                                            {item.prices.map(
+                                                                                (
+                                                                                    price,
+                                                                                ) => (
+                                                                                    <div
+                                                                                        key={
+                                                                                            price.id
+                                                                                        }
+                                                                                        className="flex items-center justify-between gap-5 text-sm sm:justify-end"
+                                                                                    >
+                                                                                        <span className="text-xs text-[#20231f]/40">
+                                                                                            {
+                                                                                                price.label
+                                                                                            }
+                                                                                        </span>
+
+                                                                                        <span className="font-medium text-[#5d6948]">
+                                                                                            €
+                                                                                            {formatPrice(
+                                                                                                price.price,
+                                                                                            )}
+                                                                                        </span>
+                                                                                    </div>
+                                                                                ),
+                                                                            )}
+                                                                        </div>
+                                                                    )}
+                                                                </div>
                                                             </div>
-                                                        </div>
 
-                                                        <div className="mt-7 h-px w-full bg-black/10">
-                                                            <div className="h-px w-0 bg-[#5d6948] transition-all duration-500 group-hover:w-full" />
+                                                            <div className="mt-7 h-px w-full bg-black/10">
+                                                                <div className="h-px w-0 bg-[#5d6948] transition-all duration-500 group-hover:w-full" />
+                                                            </div>
+                                                            {item.price !==
+                                                                null && (
+                                                                <button
+                                                                    type="button"
+                                                                    onClick={() =>
+                                                                        addToCart(
+                                                                            item,
+                                                                        )
+                                                                    }
+                                                                    className="mt-6 bg-[#5d6948] px-6 py-3 text-[10px] tracking-[0.2em] text-white uppercase transition hover:bg-[#4f5a3d]"
+                                                                >
+                                                                    Toevoegen
+                                                                    aan
+                                                                    bestelling
+                                                                </button>
+                                                            )}
                                                         </div>
-                                                    </div>
-                                                </article>
-                                            ))}
+                                                    </article>
+                                                ),
+                                            )}
                                         </div>
                                     )}
                                 </section>

@@ -2,6 +2,7 @@ import { Head, Link } from '@inertiajs/react';
 import { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { useCart } from '@/components/CartContext';
 
 interface Menu {
     id: number;
@@ -16,6 +17,7 @@ interface Props {
 }
 
 export default function Menu({ menus }: Props) {
+    const { addToCart } = useCart();
     useEffect(() => {
         const elements =
             document.querySelectorAll<HTMLElement>('[data-reveal]');

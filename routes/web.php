@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 use App\Http\Controllers\ActualiteitController;
 use App\Http\Controllers\Admin\ContactController as AdminContactController;
 use App\Http\Controllers\Admin\ReservationController as AdminReservationController;
@@ -12,7 +14,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\MenuItemController;
 use App\Http\Controllers\ReservationController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OrderController;
+
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -55,9 +58,21 @@ Route::get('/vacatures', [VacancyController::class, 'index'])
 Route::get('/vacatures/{vacancy:slug}', [VacancyController::class, 'show'])
     ->name('vacancies.show');
 
+Route::post('/checkout', [OrderController::class, 'store'])
+    ->name('checkout.store');
+
+Route::get('/checkout', function () {
+    return Inertia::render('checkout');
+});
+
+Route::get('/checkout/success/{order}', function (\App\Models\Order $order) {
+    return Inertia::render('checkout-success', [
+        'order' => $order,
+    ]);
+})->name('checkout.success');
+
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::inertia('dashboard', 'dashboard')->name('dashboard');
-
 });
 
 

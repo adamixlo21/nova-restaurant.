@@ -5,6 +5,7 @@ import { initializeTheme } from '@/hooks/use-appearance';
 import AdminLayout from '@/layouts/admin-layout';
 import AuthLayout from '@/layouts/auth-layout';
 import SettingsLayout from '@/layouts/settings/layout';
+import { CartProvider } from '@/components/CartContext';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
@@ -38,17 +39,18 @@ void createInertiaApp({
 
     strictMode: true,
 
-    withApp(app) {
-        return (
-            <TooltipProvider delayDuration={0}>
-                {app}
-                <Toaster />
-            </TooltipProvider>
-        );
-    },
-
     progress: {
         color: '#5d6948',
+    },
+    withApp(app) {
+        return (
+            <CartProvider>
+                <TooltipProvider delayDuration={0}>
+                    {app}
+                    <Toaster />
+                </TooltipProvider>
+            </CartProvider>
+        );
     },
 });
 

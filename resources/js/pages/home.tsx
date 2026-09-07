@@ -681,7 +681,10 @@ export default function Home({ featuredDishes, actualiteiten }: Props) {
 
                                     {/* Top label */}
                                     <div className="absolute top-5 left-5 border border-white/30 bg-black/10 px-4 py-2 text-[9px] tracking-[0.25em] text-white uppercase backdrop-blur-sm">
-                                        Sinds 2013 een vertrouwde plek in Harderwijk. Sinds 2025 onder leiding van Patrick Elzinga en Robert Poel, met een frisse nieuwe visie.
+                                        Sinds 2013 een vertrouwde plek in
+                                        Harderwijk. Sinds 2025 onder leiding van
+                                        Patrick Elzinga en Robert Poel, met een
+                                        frisse nieuwe visie.
                                     </div>
 
                                     {/* Number */}
