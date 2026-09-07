@@ -7,6 +7,10 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Inertia\Inertia;
+use Mollie\Api\Http\Data\Money;
+use Mollie\Api\Http\Requests\CreatePaymentRequest;
+use Mollie\Laravel\Facades\Mollie;
 
 class OrderController extends Controller
 {
@@ -47,14 +51,12 @@ class OrderController extends Controller
 
         $order = DB::transaction(function () use ($validated) {
             $total = 0;
-
             $items = [];
 
             foreach ($validated['items'] as $cartItem) {
                 $menuItem = MenuItem::findOrFail($cartItem['id']);
 
                 $price = (float) $menuItem->price;
-
                 $subtotal = $price * $cartItem['quantity'];
 
                 $total += $subtotal;
@@ -88,6 +90,26 @@ class OrderController extends Controller
             return $order;
         });
 
-        return redirect()->route('checkout.success', $order);
+        $paymentRequest = new CreatePaymentRequest(
+            description: 'Bestelling ' . $order->order_number,
+            amount: new Money(
+                'EUR',
+                number_format((float) $order->total, 2, '.', '')
+            ),
+            redirectUrl: route('checkout.payment.return', $order),
+            webhookUrl: route('mollie.webhook'),
+            metadata: [
+                'order_id' => $order->id,
+                'order_number' => $order->order_number,
+            ],
+        );
+
+        $payment = Mollie::send($paymentRequest);
+
+        $order->update([
+            'mollie_payment_id' => $payment->id,
+        ]);
+
+        return Inertia::location($payment->getCheckoutUrl());
     }
 }

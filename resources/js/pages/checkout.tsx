@@ -37,19 +37,7 @@ export default function Checkout() {
             })),
         }));
 
-        post('/checkout', {
-            onSuccess: () => {
-                console.log('Order created successfully');
-            },
-
-            onError: (errors) => {
-                console.log('Checkout errors:', errors);
-            },
-
-            onFinish: () => {
-                console.log('Checkout request finished');
-            },
-        });
+        post('/checkout');
     };
 
     const total = cart.reduce(
@@ -251,8 +239,8 @@ export default function Checkout() {
                                 className="mt-6 w-full bg-[#20231f] px-6 py-5 text-[10px] tracking-[0.25em] text-white uppercase transition hover:bg-[#5d6948] disabled:cursor-not-allowed disabled:opacity-50"
                             >
                                 {processing
-                                    ? 'Bestelling verwerken...'
-                                    : 'Bestelling plaatsen'}
+                                    ? 'Doorsturen naar betaling...'
+                                    : 'Bestellen en betalen'}
                             </button>
                         </section>
                     </form>

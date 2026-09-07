@@ -15,6 +15,7 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\MenuItemController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\MollieWebhookController;
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -70,6 +71,9 @@ Route::get('/checkout/success/{order}', function (\App\Models\Order $order) {
         'order' => $order,
     ]);
 })->name('checkout.success');
+
+Route::post('/webhooks/mollie', MollieWebhookController::class)
+    ->name('mollie.webhook');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::inertia('dashboard', 'dashboard')->name('dashboard');
