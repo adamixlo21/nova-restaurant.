@@ -131,4 +131,41 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::patch('/orders/{order}/status', [OrderController::class, 'updateStatus'])
         ->name('orders.status');
 });
+
+Route::get('/sitemap.xml', function () {
+    $staticUrls = [
+        route('home'),
+        route('menus'),
+        route('reservation'),
+        route('about'),
+        route('contacts'),
+        route('mogelijkheden'),
+        route('locatie'),
+        route('actualiteiten.index'),
+        route('vacancies.index'),
+    ];
+
+    $menuUrls = \App\Models\Menu::query()
+        ->get()
+        ->map(fn ($menu) => route('menus.show', $menu));
+
+    $actualiteitUrls = \App\Models\Actualiteit::query()
+        ->get()
+        ->map(fn ($actualiteit) => route('actualiteiten.show', $actualiteit));
+
+    $vacancyUrls = \App\Models\Vacancy::query()
+        ->get()
+        ->map(fn ($vacancy) => route('vacancies.show', $vacancy));
+
+    $urls = collect($staticUrls)
+        ->merge($menuUrls)
+        ->merge($actualiteitUrls)
+        ->merge($vacancyUrls);
+
+    return response()
+        ->view('sitemap', [
+            'urls' => $urls,
+        ])
+        ->header('Content-Type', 'application/xml');
+})->name('sitemap');
 require __DIR__.'/settings.php';
