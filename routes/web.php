@@ -69,7 +69,7 @@ Route::get('/checkout', function () {
 
 Route::get('/checkout/success/{order}', function (\App\Models\Order $order) {
     return Inertia::render('checkout-success', [
-        'order' => $order,
+        'order' => $order->load('items'),
     ]);
 })->name('checkout.success');
 
