@@ -37,6 +37,8 @@ export default function AdminSidebar() {
         { name: 'Berichten', href: '/admin/contacts' },
         { name: 'Actualiteiten', href: '/admin/actualiteiten' },
         { name: 'Vacatures', href: '/admin/vacancies' },
+        { name: 'Orders', href: '/admin/orders' },
+
     ];
 
     function isActive(href: string) {
