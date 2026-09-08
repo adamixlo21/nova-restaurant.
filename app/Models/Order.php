@@ -20,6 +20,7 @@ class Order extends Model
         'total',
         'status',
         'payment_status',
+        'confirmation_email_sent_at',
     ];
 
     public function items(): HasMany

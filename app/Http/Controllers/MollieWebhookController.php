@@ -6,6 +6,8 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 use Mollie\Api\Http\Requests\GetPaymentRequest;
 use Mollie\Laravel\Facades\Mollie;
+use App\Mail\OrderConfirmation;
+use Illuminate\Support\Facades\Mail;
 
 class MollieWebhookController extends Controller
 {
@@ -35,18 +37,16 @@ class MollieWebhookController extends Controller
                 'payment_status' => 'paid',
                 'status' => 'confirmed',
             ]);
-        } elseif ($payment->isCanceled()) {
-            $order->update([
-                'payment_status' => 'cancelled',
-            ]);
-        } elseif ($payment->isFailed()) {
-            $order->update([
-                'payment_status' => 'failed',
-            ]);
-        } elseif ($payment->isExpired()) {
-            $order->update([
-                'payment_status' => 'expired',
-            ]);
+
+            if ($order->confirmation_email_sent_at === null) {
+                Mail::to($order->email)->send(
+                    new OrderConfirmation($order)
+                );
+
+                $order->update([
+                    'confirmation_email_sent_at' => now(),
+                ]);
+            }
         }
 
         return response('OK', 200);
