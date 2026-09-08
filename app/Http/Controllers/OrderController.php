@@ -11,6 +11,8 @@ use Inertia\Inertia;
 use Mollie\Api\Http\Data\Money;
 use Mollie\Api\Http\Requests\CreatePaymentRequest;
 use Mollie\Laravel\Facades\Mollie;
+use Mollie\Api\Http\Requests\GetPaymentRequest;
+
 
 class OrderController extends Controller
 {
@@ -156,5 +158,33 @@ class OrderController extends Controller
         ]);
 
         return back();
+    }
+
+    public function paymentReturn(Order $order)
+    {
+        if ($order->mollie_payment_id) {
+            $payment = Mollie::send(
+                new GetPaymentRequest(id: $order->mollie_payment_id)
+            );
+
+            if ($payment->isPaid()) {
+                $order->update([
+                    'payment_status' => 'paid',
+                    'status' => 'confirmed',
+                ]);
+            } elseif ($payment->isCanceled()) {
+                $order->update([
+                    'payment_status' => 'cancelled',
+                ]);
+            } elseif ($payment->isFailed()) {
+                $order->update([
+                    'payment_status' => 'failed',
+                ]);
+            }
+        }
+
+        return Inertia::render('checkout-success', [
+            'order' => $order->fresh(),
+        ]);
     }
 }

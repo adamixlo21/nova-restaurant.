@@ -12,11 +12,13 @@ interface Order {
 }
 
 export default function CheckoutSuccess({ order }: { order: Order }) {
-    // const { clearCart } = useCart();
-    //
-    // useEffect(() => {
-    //     clearCart();
-    // }, []);
+    const { clearCart } = useCart();
+
+    useEffect(() => {
+        if (order.payment_status === 'paid') {
+            clearCart();
+        }
+    }, [order.payment_status]);
 
     return (
         <>

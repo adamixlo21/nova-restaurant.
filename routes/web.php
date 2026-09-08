@@ -73,11 +73,10 @@ Route::get('/checkout/success/{order}', function (\App\Models\Order $order) {
     ]);
 })->name('checkout.success');
 
-Route::get('/checkout/payment/{order}', function (\App\Models\Order $order) {
-    return Inertia::render('checkout-success', [
-        'order' => $order,
-    ]);
-})->name('checkout.payment.return');
+Route::get(
+    '/checkout/payment/{order}',
+    [OrderController::class, 'paymentReturn']
+)->name('checkout.payment.return');
 
 Route::post('/webhooks/mollie', MollieWebhookController::class)
     ->name('mollie.webhook');
