@@ -19,7 +19,6 @@
     ## Jouw bestelling
 
     @foreach($order->items as $item)
-
         **{{ $item->quantity }} × {{ $item->name }}**
         €{{ number_format($item->price, 2, ',', '.') }} per stuk
 
@@ -30,7 +29,6 @@
         **€{{ number_format($item->subtotal, 2, ',', '.') }}**
 
         ---
-
     @endforeach
 
     @if($order->note)
