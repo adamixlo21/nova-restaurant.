@@ -184,7 +184,7 @@ class OrderController extends Controller
         }
 
         return Inertia::render('checkout-success', [
-            'order' => $order->fresh(),
+            'order' => $order->fresh()->load('items'),
         ]);
     }
 }

@@ -21,7 +21,7 @@ interface Order {
     payment_status: string;
     status: string;
     time_slot: string | null;
-    items: OrderItem[];
+    items?: OrderItem[];
 }
 
 const formatPrice = (price: string) =>
@@ -136,7 +136,7 @@ export default function CheckoutSuccess({
                             </h2>
 
                             <div className="mt-6 space-y-5">
-                                {order.items.map((item) => (
+                                {(order.items ?? []).map((item) => (
                                     <div
                                         key={item.id}
                                         className="flex justify-between gap-6 border-b border-black/10 pb-5"
