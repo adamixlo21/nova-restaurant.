@@ -80,19 +80,19 @@ export default function Navbar() {
 
                 {/* Right side */}
                 <div className="flex shrink-0 items-center gap-3">
-                    <button
-                        type="button"
-                        onClick={() => setCartOpen((open) => !open)}
-                        className="relative flex h-11 w-11 items-center justify-center border border-black/10 transition hover:border-[#5d6948]"
-                        aria-label="Bestelling openen"
-                    >
-                        🛒
-                        {cartCount > 0 && (
-                            <span className="absolute -top-2 -right-2 flex h-5 min-w-5 items-center justify-center rounded-full bg-[#5d6948] px-1 text-[10px] text-white">
-                                {cartCount}
-                            </span>
-                        )}
-                    </button>
+                    {/*<button*/}
+                    {/*    type="button"*/}
+                    {/*    onClick={() => setCartOpen((open) => !open)}*/}
+                    {/*    className="relative flex h-11 w-11 items-center justify-center border border-black/10 transition hover:border-[#5d6948]"*/}
+                    {/*    aria-label="Bestelling openen"*/}
+                    {/*>*/}
+                    {/*    🛒*/}
+                    {/*    {cartCount > 0 && (*/}
+                    {/*        <span className="absolute -top-2 -right-2 flex h-5 min-w-5 items-center justify-center rounded-full bg-[#5d6948] px-1 text-[10px] text-white">*/}
+                    {/*            {cartCount}*/}
+                    {/*        </span>*/}
+                    {/*    )}*/}
+                    {/*</button>*/}
                     {/* Desktop reservation button */}
                     <Link
                         href="/reservation"
@@ -188,7 +188,7 @@ export default function Navbar() {
                     </Link>
                 </nav>
             </div>
-            <Cart isOpen={cartOpen} onClose={() => setCartOpen(false)} />
+            {/*<Cart isOpen={cartOpen} onClose={() => setCartOpen(false)} />*/}
         </header>
     );
 }

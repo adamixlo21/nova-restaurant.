@@ -60,26 +60,26 @@ Route::get('/vacatures', [VacancyController::class, 'index'])
 Route::get('/vacatures/{vacancy:slug}', [VacancyController::class, 'show'])
     ->name('vacancies.show');
 
-Route::post('/checkout', [OrderController::class, 'store'])
-    ->name('checkout.store');
-
-Route::get('/checkout', function () {
-    return Inertia::render('checkout');
-});
-
-Route::get('/checkout/success/{order}', function (\App\Models\Order $order) {
-    return Inertia::render('checkout-success', [
-        'order' => $order->load('items'),
-    ]);
-})->name('checkout.success');
-
-Route::get(
-    '/checkout/payment/{order}',
-    [OrderController::class, 'paymentReturn']
-)->name('checkout.payment.return');
-
-Route::post('/webhooks/mollie', MollieWebhookController::class)
-    ->name('mollie.webhook');
+//Route::post('/checkout', [OrderController::class, 'store'])
+//    ->name('checkout.store');
+//
+//Route::get('/checkout', function () {
+//    return Inertia::render('checkout');
+//});
+//
+//Route::get('/checkout/success/{order}', function (\App\Models\Order $order) {
+//    return Inertia::render('checkout-success', [
+//        'order' => $order->load('items'),
+//    ]);
+//})->name('checkout.success');
+//
+//Route::get(
+//    '/checkout/payment/{order}',
+//    [OrderController::class, 'paymentReturn']
+//)->name('checkout.payment.return');
+//
+//Route::post('/webhooks/mollie', MollieWebhookController::class)
+//    ->name('mollie.webhook');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::inertia('dashboard', 'dashboard')->name('dashboard');
@@ -96,16 +96,16 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::resource('menu-items', MenuItemController::class)
         ->except(['show']);
 
-    Route::get('reservations', [AdminReservationController::class, 'index'])
-        ->name('reservations.index');
-
-    Route::put('reservations/{reservation}', [AdminReservationController::class, 'update'])
-        ->name('reservations.update');
-
-    Route::delete(
-        'reservations/{reservation}',
-        [AdminReservationController::class, 'destroy']
-    )->name('reservations.destroy');
+//    Route::get('reservations', [AdminReservationController::class, 'index'])
+//        ->name('reservations.index');
+//
+//    Route::put('reservations/{reservation}', [AdminReservationController::class, 'update'])
+//        ->name('reservations.update');
+//
+//    Route::delete(
+//        'reservations/{reservation}',
+//        [AdminReservationController::class, 'destroy']
+//    )->name('reservations.destroy');
 
     Route::get('contacts', [AdminContactController::class, 'index'])
         ->name('contacts.index');
@@ -122,14 +122,14 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::resource('vacancies', AdminVacancyController::class)
         ->except(['show']);
 
-    Route::get('/orders', [OrderController::class, 'index'])
-        ->name('orders.index');
-
-    Route::get('/orders/{order}', [OrderController::class, 'show'])
-        ->name('orders.show');
-
-    Route::patch('/orders/{order}/status', [OrderController::class, 'updateStatus'])
-        ->name('orders.status');
+//    Route::get('/orders', [OrderController::class, 'index'])
+//        ->name('orders.index');
+//
+//    Route::get('/orders/{order}', [OrderController::class, 'show'])
+//        ->name('orders.show');
+//
+//    Route::patch('/orders/{order}/status', [OrderController::class, 'updateStatus'])
+//        ->name('orders.status');
 });
 
 Route::get('/sitemap.xml', function () {

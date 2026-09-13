@@ -1325,6 +1325,14 @@ export default function Home({ featuredDishes, actualiteiten }: Props) {
                 </Link>
             </div>
 
+            <button
+                type="button"
+                data-zc-action="open"
+                className="rounded-full bg-[#5d6948] px-8 py-4 text-white"
+            >
+                Reserveer een tafel
+            </button>
+
             <Footer />
 
             <style>{`

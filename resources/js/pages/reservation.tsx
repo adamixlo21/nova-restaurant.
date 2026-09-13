@@ -1,27 +1,8 @@
-import { Head, useForm } from '@inertiajs/react';
+import { Head } from '@inertiajs/react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 export default function Reservation() {
-    const { data, setData, post, processing, errors } = useForm({
-        name: '',
-        email: '',
-        phone: '',
-        date: '',
-        time: '',
-        guests: 2,
-        message: '',
-    });
-
-    function submit(e: React.FormEvent) {
-        e.preventDefault();
-
-        post('/reservation');
-    }
-
-    const inputClass =
-        'w-full border border-black/10 bg-[#f7f4ee] px-4 py-3.5 text-sm text-[#20231f] outline-none transition focus:border-[#5d6948] focus:ring-2 focus:ring-[#5d6948]/10';
-
     return (
         <>
             <Head title="Reserveren" />
@@ -43,8 +24,7 @@ export default function Reservation() {
                         <div className="mx-auto mt-6 h-px w-14 bg-[#5d6948]/40" />
 
                         <p className="mx-auto mt-6 max-w-xl text-sm leading-7 text-[#20231f]/55 sm:text-base sm:leading-8">
-                            Kies een datum, tijd en het aantal gasten. Wij
-                            zorgen dat er een tafel voor je klaarstaat.
+                            Reserveer eenvoudig jouw tafel via Zenchef.
                         </p>
                     </div>
                 </section>
@@ -52,7 +32,8 @@ export default function Reservation() {
                 {/* Reservation section */}
                 <section className="border-t border-black/5 bg-[#ebe7dc] px-6 py-16 sm:px-10 lg:px-16 lg:py-20">
                     <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.8fr_1.2fr]">
-                        {/* Left information */}
+
+                        {/* Left */}
                         <div className="flex flex-col justify-between bg-[#20231f] p-8 text-[#f7f4ee] sm:p-10">
                             <div>
                                 <p className="text-[10px] tracking-[0.3em] text-[#f7f4ee]/45 uppercase">
@@ -66,7 +47,7 @@ export default function Reservation() {
                                 <p className="mt-5 max-w-md text-sm leading-7 text-[#f7f4ee]/60">
                                     Of je nu komt lunchen, dineren of gezellig
                                     borrelen, reserveer eenvoudig jouw tafel via
-                                    het formulier.
+                                    Zenchef.
                                 </p>
                             </div>
 
@@ -108,209 +89,35 @@ export default function Reservation() {
                             </div>
                         </div>
 
-                        {/* Form */}
-                        <form
-                            onSubmit={submit}
-                            className="border border-[#5d6948]/15 bg-white p-7 shadow-[0_20px_50px_rgba(32,35,31,0.06)] sm:p-10"
-                        >
-                            <div className="mb-9">
-                                <p className="text-[10px] tracking-[0.3em] text-[#5d6948] uppercase">
-                                    Jouw gegevens
-                                </p>
+                        {/* Zenchef */}
+                        <div className="flex flex-col items-center justify-center border border-[#5d6948]/15 bg-white p-8 text-center shadow-[0_20px_50px_rgba(32,35,31,0.06)] sm:p-12">
 
-                                <h2 className="mt-3 font-serif text-3xl">
-                                    Reserveer hieronder
-                                </h2>
+                            <p className="text-[10px] tracking-[0.3em] text-[#5d6948] uppercase">
+                                Online reserveren
+                            </p>
 
-                                <p className="mt-3 text-sm leading-6 text-[#20231f]/50">
-                                    Vul je gegevens in en verstuur je
-                                    reserveringsaanvraag.
-                                </p>
-                            </div>
+                            <h2 className="mt-4 font-serif text-4xl">
+                                Reserveer via Zenchef
+                            </h2>
 
-                            {/* Name */}
-                            <div className="mb-6">
-                                <label className="mb-2 block text-[11px] tracking-[0.18em] text-[#20231f]/65 uppercase">
-                                    Naam
-                                </label>
-
-                                <input
-                                    type="text"
-                                    value={data.name}
-                                    onChange={(e) =>
-                                        setData('name', e.target.value)
-                                    }
-                                    className={inputClass}
-                                    placeholder="Jouw naam"
-                                />
-
-                                {errors.name && (
-                                    <p className="mt-2 text-sm text-red-600">
-                                        {errors.name}
-                                    </p>
-                                )}
-                            </div>
-
-                            {/* Email + Phone */}
-                            <div className="mb-6 grid gap-6 sm:grid-cols-2">
-                                <div>
-                                    <label className="mb-2 block text-[11px] tracking-[0.18em] text-[#20231f]/65 uppercase">
-                                        E-mail
-                                    </label>
-
-                                    <input
-                                        type="email"
-                                        value={data.email}
-                                        onChange={(e) =>
-                                            setData('email', e.target.value)
-                                        }
-                                        className={inputClass}
-                                        placeholder="naam@email.nl"
-                                    />
-
-                                    {errors.email && (
-                                        <p className="mt-2 text-sm text-red-600">
-                                            {errors.email}
-                                        </p>
-                                    )}
-                                </div>
-
-                                <div>
-                                    <label className="mb-2 block text-[11px] tracking-[0.18em] text-[#20231f]/65 uppercase">
-                                        Telefoon
-                                    </label>
-
-                                    <input
-                                        type="tel"
-                                        value={data.phone}
-                                        onChange={(e) =>
-                                            setData('phone', e.target.value)
-                                        }
-                                        className={inputClass}
-                                        placeholder="06 12345678"
-                                    />
-
-                                    {errors.phone && (
-                                        <p className="mt-2 text-sm text-red-600">
-                                            {errors.phone}
-                                        </p>
-                                    )}
-                                </div>
-                            </div>
-
-                            {/* Date + Time */}
-                            <div className="mb-6 grid gap-6 sm:grid-cols-2">
-                                <div>
-                                    <label className="mb-2 block text-[11px] tracking-[0.18em] text-[#20231f]/65 uppercase">
-                                        Datum
-                                    </label>
-
-                                    <input
-                                        type="date"
-                                        value={data.date}
-                                        onChange={(e) =>
-                                            setData('date', e.target.value)
-                                        }
-                                        className={inputClass}
-                                        style={{ colorScheme: 'light' }}
-                                    />
-
-                                    {errors.date && (
-                                        <p className="mt-2 text-sm text-red-600">
-                                            {errors.date}
-                                        </p>
-                                    )}
-                                </div>
-
-                                <div>
-                                    <label className="mb-2 block text-[11px] tracking-[0.18em] text-[#20231f]/65 uppercase">
-                                        Tijd
-                                    </label>
-
-                                    <input
-                                        type="time"
-                                        value={data.time}
-                                        onChange={(e) =>
-                                            setData('time', e.target.value)
-                                        }
-                                        className={inputClass}
-                                        style={{ colorScheme: 'light' }}
-                                    />
-
-                                    {errors.time && (
-                                        <p className="mt-2 text-sm text-red-600">
-                                            {errors.time}
-                                        </p>
-                                    )}
-                                </div>
-                            </div>
-
-                            {/* Guests */}
-                            <div className="mb-6">
-                                <label className="mb-2 block text-[11px] tracking-[0.18em] text-[#20231f]/65 uppercase">
-                                    Aantal gasten
-                                </label>
-
-                                <input
-                                    type="number"
-                                    min="1"
-                                    max="20"
-                                    value={data.guests}
-                                    onChange={(e) =>
-                                        setData(
-                                            'guests',
-                                            Number(e.target.value),
-                                        )
-                                    }
-                                    className={inputClass}
-                                />
-
-                                {errors.guests && (
-                                    <p className="mt-2 text-sm text-red-600">
-                                        {errors.guests}
-                                    </p>
-                                )}
-                            </div>
-
-                            {/* Message */}
-                            <div className="mb-8">
-                                <label className="mb-2 block text-[11px] tracking-[0.18em] text-[#20231f]/65 uppercase">
-                                    Opmerking
-                                </label>
-
-                                <textarea
-                                    rows={5}
-                                    value={data.message}
-                                    onChange={(e) =>
-                                        setData('message', e.target.value)
-                                    }
-                                    className={`${inputClass} resize-none`}
-                                    placeholder="Bijvoorbeeld allergieën, kinderstoel of andere wensen..."
-                                />
-
-                                {errors.message && (
-                                    <p className="mt-2 text-sm text-red-600">
-                                        {errors.message}
-                                    </p>
-                                )}
-                            </div>
+                            <p className="mt-5 max-w-md text-sm leading-7 text-[#20231f]/55">
+                                Kies het aantal gasten, een beschikbare datum en
+                                tijd. Je reservering wordt direct via Zenchef
+                                verwerkt.
+                            </p>
 
                             <button
-                                type="submit"
-                                disabled={processing}
-                                className="group flex w-full items-center justify-center gap-3 bg-[#20231f] px-6 py-4 text-[11px] tracking-[0.22em] text-[#f7f4ee] uppercase transition hover:bg-[#5d6948] disabled:cursor-not-allowed disabled:opacity-50"
+                                type="button"
+                                data-zc-action="open"
+                                className="group mt-9 flex items-center justify-center gap-3 bg-[#20231f] px-8 py-4 text-[11px] tracking-[0.22em] text-[#f7f4ee] uppercase transition hover:bg-[#5d6948]"
                             >
-                                {processing
-                                    ? 'Bezig met versturen...'
-                                    : 'Reservering aanvragen'}
+                                Reserveer een tafel
 
-                                {!processing && (
-                                    <span className="transition-transform duration-300 group-hover:translate-x-1">
-                                        →
-                                    </span>
-                                )}
+                                <span className="transition-transform duration-300 group-hover:translate-x-1">
+                                    →
+                                </span>
                             </button>
-                        </form>
+                        </div>
                     </div>
                 </section>
             </main>

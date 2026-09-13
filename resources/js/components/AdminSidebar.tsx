@@ -33,11 +33,11 @@ export default function AdminSidebar() {
         { name: "Menu's", href: '/admin/menus' },
         { name: 'Categorieën', href: '/admin/categories' },
         { name: 'Gerechten', href: '/admin/menu-items' },
-        { name: 'Reserveringen', href: '/admin/reservations' },
+        // { name: 'Reserveringen', href: '/admin/reservations' },
         { name: 'Berichten', href: '/admin/contacts' },
         { name: 'Actualiteiten', href: '/admin/actualiteiten' },
         { name: 'Vacatures', href: '/admin/vacancies' },
-        { name: 'Orders', href: '/admin/orders' },
+        // { name: 'Orders', href: '/admin/orders' },
 
     ];
 

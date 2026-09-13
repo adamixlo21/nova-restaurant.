@@ -41,8 +41,33 @@
         <x-inertia::head>
             <title>{{ config('app.name', 'Laravel') }}</title>
         </x-inertia::head>
+
     </head>
     <body class="font-sans antialiased">
         <x-inertia::app />
+
+
+        <div
+            class="zc-widget-config"
+            data-utm_source="website"
+            data-restaurant="368521">
+        </div>
+
+        <script>
+            ;(function (d, s, id) {
+                const el = d.getElementsByTagName(s)[0]
+
+                if (d.getElementById(id) || el.parentNode == null) {
+                    return
+                }
+
+                var js = d.createElement(s)
+                js.id = id
+                js.src = 'https://sdk.zenchef.com/v1/sdk.min.js'
+
+                el.parentNode.insertBefore(js, el)
+            })(document, 'script', 'zenchef-sdk')
+        </script>
+
     </body>
 </html>
